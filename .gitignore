@@ -1,5 +1,4 @@
 node_modules
 .sass-cache
 extension/compile
-extension/manifest.json
 .idea

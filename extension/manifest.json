@@ -1,0 +1,40 @@
+{
+  "name": "Clipboardy",
+  "homepage_url": "http://rainsoft.io",
+  "version": "0.1.0",
+  "description": "",
+  "author": "Dmitri Pavlutin",
+  "icons": {
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "http://stackoverflow.com/*"
+      ],
+      "js": [
+        "compile/js/stackoverflow.js"
+      ],
+      "css": [
+      ],
+      "run_at": "document_end"
+    }
+  ],
+  "background": {
+    "scripts": [
+      "compile/js/background.js"
+    ]
+  },
+  "options_page": "options.html",
+  "permissions": [
+    "tabs",
+    "storage",
+    "http://stackoverflow.com/*",
+    "clipboardWrite"
+  ],
+  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
+  "manifest_version": 2,
+  "web_accessible_resources": [
+    "icons/*",
+    "options.html"
+  ]
+}
