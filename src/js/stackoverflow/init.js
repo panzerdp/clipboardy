@@ -6,4 +6,3 @@ $(function() {
     console.log(element.text());
   });
 });
-console.log('On stackoverflow');

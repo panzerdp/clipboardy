@@ -1,12 +1,6 @@
 {
-  "browser": {},
-  "browserify": {
-    "transform": [
-      "partialify",
-      "strictify"
-    ]
-  },
-  "browserify-shim": {},
+  "name": "Clipboardy",
+  "version": "0.1.0",
   "dependencies": {
     "angular": "~1.4.3",
     "bootstrap-material-design": "^0.3.0",
@@ -30,6 +24,15 @@
     "strictify": "^0.2.0",
     "vinyl-source-stream": "^1.1.0"
   },
-  "name": "Clipboardy",
-  "version": "0.1.0"
+  "browserify": {
+    "transform": [
+      "partialify",
+      "strictify"
+    ]
+  },
+  "browser": {
+
+  },
+  "browserify-shim": {
+  }
 }

@@ -1,7 +1,6 @@
 var browserify = require('browserify');
 var gulp = require('gulp');
 var source = require('vinyl-source-stream');
-var pathmodify = require('pathmodify');
 var crx = require('gulp-crx');
 var manifest = require('./extension/manifest.json');
 var fs = require('fs');
