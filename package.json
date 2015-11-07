@@ -28,7 +28,9 @@
     "gulp-sass": "^2.0.4",
     "gulp-watch": "^4.3.5",
     "partialify": "^3.1.5",
-    "strictify": "^0.2.0"
+    "strictify": "^0.2.0",
+    "vinyl-source-stream": "^1.1.0",
+    "pathmodify": "^0.4.0"
   },
   "name": "Clipboardy",
   "version": "0.1.0"
