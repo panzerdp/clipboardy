@@ -9,7 +9,7 @@
   "content_scripts": [
     {
       "matches": [
-        "http://stackoverflow.com/*"
+        "http://*.stackoverflow.com/*"
       ],
       "js": [
         "compile/js/stackoverflow.js"

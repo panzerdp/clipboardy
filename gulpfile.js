@@ -20,14 +20,33 @@ gulp.task('browserify:background', function() {
     .pipe(gulp.dest('./extension/compile/js/'));
 });
 
+gulp.task('browserify:buttons', function() {
+  return browserify('./src/js/buttons/init.js')
+    .bundle()
+    .pipe(source('buttons.js'))
+    .pipe(gulp.dest('./extension/compile/js/'));
+});
+
+gulp.task('browserify:options', function() {
+  return browserify('./src/js/options/init.js')
+    .bundle()
+    .pipe(source('options.js'))
+    .pipe(gulp.dest('./extension/compile/js/'));
+});
+
 gulp.task('browserify', function() {
   gulp.start('browserify:stackoverflow');
   gulp.start('browserify:background');
+  gulp.start('browserify:options');
+  gulp.start('browserify:buttons');
 });
 
 gulp.task('watch', function() {
   gulp.watch('src/js/stackoverflow/**/*', ['browserify:stackoverflow']);
   gulp.watch('src/js/background/**/*', ['browserify:background']);
+  gulp.watch('src/js/options/**/*', ['browserify:options']);
+  gulp.watch('src/js/buttons/**/*', ['browserify:buttons']);
+  gulp.watch('src/js/common/**/*', ['browserify']);
 });
 
 gulp.task('crx', ['browserify'] , function() {
