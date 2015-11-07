@@ -9,7 +9,8 @@
     "jquery": "^2.1.3",
     "lodash": "^3.10.0",
     "q": "^1.4.1",
-    "sprintf-js": "^1.0.2"
+    "sprintf-js": "^1.0.2",
+    "uuid": "^2.0.1"
   },
   "devDependencies": {
     "browserify": "^12.0.1",
@@ -30,9 +31,6 @@
       "strictify"
     ]
   },
-  "browser": {
-
-  },
-  "browserify-shim": {
-  }
+  "browser": {},
+  "browserify-shim": {}
 }

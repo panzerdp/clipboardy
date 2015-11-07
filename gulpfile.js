@@ -4,47 +4,45 @@ var source = require('vinyl-source-stream');
 var crx = require('gulp-crx');
 var manifest = require('./extension/manifest.json');
 var fs = require('fs');
+var pathmodify = require('pathmodify');
+var path = require('path');
 
-gulp.task('browserify:stackoverflow', function() {
-  return browserify('./src/js/stackoverflow/init.js')
-    .bundle()
-    .pipe(source('stackoverflow.js'))
-    .pipe(gulp.dest('./extension/compile/js/'));
-});
+var scripts = [
+  'stackoverflow',
+  'background',
+  'buttons',
+  'options'
+];
+var options = {
+  mods: [
+    pathmodify.mod.dir('common', path.join(__dirname, './src/js/common')),
+    pathmodify.mod.dir('stackoverflow', path.join(__dirname, './src/js/stackoverflow')),
+    pathmodify.mod.dir('background', path.join(__dirname, './src/js/background')),
+    pathmodify.mod.dir('buttons', path.join(__dirname, './src/js/buttons')),
+    pathmodify.mod.dir('options', path.join(__dirname, './src/js/options'))
+  ]
+};
 
-gulp.task('browserify:background', function() {
-  return browserify('./src/js/background/init.js')
-    .bundle()
-    .pipe(source('background.js'))
-    .pipe(gulp.dest('./extension/compile/js/'));
-});
-
-gulp.task('browserify:buttons', function() {
-  return browserify('./src/js/buttons/init.js')
-    .bundle()
-    .pipe(source('buttons.js'))
-    .pipe(gulp.dest('./extension/compile/js/'));
-});
-
-gulp.task('browserify:options', function() {
-  return browserify('./src/js/options/init.js')
-    .bundle()
-    .pipe(source('options.js'))
-    .pipe(gulp.dest('./extension/compile/js/'));
+scripts.forEach(function(script) {
+  gulp.task('browserify:' + script, function() {
+    return browserify('./src/js/' + script + '/init.js')
+      .plugin(pathmodify(), options)
+      .bundle()
+      .pipe(source(script + '.js'))
+      .pipe(gulp.dest('./extension/compile/js/'));
+  });
 });
 
 gulp.task('browserify', function() {
-  gulp.start('browserify:stackoverflow');
-  gulp.start('browserify:background');
-  gulp.start('browserify:options');
-  gulp.start('browserify:buttons');
+  scripts.forEach(function(script) {
+    gulp.start('browserify:' + script);
+  });
 });
 
 gulp.task('watch', function() {
-  gulp.watch('src/js/stackoverflow/**/*', ['browserify:stackoverflow']);
-  gulp.watch('src/js/background/**/*', ['browserify:background']);
-  gulp.watch('src/js/options/**/*', ['browserify:options']);
-  gulp.watch('src/js/buttons/**/*', ['browserify:buttons']);
+  scripts.forEach(function(script) {
+    gulp.watch('src/js/' + script + '/**/*', ['browserify:' + script]);
+  });
   gulp.watch('src/js/common/**/*', ['browserify']);
 });
 

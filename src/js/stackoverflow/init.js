@@ -1,8 +1,6 @@
-var $ = require('jquery');
+var $ = require('jquery'),
+  StackoverflowSource = require('./source/stackoverflow');
 
 $(function() {
-  $('.prettyprint').each(function() {
-    var element = $(this);
-    console.log(element.text());
-  });
+  var stackoverflow = new StackoverflowSource();
 });
