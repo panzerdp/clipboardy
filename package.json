@@ -2,7 +2,7 @@
   "name": "Clipboardy",
   "version": "0.1.0",
   "dependencies": {
-    "angular": "~1.4.3",
+    "angular": "~1.4.7",
     "bootstrap-material-design": "^0.3.0",
     "global": "^4.3.0",
     "inherit": "^2.2.2",
