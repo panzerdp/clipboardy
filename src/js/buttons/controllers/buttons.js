@@ -1,10 +1,14 @@
-function ButtonsCtrl() {
+
+// @ngInject
+function ButtonsCtrl(Message, C) {
   var self = this;
 
   self.onCopySourceClick = onCopySourceClick;
 
   function onCopySourceClick() {
-    console.log('Clicked');
+    Message.sendToCurrentTab({
+      message: C.MESSAGE_GET_SOURCE_TEXT
+    });
   }
 }
 

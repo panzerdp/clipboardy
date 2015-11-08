@@ -14,6 +14,7 @@
   },
   "devDependencies": {
     "browserify": "^12.0.1",
+    "browserify-ngannotate": "^1.0.1",
     "browserify-shim": "^3.8.11",
     "gulp": "^3.9.0",
     "gulp-crx": "git://github.com/PavelVanecek/gulp-crx.git#v0.1.1",
@@ -30,7 +31,8 @@
   "browserify": {
     "transform": [
       "partialify",
-      "strictify"
+      "strictify",
+      "browserify-ngannotate"
     ]
   },
   "browser": {},
