@@ -1,7 +1,8 @@
 var inherit = require('inherit'),
   $ = require('jquery'),
   uuid = require('uuid'),
-  sprintf = require('sprintf-js').sprintf;
+  sprintf = require('sprintf-js').sprintf,
+  C = require('common/const');
 
 module.exports = inherit({
 
@@ -65,7 +66,7 @@ module.exports = inherit({
   },
 
   /**
-   * Listen for messages
+   * Listen for extension messages
    */
   listenForMessage: function() {
 

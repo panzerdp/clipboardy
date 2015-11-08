@@ -1,3 +1,6 @@
+/**
+ * Controller for buttons in the iframe
+ */
 
 // @ngInject
 function ButtonsCtrl(Message, C) {
