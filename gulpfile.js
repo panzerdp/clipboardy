@@ -6,6 +6,8 @@ var manifest = require('./extension/manifest.json');
 var fs = require('fs');
 var pathmodify = require('pathmodify');
 var path = require('path');
+var assign = require('lodash.assign');
+var watchify = require('watchify');
 
 var scripts = [
   'stackoverflow',
@@ -33,6 +35,22 @@ scripts.forEach(function(script) {
   });
 });
 
+scripts.forEach(function(script) {
+  var customOpts = {
+    entries: ['./src/js/' + script + '/init.js'],
+    debug: false
+  };
+  var opts = assign({}, watchify.args, customOpts),
+    watch = watchify(browserify(opts));
+  gulp.task('watchify:' + script, function() {
+    return watch
+      .plugin(pathmodify(), options)
+      .bundle()
+      .pipe(source(script + '.js'))
+      .pipe(gulp.dest('./extension/compile/js/'));
+  });
+});
+
 gulp.task('browserify', function() {
   scripts.forEach(function(script) {
     gulp.start('browserify:' + script);
@@ -41,9 +59,8 @@ gulp.task('browserify', function() {
 
 gulp.task('watch', function() {
   scripts.forEach(function(script) {
-    gulp.watch('src/js/' + script + '/**/*', ['browserify:' + script]);
+    gulp.start('watchify:' + script);
   });
-  gulp.watch('src/js/common/**/*', ['browserify']);
 });
 
 gulp.task('crx', ['browserify'] , function() {
@@ -56,5 +73,5 @@ gulp.task('crx', ['browserify'] , function() {
 });
 
 gulp.task('default', function() {
-  gulp.start('browserify', 'watch');
+  gulp.start('watch');
 });
