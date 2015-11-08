@@ -1,5 +1,7 @@
 var browserify = require('browserify');
+var watchify = require('watchify');
 var gulp = require('gulp');
+var gutil = require('gulp-util');
 var source = require('vinyl-source-stream');
 var crx = require('gulp-crx');
 var manifest = require('./extension/manifest.json');
@@ -7,7 +9,6 @@ var fs = require('fs');
 var pathmodify = require('pathmodify');
 var path = require('path');
 var assign = require('lodash.assign');
-var watchify = require('watchify');
 
 var scripts = [
   'stackoverflow',
@@ -28,23 +29,7 @@ var options = {
 scripts.forEach(function(script) {
   gulp.task('browserify:' + script, function() {
     return browserify('./src/js/' + script + '/init.js')
-      .plugin(pathmodify(), options)
-      .bundle()
-      .pipe(source(script + '.js'))
-      .pipe(gulp.dest('./extension/compile/js/'));
-  });
-});
-
-scripts.forEach(function(script) {
-  var customOpts = {
-    entries: ['./src/js/' + script + '/init.js'],
-    debug: false
-  };
-  var opts = assign({}, watchify.args, customOpts),
-    watch = watchify(browserify(opts));
-  gulp.task('watchify:' + script, function() {
-    return watch
-      .plugin(pathmodify(), options)
+      .plugin(pathmodify(), assign({}, options))
       .bundle()
       .pipe(source(script + '.js'))
       .pipe(gulp.dest('./extension/compile/js/'));
@@ -59,7 +44,22 @@ gulp.task('browserify', function() {
 
 gulp.task('watch', function() {
   scripts.forEach(function(script) {
-    gulp.start('watchify:' + script);
+    var customOpts = {
+      entries: ['./src/js/' + script + '/init.js'],
+      debug: false
+    };
+    var opts = assign({}, watchify.args, customOpts),
+      watch = watchify(browserify(opts));
+    function bundle() {
+      watch
+        .plugin(pathmodify(), assign({}, options))
+        .bundle()
+        .pipe(source(script + '.js'))
+        .pipe(gulp.dest('./extension/compile/js/'));
+    }
+    watch.on('update', bundle); // on any dep update, runs the bundler
+    watch.on('log', gutil.log); // output build logs to terminal
+    bundle();
   });
 });
 
