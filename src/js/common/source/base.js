@@ -48,11 +48,10 @@ module.exports = inherit({
    */
   insertIframe: function(element, id) {
     element
-      .attr('data-source-id', id)
-      .addClass('clipboardy-source');
+      .attr('data-source-id', id);
     var iframeUrl = chrome.extension.getURL('buttons.html') + '?id=' + id,
       iframeContent = $(sprintf(require('./templates/buttons_iframe.html'), iframeUrl));
-    element.append(iframeContent);
+    iframeContent.insertBefore(element);
   },
 
   /**
