@@ -9,6 +9,7 @@ var fs = require('fs');
 var pathmodify = require('pathmodify');
 var path = require('path');
 var assign = require('lodash.assign');
+var sass = require('gulp-sass');
 
 var scripts = [
   'stackoverflow',
@@ -61,6 +62,13 @@ gulp.task('watch', function() {
     watch.on('log', gutil.log); // output build logs to terminal
     bundle();
   });
+  gulp.watch('src/sass/*.sass', ['sass']);
+});
+
+gulp.task('sass', function () {
+  gulp.src('src/sass/*.sass')
+    .pipe(sass().on('error', sass.logError))
+    .pipe(gulp.dest('extension/compile/css'));
 });
 
 gulp.task('crx', ['browserify'] , function() {
@@ -73,5 +81,5 @@ gulp.task('crx', ['browserify'] , function() {
 });
 
 gulp.task('default', function() {
-  gulp.start('watch');
+  gulp.start('sass', 'watch');
 });
