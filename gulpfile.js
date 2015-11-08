@@ -62,7 +62,7 @@ gulp.task('watch', function() {
     watch.on('log', gutil.log); // output build logs to terminal
     bundle();
   });
-  gulp.watch('src/sass/*.sass', ['sass']);
+  gulp.watch('src/sass/**/*.sass', ['sass']);
 });
 
 gulp.task('sass', function () {
@@ -71,7 +71,7 @@ gulp.task('sass', function () {
     .pipe(gulp.dest('extension/compile/css'));
 });
 
-gulp.task('crx', ['browserify'] , function() {
+gulp.task('crx', ['browserify', 'sass'] , function() {
   return gulp.src('extension/')
     .pipe(crx({
       privateKey: fs.readFileSync('certificates/extension.pem', 'utf8'),

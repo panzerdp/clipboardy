@@ -15,6 +15,7 @@
         "compile/js/stackoverflow.js"
       ],
       "css": [
+        "compile/css/stackoverflow.css"
       ],
       "run_at": "document_end"
     }

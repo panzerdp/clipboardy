@@ -6,14 +6,6 @@ var inherit = require('inherit'),
 module.exports = inherit({
 
   __constructor: function() {
-
-    /**
-     * An array of the source elements
-     *
-     * @type {Array}
-     */
-    this.sourceElements = [];
-
     this.insertButtons();
     this.listenForMessage();
   },
@@ -26,10 +18,6 @@ module.exports = inherit({
     this.getSourceElements().each(function() {
       var sourceElement = $(this),
         id = uuid.v1();
-      self.sourceElements.push({
-        id: id,
-        sourceElement: sourceElement
-      });
       self.insertIframe(sourceElement, id);
     });
   },
@@ -59,8 +47,11 @@ module.exports = inherit({
    * @param {string} id
    */
   insertIframe: function(element, id) {
+    element
+      .attr('data-source-id', id)
+      .addClass('clipboardy-source');
     var iframeUrl = chrome.extension.getURL('buttons.html') + '?id=' + id,
-      iframeContent = $(sprintf(require('../templates/buttons_iframe.html'), iframeUrl));
+      iframeContent = $(sprintf(require('./templates/buttons_iframe.html'), iframeUrl));
     element.append(iframeContent);
   },
 
