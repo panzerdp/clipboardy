@@ -17,6 +17,21 @@ var scripts = [
   'buttons',
   'options'
 ];
+
+var vendorsContentScript = [
+  'jquery',
+  'lodash',
+  'inherit',
+  'sprintf-js',
+  'uuid'
+];
+
+var vendors = [
+  'angular',
+  'url',
+  'lodash'
+];
+
 var options = {
   mods: [
     pathmodify.mod.dir('common', path.join(__dirname, './src/js/common')),
@@ -29,7 +44,11 @@ var options = {
 
 scripts.forEach(function(script) {
   gulp.task('browserify:' + script, function() {
-    return browserify('./src/js/' + script + '/init.js')
+    var browserifyBuilder = browserify('./src/js/' + script + '/init.js');
+    vendors.concat(vendorsContentScript).forEach(function(lib) {
+      browserifyBuilder.exclude(lib);
+    });
+    return browserifyBuilder
       .plugin(pathmodify(), assign({}, options))
       .bundle()
       .pipe(source(script + '.js'))
@@ -37,10 +56,34 @@ scripts.forEach(function(script) {
   });
 });
 
+gulp.task('browserify:vendors', function() {
+  var b = browserify();
+  vendors.forEach(function(lib) {
+    b.require(lib);
+  });
+  return b
+    .bundle()
+    .pipe(source('vendors.js'))
+    .pipe(gulp.dest('./extension/compile/js/'));
+});
+
+gulp.task('browserify:vendors-content-script', function() {
+  var b = browserify();
+  vendorsContentScript.forEach(function(lib) {
+    b.require(lib);
+  });
+  return b
+    .bundle()
+    .pipe(source('vendors_content_script.js'))
+    .pipe(gulp.dest('./extension/compile/js/'));
+});
+
 gulp.task('browserify', function() {
   scripts.forEach(function(script) {
     gulp.start('browserify:' + script);
   });
+  gulp.start('browserify:vendors');
+  gulp.start('browserify:vendors-content-script');
 });
 
 gulp.task('watch', function() {
@@ -50,7 +93,11 @@ gulp.task('watch', function() {
       debug: false
     };
     var opts = assign({}, watchify.args, customOpts),
-      watch = watchify(browserify(opts));
+      browserifyBuilder = browserify(opts);
+    vendors.concat(vendorsContentScript).forEach(function(lib) {
+      browserifyBuilder.exclude(lib);
+    });
+    var watch = watchify(browserifyBuilder);
     function bundle() {
       watch
         .plugin(pathmodify(), assign({}, options))
@@ -62,6 +109,9 @@ gulp.task('watch', function() {
     watch.on('log', gutil.log); // output build logs to terminal
     bundle();
   });
+  gulp.start('browserify:vendors');
+  gulp.start('browserify:vendors-content-script');
+
   gulp.watch('src/sass/**/*.sass', ['sass']);
 });
 

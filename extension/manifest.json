@@ -9,7 +9,8 @@
   "content_scripts": [
     {
       "matches": [
-        "http://*.stackoverflow.com/*"
+        "http://*.stackoverflow.com/*",
+        "http://*.askubuntu.com/*"
       ],
       "js": [
         "compile/js/stackoverflow.js"
@@ -17,7 +18,7 @@
       "css": [
         "compile/css/stackoverflow.css"
       ],
-      "run_at": "document_end"
+      "run_at": "document_start"
     }
   ],
   "background": {

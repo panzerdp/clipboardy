@@ -13,7 +13,6 @@ exports.Write = function (text, callback, sender) {
     var textarea = document.createElement('textarea');
     documentInstance.body.appendChild(textarea);
   }
-  console.log(text);
   textarea.value = text;
   textarea.focus();
   textarea.select();
