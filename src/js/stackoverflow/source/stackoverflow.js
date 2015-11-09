@@ -3,6 +3,6 @@ var inherit = require('inherit'),
 
 module.exports = inherit(SourceBase, {
   getSourceElementsSelector: function() {
-    return '.prettyprint';
+    return '.post-text pre';
   }
 });

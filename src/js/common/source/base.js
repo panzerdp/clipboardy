@@ -72,7 +72,6 @@ module.exports = inherit({
   listenForMessage: function() {
     var self = this;
     chrome.runtime.onMessage.addListener(function (request, sender, callback) {
-      console.log('Request from background received', request);
       switch (request.message) {
         case C.MESSAGE_GET_SOURCE_TEXT:
           var sourceText = self.getSourceTextById(request.id);

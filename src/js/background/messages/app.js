@@ -25,6 +25,8 @@ var Controller = {
     switch(name.toLowerCase()) {
       case 'source':
         return require('./public/source');
+      case 'clipboard':
+        return require('./public/clipboard');
       default:
         throw new Error('Unable to load the module: ' + name);
     }
