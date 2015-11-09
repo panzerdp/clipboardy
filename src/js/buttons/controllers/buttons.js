@@ -9,8 +9,10 @@ function ButtonsCtrl(Message, C) {
   self.onCopySourceClick = onCopySourceClick;
 
   function onCopySourceClick() {
-    Message.sendToCurrentTab({
+    Message.send({
       message: C.MESSAGE_GET_SOURCE_TEXT
+    }).then(function(sourceText) {
+      console.log(sourceText);
     });
   }
 }

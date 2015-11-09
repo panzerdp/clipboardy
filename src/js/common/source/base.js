@@ -58,18 +58,30 @@ module.exports = inherit({
   /**
    * Get the source code text from dom element
    *
-   * @param element
+   * @param {string} id
    * @returns {string}
    */
-  getSourceText: function(element) {
-    return element.text();
+  getSourceTextById: function(id) {
+    var element = $('[data-source-id="' + id + '"]');
+    return element.length > 0 ? element.text() : null;
   },
 
   /**
    * Listen for extension messages
    */
   listenForMessage: function() {
-
+    var self = this;
+    chrome.runtime.onMessage.addListener(function (request, sender, callback) {
+      switch (request.message) {
+        case C.MESSAGE_GET_SOURCE_TEXT:
+          var sourceText = self.getSourceTextById(request.id);
+          if (sourceText != null) {
+            callback(sourceText);
+          }
+          break;
+      }
+      return true;
+    });
   }
 
 });

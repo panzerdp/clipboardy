@@ -11,7 +11,7 @@ function Message($q) {
      * @param data {Object} The parameters sent to background
      * @returns {IPromise}
      */
-    sendToBackground: function(method, data) {
+    send: function(method, data) {
       var deferred = $q.defer();
       chrome.runtime.sendMessage({
         method: method,
