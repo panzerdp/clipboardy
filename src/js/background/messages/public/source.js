@@ -1,21 +1,19 @@
-exports.Get = function (badgeContent, callback, sender) {
-  var tabId = sender.tab.id;
-  chrome.browserAction.setIcon({
-    tabId: tabId,
-    path: {
-      '19': 'icons/icon19.png',
-      '38': 'icons/icon38.png'
-    }
-  });
-  if (badgeContent > 0) {
-    //Display the browser button only when there are more than 1 articles on the page
-    chrome.browserAction.setBadgeText({
-      text: badgeContent.toString(),
-      tabId: tabId
-    });
-    chrome.browserAction.setPopup({
-      tabId: tabId,
-      popup: 'popup.html'
-    });
+var C = require('common/const');
+
+/**
+ * Send a message to tab and forward the response
+ *
+ * @param {Object} data
+ * @param {Function} callback
+ * @param {Object} sender
+ * @returns {boolean}
+ */
+exports.Get = function (data, callback, sender) {
+  if (!sender.tab) {
+    callback(null);
   }
+  chrome.tabs.sendMessage(sender.tab.id, data, function(tabResponse) {
+    callback(tabResponse);
+  });
+  return true;
 };

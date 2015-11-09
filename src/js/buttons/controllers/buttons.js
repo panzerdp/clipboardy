@@ -9,7 +9,7 @@ function ButtonsCtrl(Message, C) {
   self.onCopySourceClick = onCopySourceClick;
 
   function onCopySourceClick() {
-    Message.send({
+    Message.send('Source.Get', {
       message: C.MESSAGE_GET_SOURCE_TEXT
     }).then(function(sourceText) {
       console.log(sourceText);
