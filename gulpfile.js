@@ -10,6 +10,7 @@ var pathmodify = require('pathmodify');
 var path = require('path');
 var assign = require('lodash.assign');
 var sass = require('gulp-sass');
+var concat = require('gulp-concat');
 
 var scripts = [
   'stackoverflow',
@@ -28,6 +29,9 @@ var vendorsContentScript = [
 
 var vendors = [
   'angular',
+  'angular-animate',
+  'angular-aria',
+  'angular-material',
   'url',
   'lodash'
 ];
@@ -86,6 +90,12 @@ gulp.task('browserify', function() {
   gulp.start('browserify:vendors-content-script');
 });
 
+gulp.task('concat:css', function() {
+  return gulp.src(['./node_modules/angular-material/angular-material.css'])
+    .pipe(concat('vendors.css'))
+    .pipe(gulp.dest('./extension/compile/css/'));
+});
+
 gulp.task('watch', function() {
   scripts.forEach(function(script) {
     var customOpts = {
@@ -111,6 +121,7 @@ gulp.task('watch', function() {
   });
   gulp.start('browserify:vendors');
   gulp.start('browserify:vendors-content-script');
+  gulp.start('concat:css');
 
   gulp.watch('src/sass/**/*.sass', ['sass']);
 });

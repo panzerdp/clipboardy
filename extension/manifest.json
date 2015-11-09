@@ -13,6 +13,7 @@
         "http://*.askubuntu.com/*"
       ],
       "js": [
+        "compile/js/vendors_content_script.js",
         "compile/js/stackoverflow.js"
       ],
       "css": [
