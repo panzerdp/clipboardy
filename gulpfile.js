@@ -29,9 +29,6 @@ var vendorsContentScript = [
 
 var vendors = [
   'angular',
-  'angular-animate',
-  'angular-aria',
-  'angular-material',
   'url',
   'lodash'
 ];

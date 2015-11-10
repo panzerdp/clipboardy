@@ -1,7 +1,6 @@
 var angular = require('angular');
 
 var app = angular.module('ButtonsApp', [
-  require('angular-material')
 ]);
 
 //Services
