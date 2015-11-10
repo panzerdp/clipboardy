@@ -6,22 +6,32 @@
   "author": "Dmitri Pavlutin",
   "icons": {
   },
-  "content_scripts": [
-    {
-      "matches": [
-        "http://*.stackoverflow.com/*",
-        "http://*.askubuntu.com/*"
-      ],
-      "js": [
-        "compile/js/vendors_content_script.js",
-        "compile/js/stackoverflow.js"
-      ],
-      "css": [
-        "compile/css/stackoverflow.css"
-      ],
-      "run_at": "document_start"
-    }
-  ],
+  "content_scripts": [{
+    "matches": [
+      "http://*.stackoverflow.com/*",
+      "http://*.askubuntu.com/*"
+    ],
+    "js": [
+      "compile/js/vendors_content_script.js",
+      "compile/js/stackoverflow.js"
+    ],
+    "css": [
+      "compile/css/stackoverflow.css"
+    ],
+    "run_at": "document_start"
+  }, {
+    "matches": [
+      "https://*.github.com/*"
+    ],
+    "js": [
+      "compile/js/vendors_content_script.js",
+      "compile/js/github.js"
+    ],
+    "css": [
+      "compile/css/github.css"
+    ],
+    "run_at": "document_start"
+  }],
   "background": {
     "scripts": [
       "compile/js/background.js"

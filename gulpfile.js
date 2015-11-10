@@ -16,7 +16,8 @@ var scripts = [
   'stackoverflow',
   'background',
   'buttons',
-  'options'
+  'options',
+  'github'
 ];
 
 var vendorsContentScript = [
