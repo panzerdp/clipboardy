@@ -2,13 +2,25 @@ var inherit = require('inherit'),
   $ = require('jquery'),
   uuid = require('uuid'),
   sprintf = require('sprintf-js').sprintf,
-  C = require('common/const');
+  C = require('common/const'),
+  buttonsIframeTemplate = require('./templates/buttons_iframe.html'),
+  doc = require('global/document'),
+  win = require('global/window');
 
 module.exports = inherit({
 
   __constructor: function() {
     this.insertButtons();
     this.listenForMessage();
+  },
+
+  /**
+   * Get source element by id
+   * @param {string} id
+   * @return {Object}
+   */
+  getElementById: function(id) {
+    return $('[data-source-id="' + id + '"]');
   },
 
   /**
@@ -51,7 +63,7 @@ module.exports = inherit({
     element
       .attr('data-source-id', id);
     var iframeUrl = chrome.extension.getURL('buttons.html') + '?id=' + id,
-      iframeContent = $(sprintf(require('./templates/buttons_iframe.html'), iframeUrl));
+      iframeContent = $(sprintf(buttonsIframeTemplate, iframeUrl));
     iframeContent.insertBefore(element);
   },
 
@@ -62,23 +74,29 @@ module.exports = inherit({
    * @returns {string}
    */
   getSourceTextById: function(id) {
-    var element = $('[data-source-id="' + id + '"]');
+    var element = this.getElementById(id);
     return element.length > 0 ? element.text() : null;
   },
 
+  /**
+   * Select text in DOM element by id
+   * @param {string} id
+   * @returns {boolean} On successfull selection
+   */
   selectTextById: function(id) {
-    console.log('Select text', id);
-    var doc = document, text = $('[data-source-id="' + id + '"]').get(0), range, selection;
+    var text = this.getElementById(id).get(0),
+      range,
+      selection;
     if (!text) {
       return false;
     }
     if (doc.body.createTextRange) {
-      range = document.body.createTextRange();
+      range = doc.body.createTextRange();
       range.moveToElementText(text);
       range.select();
-    } else if (window.getSelection) {
-      selection = window.getSelection();
-      range = document.createRange();
+    } else if (win.getSelection) {
+      selection = win.getSelection();
+      range = doc.createRange();
       range.selectNodeContents(text);
       selection.removeAllRanges();
       selection.addRange(range);

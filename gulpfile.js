@@ -106,13 +106,13 @@ gulp.task('watch', function() {
       browserifyBuilder.exclude(lib);
     });
     var watch = watchify(browserifyBuilder);
-    function bundle() {
+    var bundle = function() {
       watch
         .plugin(pathmodify, options)
         .bundle()
         .pipe(source(script + '.js'))
         .pipe(gulp.dest('./extension/compile/js/'));
-    }
+    };
     watch.on('update', bundle); // on any dep update, runs the bundler
     watch.on('log', gutil.log); // output build logs to terminal
     bundle();
