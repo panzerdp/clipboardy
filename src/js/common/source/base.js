@@ -66,6 +66,26 @@ module.exports = inherit({
     return element.length > 0 ? element.text() : null;
   },
 
+  selectTextById: function(id) {
+    console.log('Select text', id);
+    var doc = document, text = $('[data-source-id="' + id + '"]').get(0), range, selection;
+    if (!text) {
+      return false;
+    }
+    if (doc.body.createTextRange) {
+      range = document.body.createTextRange();
+      range.moveToElementText(text);
+      range.select();
+    } else if (window.getSelection) {
+      selection = window.getSelection();
+      range = document.createRange();
+      range.selectNodeContents(text);
+      selection.removeAllRanges();
+      selection.addRange(range);
+    }
+    return true;
+  },
+
   /**
    * Listen for extension messages
    */
@@ -78,6 +98,12 @@ module.exports = inherit({
           if (sourceText != null) {
             callback(sourceText);
           }
+          window.focus();
+          break;
+        case C.MESSAGE_SELECT_SOURCE_TEXT:
+          self.selectTextById(request.id);
+          callback(true);
+          window.focus();
           break;
       }
       return true;

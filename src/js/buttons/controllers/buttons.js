@@ -3,10 +3,11 @@
  */
 
 // @ngInject
-function ButtonsCtrl(Message, C, SourceId, $q) {
+function ButtonsCtrl(Message, C, SourceId, $q, $window) {
   var self = this;
 
   self.onCopySourceClick = onCopySourceClick;
+  self.onSelectSourceClick = onSelectSourceClick;
 
   function onCopySourceClick() {
     Message.send('Source.Get', {
@@ -19,6 +20,14 @@ function ButtonsCtrl(Message, C, SourceId, $q) {
       return $q.reject('Source text is null');
     });
   }
+
+  function onSelectSourceClick() {
+    Message.send('Source.Get', {
+      message: C.MESSAGE_SELECT_SOURCE_TEXT,
+      id: SourceId.get()
+    }).then(function(response) {});
+  }
+
 }
 
 module.exports = [
