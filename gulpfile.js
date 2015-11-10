@@ -88,7 +88,7 @@ gulp.task('browserify', function() {
 });
 
 gulp.task('concat:css', function() {
-  return gulp.src(['./node_modules/angular-material/angular-material.css'])
+  return gulp.src(['./node_modules/bootswatch/lumen/bootstrap.css'])
     .pipe(concat('vendors.css'))
     .pipe(gulp.dest('./extension/compile/css/'));
 });
