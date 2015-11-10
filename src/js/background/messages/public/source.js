@@ -8,7 +8,7 @@ var C = require('common/const');
  * @param {Object} sender
  * @returns {boolean}
  */
-exports.Get = function (data, callback, sender) {
+exports.Call = function (data, callback, sender) {
   if (!sender.tab) {
     callback(null);
   }

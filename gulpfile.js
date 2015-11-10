@@ -51,7 +51,7 @@ scripts.forEach(function(script) {
       browserifyBuilder.exclude(lib);
     });
     return browserifyBuilder
-      .plugin(pathmodify(), assign({}, options))
+      .plugin(pathmodify, options)
       .bundle()
       .pipe(source(script + '.js'))
       .pipe(gulp.dest('./extension/compile/js/'));
@@ -108,7 +108,7 @@ gulp.task('watch', function() {
     var watch = watchify(browserifyBuilder);
     function bundle() {
       watch
-        .plugin(pathmodify(), assign({}, options))
+        .plugin(pathmodify, options)
         .bundle()
         .pipe(source(script + '.js'))
         .pipe(gulp.dest('./extension/compile/js/'));

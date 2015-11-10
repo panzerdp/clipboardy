@@ -25,7 +25,7 @@
     "gulp-watch": "^4.3.5",
     "lodash.assign": "^3.2.0",
     "partialify": "^3.1.5",
-    "pathmodify": "^0.4.0",
+    "pathmodify": "^0.5.0",
     "strictify": "^0.2.0",
     "vinyl-source-stream": "^1.1.0",
     "watchify": "^3.6.0"

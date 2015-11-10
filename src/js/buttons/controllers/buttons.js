@@ -10,7 +10,7 @@ function ButtonsCtrl(Message, C, SourceId, $q, $window) {
   self.onSelectSourceClick = onSelectSourceClick;
 
   function onCopySourceClick() {
-    Message.send('Source.Get', {
+    Message.send('Source.Call', {
       message: C.MESSAGE_GET_SOURCE_TEXT,
       id: SourceId.get()
     }).then(function(sourceText) {
@@ -22,7 +22,7 @@ function ButtonsCtrl(Message, C, SourceId, $q, $window) {
   }
 
   function onSelectSourceClick() {
-    Message.send('Source.Get', {
+    Message.send('Source.Call', {
       message: C.MESSAGE_SELECT_SOURCE_TEXT,
       id: SourceId.get()
     }).then(function(response) {});
