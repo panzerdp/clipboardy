@@ -9,8 +9,16 @@
   <script type="text/javascript" src="compile/js/buttons.js"></script>
 </head>
 <body ng-app="ButtonsApp" ng-controller="ButtonsCtrl as ctrl">
-<a class="btn btn-default btn-xs cl-action" ng-click="ctrl.onCopySourceClick()">Copy</a>
-<a class="btn btn-default btn-xs cl-action" ng-click="ctrl.onSelectSourceClick()">Select</a>
-<a class="btn btn-default btn-xs cl-action" ng-click="ctrl.onCopySourceClick()">Collapse</a>
+<div class="buttons">
+  <a class="btn btn-default btn-xs cl-action" ng-click="ctrl.onCopySourceClick()">
+    Copy
+  </a>
+  <a class="btn btn-default btn-xs cl-action" ng-click="ctrl.onSelectSourceClick()">
+    Select
+  </a>
+  <a class="btn btn-default btn-xs cl-action" ng-if="ctrl.showCollapseButton" ng-click="ctrl.onCopySourceClick()">
+    Collapse
+  </a>
+</div>
 </body>
 </html>

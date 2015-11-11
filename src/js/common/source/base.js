@@ -84,6 +84,7 @@ module.exports = inherit({
    * @returns {boolean} On successfull selection
    */
   selectTextById: function(id) {
+    console.log('select');
     var text = this.getElementById(id).get(0),
       range,
       selection;
@@ -105,6 +106,17 @@ module.exports = inherit({
   },
 
   /**
+   * Display the Collapse buttons depending on the source element height
+   *
+   * @param {string} id
+   * @return {boolean}
+   */
+  isCollapsible: function(id) {
+    var element = this.getElementById(id);
+    return element.height() > C.MIN_HEIGHT_FOR_DISPLAYING_COLLAPSE;
+  },
+
+  /**
    * Listen for extension messages
    */
   listenForMessage: function() {
@@ -116,12 +128,15 @@ module.exports = inherit({
           if (sourceText != null) {
             callback(sourceText);
           }
-          window.focus();
+          win.focus();
           break;
         case C.MESSAGE_SELECT_SOURCE_TEXT:
           self.selectTextById(request.id);
           callback(true);
-          window.focus();
+          win.focus();
+          break;
+        case C.MESSAGE_DISPLAY_COLLAPSE:
+          callback(self.isCollapsible(request.id));
           break;
       }
       return true;
