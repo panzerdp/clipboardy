@@ -105,10 +105,10 @@ gulp.task('watch', function() {
     vendors.concat(vendorsContentScript).forEach(function(lib) {
       browserifyBuilder.exclude(lib);
     });
-    var watch = watchify(browserifyBuilder);
+    var watch = watchify(browserifyBuilder)
+      .plugin(pathmodify, options);
     var bundle = function() {
       watch
-        .plugin(pathmodify, options)
         .bundle()
         .pipe(source(script + '.js'))
         .pipe(gulp.dest('./extension/compile/js/'));
