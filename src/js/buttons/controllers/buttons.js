@@ -7,6 +7,7 @@ function ButtonsCtrl(Message, C, SourceId, $q, $window) {
   var self = this;
 
   self.showCollapseButton = true;
+  self.isReady = false;
 
   self.onCopySourceClick = onCopySourceClick;
   self.onSelectSourceClick = onSelectSourceClick;
@@ -16,6 +17,7 @@ function ButtonsCtrl(Message, C, SourceId, $q, $window) {
     id: SourceId.get()
   }).then(function(displayCollapse) {
     self.showCollapseButton = displayCollapse;
+    self.isReady = true;
   });
 
   function onCopySourceClick() {

@@ -89,7 +89,7 @@ gulp.task('browserify', function() {
 });
 
 gulp.task('concat:css', function() {
-  return gulp.src(['./node_modules/bootswatch/paper/bootstrap.css'])
+  return gulp.src(['./src/css/fonts.css', './src/css/bootstrap.css'])
     .pipe(concat('vendors.css'))
     .pipe(gulp.dest('./extension/compile/css/'));
 });
