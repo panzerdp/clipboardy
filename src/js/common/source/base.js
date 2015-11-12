@@ -12,7 +12,7 @@ module.exports = inherit({
 
   __constructor: function() {
     this.insertButtons();
-    this.listenForMessage();
+    this.listenForMessages();
     this.listenForDomMutations();
   },
 
@@ -122,7 +122,7 @@ module.exports = inherit({
   /**
    * Listen for extension messages
    */
-  listenForMessage: function() {
+  listenForMessages: function() {
     var self = this;
     chrome.runtime.onMessage.addListener(function (request, sender, callback) {
       switch (request.message) {
