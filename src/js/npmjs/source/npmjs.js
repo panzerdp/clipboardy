@@ -19,7 +19,7 @@ module.exports = inherit(SourceBase, {
   getSourceTextById: function(id) {
     var element = this.getElementById(id),
       sourceText = '',
-      lines = element.find('.line'),
+      lines = element.find('div.line'),
       linesCount = lines.length;
     lines.each(function(index) {
       sourceText += $(this).text();
