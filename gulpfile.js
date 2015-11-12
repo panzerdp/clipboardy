@@ -17,7 +17,8 @@ var scripts = [
   'background',
   'buttons',
   'options',
-  'github'
+  'github',
+  'npmjs'
 ];
 
 var vendorsContentScript = [
@@ -37,7 +38,6 @@ var vendors = [
 var options = {
   mods: [
     pathmodify.mod.dir('common', path.join(__dirname, './src/js/common')),
-    pathmodify.mod.dir('stackoverflow', path.join(__dirname, './src/js/stackoverflow')),
     pathmodify.mod.dir('background', path.join(__dirname, './src/js/background')),
     pathmodify.mod.dir('buttons', path.join(__dirname, './src/js/buttons')),
     pathmodify.mod.dir('options', path.join(__dirname, './src/js/options'))

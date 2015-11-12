@@ -18,7 +18,7 @@
     "css": [
       "compile/css/stackoverflow.css"
     ],
-    "run_at": "document_start"
+    "run_at": "document_end"
   }, {
     "matches": [
       "https://*.github.com/*"
@@ -30,7 +30,19 @@
     "css": [
       "compile/css/github.css"
     ],
-    "run_at": "document_start"
+    "run_at": "document_end"
+  }, {
+    "matches": [
+      "https://www.npmjs.com/*"
+    ],
+    "js": [
+      "compile/js/vendors_content_script.js",
+      "compile/js/npmjs.js"
+    ],
+    "css": [
+      "compile/css/github.css"
+    ],
+    "run_at": "document_end"
   }],
   "background": {
     "scripts": [

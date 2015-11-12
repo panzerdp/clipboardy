@@ -79,6 +79,7 @@ module.exports = inherit({
    */
   getSourceTextById: function(id) {
     var element = this.getElementById(id);
+    console.log(element.text());
     return element.length > 0 ? element.text() : null;
   },
 
@@ -153,7 +154,7 @@ module.exports = inherit({
     var self = this,
       observer = new MutationObserver(_.debounce(function() {
         self.insertButtons();
-      }, 200));
+      }, 50));
     observer.observe(doc.body, {
       childList: true,
       subtree: true

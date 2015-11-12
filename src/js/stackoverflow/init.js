@@ -1,6 +1,3 @@
-var $ = require('jquery'),
-  StackoverflowSource = require('./source/stackoverflow');
+var StackoverflowSource = require('./source/stackoverflow');
 
-$(function() {
-  var stackoverflow = new StackoverflowSource();
-});
+var stackoverflow = new StackoverflowSource();
