@@ -5,13 +5,15 @@ var inherit = require('inherit'),
   C = require('common/const'),
   buttonsIframeTemplate = require('./templates/buttons_iframe.html'),
   doc = require('global/document'),
-  win = require('global/window');
+  win = require('global/window'),
+  _ = require('lodash');
 
 module.exports = inherit({
 
   __constructor: function() {
     this.insertButtons();
     this.listenForMessage();
+    this.listenForDomMutations();
   },
 
   /**
@@ -28,11 +30,13 @@ module.exports = inherit({
    */
   insertButtons: function() {
     var self = this;
-    this.getSourceElements().each(function() {
-      var sourceElement = $(this),
-        id = uuid.v1();
-      self.insertIframe(sourceElement, id);
-    });
+    this.getSourceElements()
+      .filter(':not([data-source-id])')
+      .each(function() {
+        var sourceElement = $(this),
+          id = uuid.v1();
+        self.insertIframe(sourceElement, id);
+      });
   },
 
   /**
@@ -84,7 +88,6 @@ module.exports = inherit({
    * @returns {boolean} On successfull selection
    */
   selectTextById: function(id) {
-    console.log('select');
     var text = this.getElementById(id).get(0),
       range,
       selection;
@@ -140,6 +143,20 @@ module.exports = inherit({
           break;
       }
       return true;
+    });
+  },
+
+  /**
+   * Check for DOM modifications and initialize the buttons again if necessary
+   */
+  listenForDomMutations: function() {
+    var self = this,
+      observer = new MutationObserver(_.debounce(function() {
+        self.insertButtons();
+      }, 200));
+    observer.observe(doc.body, {
+      childList: true,
+      subtree: true
     });
   }
 
