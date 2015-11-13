@@ -16,8 +16,8 @@
   <a class="btn btn-default btn-xs cl-action" ng-click="ctrl.onSelectSourceClick()">
     Select
   </a>
-  <a class="btn btn-default btn-xs cl-action" ng-if="ctrl.showCollapseButton" ng-click="ctrl.onCopySourceClick()">
-    Collapse
+  <a class="btn btn-default btn-xs cl-action" ng-if="ctrl.showCollapseButton" ng-click="ctrl.onToggleCollapseClick()">
+   {{ctrl.isCollapsed ? 'Expand' : 'Collapse'}}
   </a>
 </div>
 </body>

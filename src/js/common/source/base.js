@@ -79,7 +79,6 @@ module.exports = inherit({
    */
   getSourceTextById: function(id) {
     var element = this.getElementById(id);
-    console.log(element.text());
     return element.length > 0 ? element.text() : null;
   },
 
@@ -121,6 +120,17 @@ module.exports = inherit({
   },
 
   /**
+   * Collapse or expand the source text
+   *
+   * @param {string} id
+   * @param {boolean} isCollapsed
+   */
+  toggleCollapse: function(id, isCollapsed) {
+    var element = this.getElementById(id);
+    element.toggleClass('clipboardy-collapsed', isCollapsed);
+  },
+
+  /**
    * Listen for extension messages
    */
   listenForMessages: function() {
@@ -141,6 +151,11 @@ module.exports = inherit({
           break;
         case C.MESSAGE_DISPLAY_COLLAPSE:
           callback(self.isCollapsible(request.id));
+          break;
+        case C.MESSAGE_TOGGLE_SOURCE_COLLAPSE:
+          self.toggleCollapse(request.id, request.isCollapsed);
+          callback(true);
+          win.focus();
           break;
       }
       return true;

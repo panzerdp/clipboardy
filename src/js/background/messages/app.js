@@ -1,7 +1,6 @@
 var Controller = {
   listen: function() {
     chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
-      console.log(request);
       Controller.caller(request.method, request.data, sendResponse, sender);
       return true;
     });
