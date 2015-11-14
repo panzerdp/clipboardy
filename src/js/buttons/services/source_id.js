@@ -5,6 +5,12 @@
 function SourceId($window, url, _) {
   var sourceId = null;
   return {
+
+    /**
+     * Get source id from iframe url query string
+     *
+     * @returns {string} Source id for current iframe
+     */
     get: function() {
       if (sourceId != null) {
         return sourceId;

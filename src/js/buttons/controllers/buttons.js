@@ -3,7 +3,7 @@
  */
 
 // @ngInject
-function ButtonsCtrl(Message, C, SourceId, $q, $window) {
+function ButtonsCtrl(Message, C, SourceId, $q) {
   var self = this;
 
   self.showCollapseButton = true;

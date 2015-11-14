@@ -67,7 +67,7 @@ module.exports = inherit({
     element
       .attr('data-source-id', id);
     var iframeUrl = chrome.extension.getURL('buttons.html') + '?id=' + id,
-      iframeContent = $(sprintf(buttonsIframeTemplate, iframeUrl));
+      iframeContent = $(sprintf(buttonsIframeTemplate, iframeUrl, id));
     iframeContent.insertBefore(element);
   },
 
