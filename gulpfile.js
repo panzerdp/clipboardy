@@ -32,7 +32,8 @@ var vendorsContentScript = [
 var vendors = [
   'angular',
   'url',
-  'lodash'
+  'lodash',
+  'q'
 ];
 
 var options = {

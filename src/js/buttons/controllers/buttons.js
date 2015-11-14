@@ -9,6 +9,7 @@ function ButtonsCtrl(Message, C, SourceId, $q) {
   self.showCollapseButton = true;
   self.isReady = false;
   self.isCollapsed = false;
+  self.buttonsLayout = C.VALUE_BUTTONS_LAYOUT_TOP;
 
   self.onCopySourceClick = onCopySourceClick;
   self.onSelectSourceClick = onSelectSourceClick;

@@ -142,12 +142,10 @@ module.exports = inherit({
           if (sourceText != null) {
             callback(sourceText);
           }
-          win.focus();
           break;
         case C.MESSAGE_SELECT_SOURCE_TEXT:
           self.selectTextById(request.id);
           callback(true);
-          win.focus();
           break;
         case C.MESSAGE_DISPLAY_COLLAPSE:
           callback(self.isCollapsible(request.id));
@@ -155,9 +153,9 @@ module.exports = inherit({
         case C.MESSAGE_TOGGLE_SOURCE_COLLAPSE:
           self.toggleCollapse(request.id, request.isCollapsed);
           callback(true);
-          win.focus();
           break;
       }
+      win.focus();
       return true;
     });
   },
@@ -167,9 +165,7 @@ module.exports = inherit({
    */
   listenForDomMutations: function() {
     var self = this,
-      observer = new MutationObserver(_.debounce(function() {
-        self.insertButtons();
-      }, 50));
+      observer = new MutationObserver(_.debounce(self.insertButtons.bind(self), 50));
     observer.observe(doc.body, {
       childList: true,
       subtree: true
