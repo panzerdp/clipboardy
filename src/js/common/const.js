@@ -9,5 +9,5 @@ module.exports = {
 
   SETTING_BUTTONS_LAYOUT: 'setting_buttons_layout',
   VALUE_BUTTONS_LAYOUT_TOP: 'value_buttons_layout_top',
-  VALUE_BUTTONS_LAYOUT_LEFT: 'value_buttons_layout_left'
+  VALUE_BUTTONS_LAYOUT_RIGHT: 'value_buttons_layout_right'
 };

@@ -6,7 +6,8 @@ var inherit = require('inherit'),
   buttonsIframeTemplate = require('./templates/buttons_iframe.html'),
   doc = require('global/document'),
   win = require('global/window'),
-  _ = require('lodash');
+  _ = require('lodash'),
+  storage = require('common/storage');
 
 module.exports = inherit({
 
@@ -30,13 +31,15 @@ module.exports = inherit({
    */
   insertButtons: function() {
     var self = this;
-    this.getSourceElements()
-      .filter(':not([data-source-id])')
-      .each(function() {
-        var sourceElement = $(this),
-          id = uuid.v1();
-        self.insertIframe(sourceElement, id);
-      });
+    storage.get(C.SETTING_BUTTONS_LAYOUT, C.VALUE_BUTTONS_LAYOUT_RIGHT).then(function(buttonsLayout) {
+      this.getSourceElements()
+        .filter(':not([data-source-id])')
+        .each(function() {
+          var sourceElement = $(this),
+            id = uuid.v1();
+          self.insertIframe(sourceElement, id, buttonsLayout);
+        });
+    });
   },
 
   /**
@@ -62,12 +65,16 @@ module.exports = inherit({
    *
    * @param {Object} element
    * @param {string} id
+   * @param {string} buttonsLayout The layout to display the buttons: C.VALUE_BUTTONS_LAYOUT_TOP
+   *        or C.VALUE_BUTTONS_LAYOUT_RIGHT
    */
-  insertIframe: function(element, id) {
+  insertIframe: function(element, id, buttonsLayout) {
     element
       .attr('data-source-id', id);
     var iframeUrl = chrome.extension.getURL('buttons.html') + '?id=' + id,
-      iframeContent = $(sprintf(buttonsIframeTemplate, iframeUrl, id));
+      iframeLayoutClass = buttonsLayout == C.VALUE_BUTTONS_LAYOUT_RIGHT ? 'clipboardy-buttons-layout-right' :
+        'clipboardy-buttons-layout-top',
+      iframeContent = $(sprintf(buttonsIframeTemplate, iframeUrl, id, iframeLayoutClass));
     iframeContent.insertBefore(element);
   },
 
