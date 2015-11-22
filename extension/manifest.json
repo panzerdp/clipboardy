@@ -5,6 +5,7 @@
   "description": "",
   "author": "Dmitri Pavlutin",
   "icons": {
+    "128": "icons/default128.png"
   },
   "content_scripts": [{
     "matches": [
