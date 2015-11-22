@@ -32,13 +32,15 @@ module.exports = inherit({
   insertButtons: function() {
     var self = this;
     storage.get(C.SETTING_BUTTONS_LAYOUT, C.VALUE_BUTTONS_LAYOUT_RIGHT).then(function(buttonsLayout) {
-      this.getSourceElements()
+      self.getSourceElements()
         .filter(':not([data-source-id])')
         .each(function() {
           var sourceElement = $(this),
             id = uuid.v1();
           self.insertIframe(sourceElement, id, buttonsLayout);
         });
+    }).catch(function(error) {
+      console.error(error);
     });
   },
 

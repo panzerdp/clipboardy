@@ -26,14 +26,14 @@ var vendorsContentScript = [
   'lodash',
   'inherit',
   'sprintf-js',
-  'uuid'
+  'uuid',
+  'q'
 ];
 
 var vendors = [
   'angular',
   'url',
-  'lodash',
-  'q'
+  'lodash'
 ];
 
 var options = {
