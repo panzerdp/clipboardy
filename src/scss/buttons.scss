@@ -1,0 +1,18 @@
+html, body {
+  background: none;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  text-align: right;
+}
+
+.buttons {
+  margin-right: 10px;
+  .cl-action {
+    width: 55px;
+    padding: 2px 3px 1px;
+    font-size: 9px;
+  }
+}

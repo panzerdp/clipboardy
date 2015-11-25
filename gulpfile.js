@@ -122,16 +122,16 @@ gulp.task('watch', function() {
   gulp.start('browserify:vendors-content-script');
   gulp.start('concat:css');
 
-  gulp.watch('src/sass/**/*.sass', ['sass']);
+  gulp.watch('src/scss/**/*.scss', ['scss']);
 });
 
-gulp.task('sass', function () {
-  gulp.src('src/sass/*.sass')
+gulp.task('scss', function () {
+  gulp.src('src/scss/*.scss')
     .pipe(sass().on('error', sass.logError))
     .pipe(gulp.dest('extension/compile/css'));
 });
 
-gulp.task('crx', ['browserify', 'sass'] , function() {
+gulp.task('crx', ['browserify', 'scss'] , function() {
   return gulp.src('extension/')
     .pipe(crx({
       privateKey: fs.readFileSync('certificates/extension.pem', 'utf8'),
@@ -141,5 +141,5 @@ gulp.task('crx', ['browserify', 'sass'] , function() {
 });
 
 gulp.task('default', function() {
-  gulp.start('sass', 'watch');
+  gulp.start('scss', 'watch');
 });
