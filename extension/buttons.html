@@ -9,16 +9,29 @@
   <script type="text/javascript" src="compile/js/buttons.js"></script>
 </head>
 <body ng-app="ButtonsApp" ng-controller="ButtonsCtrl as ctrl">
-<div class="buttons btn-group" ng-show="ctrl.isReady">
-  <a class="btn btn-default btn-xs cl-action" ng-click="ctrl.onCopySourceClick()">
-    Copy
-  </a>
-  <a class="btn btn-default btn-xs cl-action" ng-click="ctrl.onSelectSourceClick()">
-    Select
-  </a>
-  <a class="btn btn-default btn-xs cl-action" ng-if="ctrl.showCollapseButton" ng-click="ctrl.onToggleCollapseClick()">
-   {{ctrl.isCollapsed ? 'Expand' : 'Collapse'}}
-  </a>
+<div ng-show="ctrl.isReady" ng-switch="ctrl.buttonsLayout">
+  <div ng-switch-when="value_buttons_layout_top" class="buttons btn-group">
+    <a class="btn btn-default btn-xs cl-action" ng-click="ctrl.onCopySourceClick()">
+      Copy
+    </a>
+    <a class="btn btn-default btn-xs cl-action" ng-click="ctrl.onSelectSourceClick()">
+      Select
+    </a>
+    <a class="btn btn-default btn-xs cl-action" ng-if="ctrl.showCollapseButton" ng-click="ctrl.onToggleCollapseClick()">
+      {{ctrl.isCollapsed ? 'Expand' : 'Collapse'}}
+    </a>
+  </div>
+  <div ng-switch-default="" class="buttons btn-group-vertical">
+    <a class="btn btn-default btn-xs cl-action" ng-click="ctrl.onCopySourceClick()">
+      Copy
+    </a>
+    <a class="btn btn-default btn-xs cl-action" ng-click="ctrl.onSelectSourceClick()">
+      Select
+    </a>
+    <a class="btn btn-default btn-xs cl-action" ng-if="ctrl.showCollapseButton" ng-click="ctrl.onToggleCollapseClick()">
+      {{ctrl.isCollapsed ? 'Expand' : 'Collapse'}}
+    </a>
+  </div>
 </div>
 </body>
 </html>

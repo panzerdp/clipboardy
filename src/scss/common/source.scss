@@ -13,8 +13,10 @@
   }
   &.clipboardy-buttons-layout-right {
     .clipboardy-iframe {
+      width: 100px;
+      height: 100px;
       top: 0;
-      right: -20px;
+      right: -40px;
     }
   }
 }
