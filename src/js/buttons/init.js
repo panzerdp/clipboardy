@@ -6,6 +6,7 @@ var app = angular.module('ButtonsApp', [
 //Services
 app.factory.apply(app, require('./services/message'));
 app.factory.apply(app, require('./services/source_id'));
+app.factory.apply(app, require('./services/storage'));
 
 //Controllers
 app.controller.apply(app, require('./controllers/buttons'));

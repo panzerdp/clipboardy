@@ -3,7 +3,7 @@
  */
 
 // @ngInject
-function ButtonsCtrl(Message, C, SourceId, $q) {
+function ButtonsCtrl(Message, C, SourceId, $q, Storage) {
   var self = this;
 
   self.showCollapseButton = true;
@@ -20,6 +20,9 @@ function ButtonsCtrl(Message, C, SourceId, $q) {
     id: SourceId.get()
   }).then(function(displayCollapse) {
     self.showCollapseButton = displayCollapse;
+    return Storage.get(C.SETTING_BUTTONS_LAYOUT, C.VALUE_BUTTONS_LAYOUT_RIGHT);
+  }).then(function(buttonsLayout) {
+    self.buttonsLayout = buttonsLayout;
     self.isReady = true;
   });
 

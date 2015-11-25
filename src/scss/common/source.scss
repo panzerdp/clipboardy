@@ -11,6 +11,12 @@
     -webkit-user-select: none;
     z-index: 2;
   }
+  &.clipboardy-buttons-layout-right {
+    .clipboardy-iframe {
+      top: 0;
+      right: -20px;
+    }
+  }
 }
 
 *[data-source-id] {

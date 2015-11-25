@@ -71,12 +71,12 @@ module.exports = inherit({
    *        or C.VALUE_BUTTONS_LAYOUT_RIGHT
    */
   insertIframe: function(element, id, buttonsLayout) {
+    var isRightLayout = buttonsLayout == C.VALUE_BUTTONS_LAYOUT_RIGHT;
     element
       .attr('data-source-id', id);
     var iframeUrl = chrome.extension.getURL('buttons.html') + '?id=' + id,
-      iframeLayoutClass = buttonsLayout == C.VALUE_BUTTONS_LAYOUT_RIGHT ? 'clipboardy-buttons-layout-right' :
-        'clipboardy-buttons-layout-top',
-      iframeContent = $(sprintf(buttonsIframeTemplate, iframeUrl, id, iframeLayoutClass));
+      iframeLayoutClass = isRightLayout ? 'clipboardy-buttons-layout-right' : 'clipboardy-buttons-layout-top',
+      iframeContent = $(sprintf(buttonsIframeTemplate, iframeLayoutClass, iframeUrl, id));
     iframeContent.insertBefore(element);
   },
 
