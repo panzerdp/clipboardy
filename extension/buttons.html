@@ -11,10 +11,10 @@
 <body ng-app="ButtonsApp" ng-controller="ButtonsCtrl as ctrl">
 <div ng-show="ctrl.isReady" ng-switch="ctrl.buttonsLayout">
   <div ng-switch-when="value_buttons_layout_top" class="buttons btn-group">
-    <a class="btn btn-default btn-xs cl-action" ng-click="ctrl.onCopySourceClick()">
+    <a class="btn btn-default btn-xs cl-action" ng-click="ctrl.onCopySourceClick()" title="Copy to clipboard">
       Copy
     </a>
-    <a class="btn btn-default btn-xs cl-action" ng-click="ctrl.onSelectSourceClick()">
+    <a class="btn btn-default btn-xs cl-action" ng-click="ctrl.onSelectSourceClick()" title="Select text">
       Select
     </a>
     <a class="btn btn-default btn-xs cl-action" ng-if="ctrl.showCollapseButton" ng-click="ctrl.onToggleCollapseClick()">
@@ -22,14 +22,19 @@
     </a>
   </div>
   <div ng-switch-default="" class="buttons btn-group-vertical">
-    <a class="btn btn-default btn-xs cl-action" ng-click="ctrl.onCopySourceClick()">
-      Copy
+    <a class="btn btn-default btn-xs cl-action" ng-click="ctrl.onCopySourceClick()" title="Copy to clipboard">
+      <img src="icons/files-o.svg" alt="Copy to clipboard" class="cl-svg-icon">
     </a>
-    <a class="btn btn-default btn-xs cl-action" ng-click="ctrl.onSelectSourceClick()">
-      Select
+    <a class="btn btn-default btn-xs cl-action" ng-click="ctrl.onSelectSourceClick()" title="Select text">
+      <img src="icons/select.svg" alt="Copy to clipboard" class="cl-svg-icon">
     </a>
-    <a class="btn btn-default btn-xs cl-action" ng-if="ctrl.showCollapseButton" ng-click="ctrl.onToggleCollapseClick()">
-      {{ctrl.isCollapsed ? 'Expand' : 'Collapse'}}
+    <a ng-if="ctrl.isCollapsed && ctrl.showCollapseButton" class="btn btn-default btn-xs cl-action"
+       ng-click="ctrl.onToggleCollapseClick()" title="Expand text">
+      <img src="icons/expand.svg" alt="Copy to clipboard" class="cl-svg-icon">
+    </a>
+    <a ng-if="!ctrl.isCollapsed && ctrl.showCollapseButton" class="btn btn-default btn-xs cl-action"
+       ng-click="ctrl.onToggleCollapseClick()" title="Collapse text">
+      <img src="icons/collapse.svg" alt="Copy to clipboard" class="cl-svg-icon">
     </a>
   </div>
 </div>
