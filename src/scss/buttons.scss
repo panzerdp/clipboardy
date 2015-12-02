@@ -1,3 +1,5 @@
+@import "../../node_modules/font-awesome/scss/font-awesome";
+
 html, body {
   background: none;
   margin: 0;
@@ -8,19 +10,18 @@ html, body {
 .buttons {
   margin-right: 10px;
   .cl-action {
-    width: 55px;
     padding: 2px 3px 1px;
-    font-size: 9px;
+  }
+  &.btn-group-horizontal {
+    .cl-action {
+      width: 55px;
+      font-size: 9px;
+    }
   }
   &.btn-group-vertical {
     .cl-action {
       width: 20px;
+      font-size: 10px;
     }
-  }
-  .cl-svg-icon {
-    width: 12px;
-    opacity: 0.6;
-    margin-bottom: 2px;
-    margin-top: 2px;
   }
 }

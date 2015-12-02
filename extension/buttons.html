@@ -10,7 +10,7 @@
 </head>
 <body ng-app="ButtonsApp" ng-controller="ButtonsCtrl as ctrl">
 <div ng-show="ctrl.isReady" ng-switch="ctrl.buttonsLayout">
-  <div ng-switch-when="value_buttons_layout_top" class="buttons btn-group">
+  <div ng-switch-when="value_buttons_layout_top" class="buttons btn-group btn-group-horizontal">
     <a class="btn btn-default btn-xs cl-action" ng-click="ctrl.onCopySourceClick()" title="Copy to clipboard">
       Copy
     </a>
@@ -23,18 +23,18 @@
   </div>
   <div ng-switch-default="" class="buttons btn-group-vertical">
     <a class="btn btn-default btn-xs cl-action" ng-click="ctrl.onCopySourceClick()" title="Copy to clipboard">
-      <img src="icons/files-o.svg" alt="Copy to clipboard" class="cl-svg-icon">
+      <i class="fa fa-files-o fa-fw"></i>
     </a>
     <a class="btn btn-default btn-xs cl-action" ng-click="ctrl.onSelectSourceClick()" title="Select text">
-      <img src="icons/select.svg" alt="Copy to clipboard" class="cl-svg-icon">
+      <i class="fa fa-i-cursor fa-fw"></i>
     </a>
     <a ng-if="ctrl.isCollapsed && ctrl.showCollapseButton" class="btn btn-default btn-xs cl-action"
        ng-click="ctrl.onToggleCollapseClick()" title="Expand text">
-      <img src="icons/expand.svg" alt="Copy to clipboard" class="cl-svg-icon">
+      <i class="fa fa-plus-square-o fa-fw"></i>
     </a>
     <a ng-if="!ctrl.isCollapsed && ctrl.showCollapseButton" class="btn btn-default btn-xs cl-action"
        ng-click="ctrl.onToggleCollapseClick()" title="Collapse text">
-      <img src="icons/collapse.svg" alt="Copy to clipboard" class="cl-svg-icon">
+      <i class="fa fa-minus-square-o fa-fw"></i>
     </a>
   </div>
 </div>
