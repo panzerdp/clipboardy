@@ -7,6 +7,7 @@ function ButtonsCtrl(Message, C, SourceId, $q, Storage) {
   var self = this;
 
   self.showCollapseButton = true;
+  self.showSelectTextButton = true;
   self.isReady = false;
   self.isCollapsed = false;
   self.buttonsLayout = C.VALUE_BUTTONS_LAYOUT_TOP;
@@ -16,10 +17,12 @@ function ButtonsCtrl(Message, C, SourceId, $q, Storage) {
   self.onToggleCollapseClick = onToggleCollapseClick;
 
   Message.send('Source.Call', {
-    message: C.MESSAGE_DISPLAY_COLLAPSE,
+    message: C.MESSAGE_GET_SOURCE_HEIGHT,
     id: SourceId.get()
-  }).then(function(displayCollapse) {
-    self.showCollapseButton = displayCollapse;
+  }).then(function(sourceHeight) {
+    console.log(sourceHeight);
+    self.showCollapseButton = sourceHeight >= C.MIN_HEIGHT_FOR_DISPLAYING_COLLAPSE;
+    self.showSelectTextButton = sourceHeight >= C.MIN_HEIGHT_FOR_DISPLAYING_SELECT_TEXT;
     return Storage.get(C.SETTING_BUTTONS_LAYOUT, C.VALUE_BUTTONS_LAYOUT_RIGHT);
   }).then(function(buttonsLayout) {
     self.buttonsLayout = buttonsLayout;

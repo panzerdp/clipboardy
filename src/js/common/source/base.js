@@ -118,14 +118,14 @@ module.exports = inherit({
   },
 
   /**
-   * Display the Collapse buttons depending on the source element height
+   * Get the height of the source
    *
    * @param {string} id
-   * @return {boolean}
+   * @return {int}
    */
-  isCollapsible: function(id) {
+  getSourceHeight: function(id) {
     var element = this.getElementById(id);
-    return element.height() > C.MIN_HEIGHT_FOR_DISPLAYING_COLLAPSE;
+    return element.height();
   },
 
   /**
@@ -156,8 +156,8 @@ module.exports = inherit({
           self.selectTextById(request.id);
           callback(true);
           break;
-        case C.MESSAGE_DISPLAY_COLLAPSE:
-          callback(self.isCollapsible(request.id));
+        case C.MESSAGE_GET_SOURCE_HEIGHT:
+          callback(self.getSourceHeight(request.id));
           break;
         case C.MESSAGE_TOGGLE_SOURCE_COLLAPSE:
           self.toggleCollapse(request.id, request.isCollapsed);

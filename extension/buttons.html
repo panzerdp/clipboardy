@@ -25,7 +25,8 @@
     <a class="btn btn-default btn-xs cl-action" ng-click="ctrl.onCopySourceClick()" title="Copy to clipboard">
       <i class="fa fa-files-o fa-fw"></i>
     </a>
-    <a class="btn btn-default btn-xs cl-action" ng-click="ctrl.onSelectSourceClick()" title="Select text">
+    <a class="btn btn-default btn-xs cl-action" ng-if="ctrl.showSelectTextButton" ng-click="ctrl.onSelectSourceClick()"
+       title="Select text">
       <i class="fa fa-i-cursor fa-fw"></i>
     </a>
     <a ng-if="ctrl.isCollapsed && ctrl.showCollapseButton" class="btn btn-default btn-xs cl-action"
