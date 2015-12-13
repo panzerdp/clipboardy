@@ -2,25 +2,26 @@
  * Controller for buttons in the iframe
  */
 
-function OptionsCtrl(Message, C, Storage) {
+function OptionsCtrl(C, Storage, $q, $timeout, _) {
   "ngInject"
   var self = this;
-  self.buttonsAppearance = false;
-  self.buttonsList = [C.VALUE_BUTTONS_LIST_COPY];
+  self.stopTransitions = true;
   self.C = C;
 
   self.onButtonsAppearanceChange = onButtonsAppearanceChange;
   self.onButtonsListChange = onButtonsListChange;
+  self.onButtonsLayoutChange = onButtonsLayoutChange;
 
-  // Loading settings data from storage
-  Storage.get(C.SETTING_BUTTONS_APPEARANCE, C.VALUE_BUTTONS_APPEARANCE_ALWAYS).then(function(buttonsAppearance) {
-    self.buttonsAppearance = buttonsAppearance;
+  $q.all({
+    buttonsAppearance:  Storage.get(C.SETTING_BUTTONS_APPEARANCE, C.VALUE_BUTTONS_APPEARANCE_ALWAYS),
+    buttonsList: Storage.get(C.SETTING_BUTTONS_LIST, [C.VALUE_BUTTONS_LIST_COPY]),
+    buttonsLayout: Storage.get(C.SETTING_BUTTONS_LAYOUT, C.VALUE_BUTTONS_LAYOUT_RIGHT)
+  }).then(function(storageData) {
+    _.extend(self, storageData);
+    return $timeout(100);
+  }).then(function() {
+    self.stopTransitions = false;
   });
-
-  Storage.get(C.SETTING_BUTTONS_LIST, [C.VALUE_BUTTONS_LIST_COPY]).then(function(buttonsList) {
-    self.buttonsList = buttonsList;
-  });
-
 
   function onButtonsAppearanceChange() {
     Storage.set(C.SETTING_BUTTONS_APPEARANCE, self.buttonsAppearance);
@@ -28,6 +29,10 @@ function OptionsCtrl(Message, C, Storage) {
 
   function onButtonsListChange() {
     Storage.set(C.SETTING_BUTTONS_LIST, self.buttonsList);
+  }
+
+  function onButtonsLayoutChange() {
+    Storage.set(C.SETTING_BUTTONS_LAYOUT, self.buttonsLayout);
   }
 }
 

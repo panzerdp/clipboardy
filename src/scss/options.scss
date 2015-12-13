@@ -2,16 +2,20 @@
 
 .container {
   text-align: left;
+  &.cl-stop-animation {
+    *, *:after, *:before {
+      transition: none !important;
+      -webkit-transition: none !important;
+    }
+  }
   .cl-logo {
     width: 42px;
     margin-right: 10px;
   }
   .buttons {
     text-align: right;
-    font-size: 20px;
+    font-size: 22px;
     .button-github {
-      transition: none;
-      -webkit-transition: none;
       cursor: pointer;
       text-decoration: none;
       color: #a2a4a6;
