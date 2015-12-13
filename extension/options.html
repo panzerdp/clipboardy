@@ -5,6 +5,8 @@
   <title>Clipboardy settings</title>
   <link rel="stylesheet" href="compile/css/vendors.css"/>
   <link rel="stylesheet" href="compile/css/options.css"/>
+  <script type="text/javascript" src="compile/js/vendors.js"></script>
+  <script type="text/javascript" src="compile/js/options.js"></script>
 </head>
 <body ng-app="OptionsApp" ng-controller="OptionsCtrl as ctrl">
 <div class="container">
@@ -28,19 +30,22 @@
             <div class="col-lg-10">
               <div class="radio">
                 <label>
-                  <input type="radio" name="optionsRadios" value="option1" checked="">
+                  <input type="radio" name="toolbarAppearance" ng-value="ctrl.C.VALUE_BUTTONS_APPEARANCE_ALWAYS"
+                         ng-model="ctrl.buttonsAppearance" ng-change="ctrl.onButtonsAppearanceChange()"/>
                   Always display near source code
                 </label>
               </div>
               <div class="radio">
                 <label>
-                  <input type="radio" name="optionsRadios" value="option2">
+                  <input type="radio" name="toolbarAppearance" ng-value="ctrl.C.VALUE_BUTTONS_APPEARANCE_HOVER"
+                         ng-model="ctrl.buttonsAppearance" ng-change="ctrl.onButtonsAppearanceChange()"/>
                   Display when hovering source code
                 </label>
               </div>
               <div class="radio">
                 <label>
-                  <input type="radio" name="optionsRadios" value="option2">
+                  <input type="radio" name="toolbarAppearance" ng-value="ctrl.C.VALUE_BUTTONS_APPEARANCE_NOT_DISPLAY"
+                         ng-model="ctrl.buttonsAppearance" ng-change="ctrl.onButtonsAppearanceChange()"/>
                   Do not display
                 </label>
               </div>
