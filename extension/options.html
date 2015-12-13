@@ -23,75 +23,76 @@
   <div class="row">
     <div class="col-lg-3"></div>
     <div class="col-lg-6">
-      <div class="well bs-component">
-        <form class="form-horizontal">
-          <div class="form-group">
-            <label class="col-lg-2 control-label">Toolbar Appearance</label>
-            <div class="col-lg-10">
-              <div class="radio">
-                <label>
-                  <input type="radio" name="toolbarAppearance" ng-value="ctrl.C.VALUE_BUTTONS_APPEARANCE_ALWAYS"
-                         ng-model="ctrl.buttonsAppearance" ng-change="ctrl.onButtonsAppearanceChange()"/>
-                  Always display near source code
-                </label>
-              </div>
-              <div class="radio">
-                <label>
-                  <input type="radio" name="toolbarAppearance" ng-value="ctrl.C.VALUE_BUTTONS_APPEARANCE_HOVER"
-                         ng-model="ctrl.buttonsAppearance" ng-change="ctrl.onButtonsAppearanceChange()"/>
-                  Display when hovering source code
-                </label>
-              </div>
-              <div class="radio">
-                <label>
-                  <input type="radio" name="toolbarAppearance" ng-value="ctrl.C.VALUE_BUTTONS_APPEARANCE_NOT_DISPLAY"
-                         ng-model="ctrl.buttonsAppearance" ng-change="ctrl.onButtonsAppearanceChange()"/>
-                  Do not display
-                </label>
+      <div class="panel panel-default bs-component">
+        <div class="panel-body">
+          <form class="form-horizontal">
+            <div class="form-group">
+              <label class="col-lg-2 control-label">Toolbar Appearance</label>
+              <div class="col-lg-10">
+                <div class="radio">
+                  <label>
+                    <input type="radio" name="toolbarAppearance" ng-value="ctrl.C.VALUE_BUTTONS_APPEARANCE_ALWAYS"
+                           ng-model="ctrl.buttonsAppearance" ng-change="ctrl.onButtonsAppearanceChange()"/>
+                    Always display near source code
+                  </label>
+                </div>
+                <div class="radio">
+                  <label>
+                    <input type="radio" name="toolbarAppearance" ng-value="ctrl.C.VALUE_BUTTONS_APPEARANCE_HOVER"
+                           ng-model="ctrl.buttonsAppearance" ng-change="ctrl.onButtonsAppearanceChange()"/>
+                    Display when hovering source code
+                  </label>
+                </div>
+                <div class="radio">
+                  <label>
+                    <input type="radio" name="toolbarAppearance" ng-value="ctrl.C.VALUE_BUTTONS_APPEARANCE_NOT_DISPLAY"
+                           ng-model="ctrl.buttonsAppearance" ng-change="ctrl.onButtonsAppearanceChange()"/>
+                    Do not display
+                  </label>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="form-group">
-            <label class="col-lg-2 control-label">List of Buttons</label>
+            <div class="form-group">
+              <label class="col-lg-2 control-label">List of Buttons</label>
 
-            <div class="col-lg-10">
-              <div class="checkbox">
-                <label>
-                  <input type="checkbox" disabled="true" checked> Show <em>Copy to clipboard</em> button
-                </label>
-              </div>
-              <div class="checkbox">
-                <label>
-                  <input type="checkbox"> Show <em>Select text</em> button
-                </label>
-              </div>
-              <div class="checkbox">
-                <label>
-                  <input type="checkbox"> Show <em>Collapse source</em> button
-                </label>
+              <div class="col-lg-10">
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" disabled="true" checked> Show <em>Copy to clipboard</em> button
+                  </label>
+                </div>
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox"> Show <em>Select text</em> button
+                  </label>
+                </div>
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox"> Show <em>Collapse source</em> button
+                  </label>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="form-group">
-            <label class="col-lg-2 control-label">Toolbar Position</label>
+            <div class="form-group">
+              <label class="col-lg-2 control-label">Toolbar Position</label>
 
-            <div class="col-lg-10">
-              <div class="radio">
-                <label>
-                  <input type="radio" name="optionsRadios" value="option1" checked="">
-                  Right side of the source code, vertically
-                </label>
-              </div>
-              <div class="radio">
-                <label>
-                  <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-                  Top side of the source code, horizontally
-                </label>
+              <div class="col-lg-10">
+                <div class="radio">
+                  <label>
+                    <input type="radio" name="optionsRadios" value="option1" checked="">
+                    Right side of the source code, vertically
+                  </label>
+                </div>
+                <div class="radio">
+                  <label>
+                    <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+                    Top side of the source code, horizontally
+                  </label>
+                </div>
               </div>
             </div>
-          </div>
-        </form>
-        <div id="source-button" class="btn btn-primary btn-xs" style="display: none;">&lt; &gt;</div>
+          </form>
+        </div>
       </div>
     </div>
     <div class="col-lg-3"></div>
