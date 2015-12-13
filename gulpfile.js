@@ -111,6 +111,7 @@ gulp.task('watch', function() {
     var bundle = function() {
       watch
         .bundle()
+        .on('error', gutil.log.bind(gutil, 'Browserify Error'))
         .pipe(source(script + '.js'))
         .pipe(gulp.dest('./extension/compile/js/'));
     };

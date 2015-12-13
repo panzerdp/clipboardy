@@ -1,7 +1,6 @@
 /**
  * Angular service to get data from chrome local storage
  */
-
 var storage = chrome.storage.local;
 
 function Storage($q) {
