@@ -58,17 +58,23 @@
               <div class="col-lg-10">
                 <div class="checkbox">
                   <label>
-                    <input type="checkbox" disabled="true" checked> Show <em>Copy to clipboard</em> button
+                    <input type="checkbox" checklist-model="ctrl.buttonsList" checklist-value="ctrl.C.VALUE_BUTTONS_LIST_COPY"
+                           checklist-change="ctrl.onButtonsListChange()" disabled="true" checked/>
+                    Show <em>Copy to clipboard</em> button
                   </label>
                 </div>
                 <div class="checkbox">
                   <label>
-                    <input type="checkbox"> Show <em>Select text</em> button
+                    <input type="checkbox" checklist-model="ctrl.buttonsList" checklist-value="ctrl.C.VALUE_BUTTONS_LIST_SELECT"
+                           checklist-change="ctrl.onButtonsListChange()"/>
+                    Show <em>Select text</em> button
                   </label>
                 </div>
                 <div class="checkbox">
                   <label>
-                    <input type="checkbox"> Show <em>Collapse source</em> button
+                    <input type="checkbox" checklist-model="ctrl.buttonsList" checklist-value="ctrl.C.VALUE_BUTTONS_LIST_COLLAPSE"
+                           checklist-change="ctrl.onButtonsListChange()"/>
+                    Show <em>Collapse source</em> button
                   </label>
                 </div>
               </div>

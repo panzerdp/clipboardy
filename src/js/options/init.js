@@ -1,6 +1,9 @@
 var angular = require('angular');
 
+require('checklist-model');
+
 var app = angular.module('OptionsApp', [
+  'checklist-model'
 ]);
 
 //Services
