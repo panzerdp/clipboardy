@@ -3,11 +3,12 @@
   .cl-logo {
     width: 48px;
   }
-  .button {
+  .buttons {
     text-align: right;
-    font-size: 18px;
-    margin-top: -20px;
+    font-size: 20px;
     .button-github {
+      transition: none;
+      -webkit-transition: none;
       cursor: pointer;
       text-decoration: none;
       color: #a2a4a6;
