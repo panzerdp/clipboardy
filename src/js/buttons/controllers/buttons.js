@@ -10,7 +10,7 @@ function ButtonsCtrl(Message, C, SourceId, $q, Storage) {
   self.showSelectTextButton = true;
   self.isReady = false;
   self.isCollapsed = false;
-  self.buttonsLayout = C.VALUE_BUTTONS_LAYOUT_TOP;
+  self.C = C;
 
   self.onCopySourceClick = onCopySourceClick;
   self.onSelectSourceClick = onSelectSourceClick;
@@ -20,12 +20,17 @@ function ButtonsCtrl(Message, C, SourceId, $q, Storage) {
     message: C.MESSAGE_GET_SOURCE_HEIGHT,
     id: SourceId.get()
   }).then(function(sourceHeight) {
-    console.log(sourceHeight);
     self.showCollapseButton = sourceHeight >= C.MIN_HEIGHT_FOR_DISPLAYING_COLLAPSE;
     self.showSelectTextButton = sourceHeight >= C.MIN_HEIGHT_FOR_DISPLAYING_SELECT_TEXT;
-    return Storage.get(C.SETTING_BUTTONS_LAYOUT, C.VALUE_BUTTONS_LAYOUT_RIGHT);
-  }).then(function(buttonsLayout) {
-    self.buttonsLayout = buttonsLayout;
+    return $q.all({
+      buttonsAppearance:  Storage.get(C.SETTING_BUTTONS_APPEARANCE, C.VALUE_BUTTONS_APPEARANCE_ALWAYS),
+      buttonsList: Storage.get(C.SETTING_BUTTONS_LIST, [C.VALUE_BUTTONS_LIST_COPY]),
+      buttonsLayout: Storage.get(C.SETTING_BUTTONS_LAYOUT, C.VALUE_BUTTONS_LAYOUT_RIGHT)
+    })
+  }).then(function(buttonsSettings) {
+    self.buttonsAppearance = buttonsSettings.buttonsAppearance;
+    self.buttonsList = buttonsSettings.buttonsList;
+    self.buttonsLayout = buttonsSettings.buttonsLayout;
     self.isReady = true;
   });
 

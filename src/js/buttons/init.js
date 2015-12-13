@@ -11,6 +11,9 @@ app.factory.apply(app, require('common/app/services/storage'));
 //Controllers
 app.controller.apply(app, require('./controllers/buttons'));
 
+//Filters
+app.filter.apply(app, require('./filters/in_array'));
+
 //Constants
 app
   .constant('C', require('common/const'))

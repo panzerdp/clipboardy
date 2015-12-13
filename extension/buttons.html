@@ -11,30 +11,34 @@
 <body ng-app="ButtonsApp" ng-controller="ButtonsCtrl as ctrl">
 <div ng-show="ctrl.isReady" ng-switch="ctrl.buttonsLayout">
   <div ng-switch-when="value_buttons_layout_top" class="buttons btn-group btn-group-horizontal">
-    <a class="btn btn-default btn-xs cl-action" ng-click="ctrl.onCopySourceClick()" title="Copy to clipboard">
+    <a class="btn btn-default btn-xs cl-action" ng-click="ctrl.onCopySourceClick()" title="Copy to clipboard"
+       ng-if="ctrl.buttonsList | inArray: ctrl.C.VALUE_BUTTONS_LIST_COPY">
       Copy
     </a>
-    <a class="btn btn-default btn-xs cl-action" ng-click="ctrl.onSelectSourceClick()" title="Select text">
+    <a class="btn btn-default btn-xs cl-action" ng-click="ctrl.onSelectSourceClick()" title="Select text"
+       ng-if="ctrl.showSelectTextButton && (ctrl.buttonsList | inArray: ctrl.C.VALUE_BUTTONS_LIST_SELECT)">
       Select
     </a>
-    <a class="btn btn-default btn-xs cl-action" ng-if="ctrl.showCollapseButton" ng-click="ctrl.onToggleCollapseClick()">
+    <a class="btn btn-default btn-xs cl-action" ng-click="ctrl.onToggleCollapseClick()"
+       ng-if="ctrl.showCollapseButton && (ctrl.buttonsList | inArray: ctrl.C.VALUE_BUTTONS_LIST_COLLAPSE)">
       {{ctrl.isCollapsed ? 'Expand' : 'Collapse'}}
     </a>
   </div>
   <div ng-switch-default="" class="buttons btn-group-vertical">
-    <a class="btn btn-default btn-xs cl-action" ng-click="ctrl.onCopySourceClick()" title="Copy to clipboard">
+    <a class="btn btn-default btn-xs cl-action" ng-click="ctrl.onCopySourceClick()" title="Copy to clipboard"
+       ng-if="ctrl.buttonsList | inArray: ctrl.C.VALUE_BUTTONS_LIST_COPY">
       <i class="fa fa-files-o fa-fw"></i>
     </a>
-    <a class="btn btn-default btn-xs cl-action" ng-if="ctrl.showSelectTextButton" ng-click="ctrl.onSelectSourceClick()"
-       title="Select text">
+    <a class="btn btn-default btn-xs cl-action" ng-click="ctrl.onSelectSourceClick()" title="Select text"
+       ng-if="ctrl.showSelectTextButton && (ctrl.buttonsList | inArray: ctrl.C.VALUE_BUTTONS_LIST_SELECT)">
       <i class="fa fa-i-cursor fa-fw"></i>
     </a>
-    <a ng-if="ctrl.isCollapsed && ctrl.showCollapseButton" class="btn btn-default btn-xs cl-action"
-       ng-click="ctrl.onToggleCollapseClick()" title="Expand text">
+    <a class="btn btn-default btn-xs cl-action" ng-click="ctrl.onToggleCollapseClick()" title="Expand text"
+       ng-if="ctrl.isCollapsed && ctrl.showCollapseButton && (ctrl.buttonsList | inArray: ctrl.C.VALUE_BUTTONS_LIST_COLLAPSE)">
       <i class="fa fa-plus-square-o fa-fw"></i>
     </a>
-    <a ng-if="!ctrl.isCollapsed && ctrl.showCollapseButton" class="btn btn-default btn-xs cl-action"
-       ng-click="ctrl.onToggleCollapseClick()" title="Collapse text">
+    <a class="btn btn-default btn-xs cl-action" ng-click="ctrl.onToggleCollapseClick()" title="Collapse text"
+       ng-if="!ctrl.isCollapsed && ctrl.showCollapseButton && (ctrl.buttonsList | inArray: ctrl.C.VALUE_BUTTONS_LIST_COLLAPSE)">
       <i class="fa fa-minus-square-o fa-fw"></i>
     </a>
   </div>
