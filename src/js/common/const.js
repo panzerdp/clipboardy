@@ -10,5 +10,15 @@ module.exports = {
 
   SETTING_BUTTONS_LAYOUT: 'setting_buttons_layout',
   VALUE_BUTTONS_LAYOUT_TOP: 'value_buttons_layout_top',
-  VALUE_BUTTONS_LAYOUT_RIGHT: 'value_buttons_layout_right'
+  VALUE_BUTTONS_LAYOUT_RIGHT: 'value_buttons_layout_right',
+
+  SETTING_BUTTONS_LIST: 'setting_list_of_buttons',
+  VALUE_BUTTONS_LIST_COPY: 'value_buttons_copy',
+  VALUE_BUTTONS_LIST_SELECT: 'value_buttons_select',
+  VALUE_BUTTONS_LIST_COLLAPSE: 'value_buttons_collapse',
+
+  SETTING_BUTTONS_APPEARANCE: 'setting_buttons_appearance',
+  VALUE_BUTTONS_APPEARANCE_ALWAYS: 'value_buttons_appearance_always',
+  VALUE_BUTTONS_APPEARANCE_HOVER: 'value_buttons_appearance_hover',
+  VALUE_BUTTONS_APPEARANCE_NOT_DISPLAY: 'value_buttons_appearance_not_display'
 };
