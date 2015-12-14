@@ -13,6 +13,9 @@ var inherit = require('inherit'),
 module.exports = inherit({
 
   __constructor: function() {
+
+    this.sourceLazyLoad = null;
+
     this.initializeLazyLoad();
     this.insertButtons();
     this.listenForMessages();
@@ -73,14 +76,15 @@ module.exports = inherit({
    *        or C.VALUE_BUTTONS_LAYOUT_RIGHT
    */
   insertIframe: function(element, id, buttonsLayout) {
-    var isRightLayout = buttonsLayout == C.VALUE_BUTTONS_LAYOUT_RIGHT;
+    var isRightLayout = buttonsLayout == C.VALUE_BUTTONS_LAYOUT_RIGHT,
+      self = this;
     element
       .attr('data-source-id', id);
     var iframeUrl = chrome.extension.getURL('buttons.html') + '?id=' + id,
       iframeLayoutClass = isRightLayout ? 'clipboardy-buttons-layout-right' : 'clipboardy-buttons-layout-top',
       iframeContent = $(sprintf(buttonsIframeTemplate, iframeLayoutClass, iframeUrl, id));
     iframeContent.find('iframe').on('load', function iframeLoadHandler(event) {
-      win.sourceLazyLoad(this);
+      self.sourceLazyLoad(this);
       $(this).off('load', iframeLoadHandler);
     });
     iframeContent.insertBefore(element);
@@ -192,7 +196,7 @@ module.exports = inherit({
    *
    */
   initializeLazyLoad: function() {
-    win.sourceLazyLoad = lazyLoad({
+    this.sourceLazyLoad = lazyLoad({
       container: doc.body,
       offset: 333,
       src: 'data-src'
