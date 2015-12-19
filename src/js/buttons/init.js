@@ -16,8 +16,5 @@ app.filter.apply(app, require('./filters/in_array'));
 
 //Constants
 app
-  .constant('C', require('common/const'))
-  .constant('url', require('url'))
-  .constant('_', require('lodash'));
-
+  .constant('C', require('common/const'));
 module.exports = app;

@@ -2,9 +2,9 @@
  * Get the source id from iframe url
  */
 // @ngInject
-function SourceId($window, url, _) {
+function SourceId($window) {
   var sourceId = null;
-  return {
+  var methods = {
 
     /**
      * Get source id from iframe url query string
@@ -15,11 +15,15 @@ function SourceId($window, url, _) {
       if (sourceId != null) {
         return sourceId;
       }
-      var parsedUrl = url.parse($window.location.href, true);
-      sourceId = _.get(parsedUrl, 'query.id', null);
-      return sourceId;
+      return methods.getParameterByName('id');
+    },
+
+    getParameterByName: function(name) {
+      var match = new RegExp('[?&]' + name + '=([^&]*)').exec($window.location.search);
+      return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
     }
-  }
+  };
+  return methods;
 }
 
 module.exports = [
