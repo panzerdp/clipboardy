@@ -198,7 +198,7 @@ module.exports = inherit({
   initializeLazyLoad: function() {
     this.sourceLazyLoad = lazyLoad({
       container: doc.body,
-      offset: 600,
+      offset: 5000,
       src: 'data-src'
     });
   }
