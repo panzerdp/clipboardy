@@ -20,5 +20,7 @@ module.exports = {
   SETTING_BUTTONS_APPEARANCE: 'setting_buttons_appearance',
   VALUE_BUTTONS_APPEARANCE_ALWAYS: 'value_buttons_appearance_always',
   VALUE_BUTTONS_APPEARANCE_HOVER: 'value_buttons_appearance_hover',
-  VALUE_BUTTONS_APPEARANCE_NOT_DISPLAY: 'value_buttons_appearance_not_display'
+  VALUE_BUTTONS_APPEARANCE_NOT_DISPLAY: 'value_buttons_appearance_not_display',
+
+  CONTEXT_MENU_ID: 'clipboardy-context-menu'
 };

@@ -8,7 +8,8 @@ var inherit = require('inherit'),
   win = require('global/window'),
   _ = require('lodash'),
   storage = require('common/storage'),
-  lazyLoad = require('lazyloadjs');
+  lazyLoad = require('lazyloadjs'),
+  message = require('common/message');
 
 module.exports = inherit({
 
@@ -43,6 +44,7 @@ module.exports = inherit({
           var sourceElement = $(this),
             id = uuid.v1();
           self.insertIframe(sourceElement, id, buttonsLayout);
+          self.initializeMouseEnterEvent(sourceElement, id);
         });
     }).catch(function(error) {
       console.error(error);
@@ -154,7 +156,7 @@ module.exports = inherit({
    */
   listenForMessages: function() {
     var self = this;
-    chrome.runtime.onMessage.addListener(function (request, sender, callback) {
+    message.listen(function (request, sender, callback) {
       switch (request.message) {
         case C.MESSAGE_GET_SOURCE_TEXT:
           var sourceText = self.getSourceTextById(request.id);
@@ -200,6 +202,19 @@ module.exports = inherit({
       container: doc.body,
       offset: 5000,
       src: 'data-src'
+    });
+  },
+
+  initializeMouseEnterEvent: function(source, id) {
+    var self = this;
+    source.on('mouseenter', function(event) {
+      message.send('context_menu.CreateContextMenu', self.getSourceTextById(id)).then(function(result) {
+      });
+    });
+    source.on('mouseleave', function(event) {
+      event.stopPropagation();
+      message.send('context_menu.RemoveContextMenu').then(function(result) {
+      });
     });
   }
 

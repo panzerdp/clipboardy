@@ -26,6 +26,8 @@ var Controller = {
         return require('./public/source');
       case 'clipboard':
         return require('./public/clipboard');
+      case 'context_menu':
+        return require('./public/context_menu');
       default:
         throw new Error('Unable to load the module: ' + name);
     }
