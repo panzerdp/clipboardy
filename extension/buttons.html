@@ -27,19 +27,19 @@
   <div ng-switch-default="" class="buttons btn-group-vertical">
     <a class="btn btn-default btn-xs cl-action" ng-click="ctrl.onCopySourceClick()" title="Copy to clipboard"
        ng-if="ctrl.buttonsList | inArray: ctrl.C.VALUE_BUTTONS_LIST_COPY">
-      <i class="fa fa-files-o fa-fw"></i>
+      <i class="icon-files-o"></i>
     </a>
     <a class="btn btn-default btn-xs cl-action" ng-click="ctrl.onSelectSourceClick()" title="Select text"
        ng-if="ctrl.showSelectTextButton && (ctrl.buttonsList | inArray: ctrl.C.VALUE_BUTTONS_LIST_SELECT)">
-      <i class="fa fa-i-cursor fa-fw"></i>
+      <i class="icon-i-cursor"></i>
     </a>
     <a class="btn btn-default btn-xs cl-action" ng-click="ctrl.onToggleCollapseClick()" title="Expand text"
        ng-if="ctrl.isCollapsed && ctrl.showCollapseButton && (ctrl.buttonsList | inArray: ctrl.C.VALUE_BUTTONS_LIST_COLLAPSE)">
-      <i class="fa fa-plus-square-o fa-fw"></i>
+      <i class="icon-plus-square-o"></i>
     </a>
     <a class="btn btn-default btn-xs cl-action" ng-click="ctrl.onToggleCollapseClick()" title="Collapse text"
        ng-if="!ctrl.isCollapsed && ctrl.showCollapseButton && (ctrl.buttonsList | inArray: ctrl.C.VALUE_BUTTONS_LIST_COLLAPSE)">
-      <i class="fa fa-minus-square-o fa-fw"></i>
+      <i class="icon-minus-square-o"></i>
     </a>
   </div>
 </div>

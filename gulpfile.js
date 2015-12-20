@@ -139,13 +139,6 @@ gulp.task('crx', ['browserify', 'scss'] , function() {
     .pipe(gulp.dest('./build'));
 });
 
-gulp.task('fonts', function() {
-  return gulp.src([
-      './node_modules/font-awesome/fonts/fontawesome-webfont.*'
-    ])
-    .pipe(gulp.dest('./extension/compile/fonts/'));
-});
-
 gulp.task('default', function() {
-  gulp.start('scss', 'fonts', 'watch');
+  gulp.start('scss', 'watch');
 });
