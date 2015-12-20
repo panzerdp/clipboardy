@@ -9,7 +9,8 @@ var inherit = require('inherit'),
   _ = require('lodash'),
   storage = require('common/storage'),
   lazyLoad = require('lazyloadjs'),
-  message = require('common/message');
+  message = require('common/message'),
+  Q = require('q');
 
 module.exports = inherit({
 
@@ -37,14 +38,23 @@ module.exports = inherit({
    */
   insertButtons: function() {
     var self = this;
-    storage.get(C.SETTING_BUTTONS_LAYOUT, C.VALUE_BUTTONS_LAYOUT_RIGHT).then(function(buttonsLayout) {
+    return Q.all({
+      buttonsLayout: storage.get(C.SETTING_BUTTONS_LAYOUT, C.VALUE_BUTTONS_LAYOUT_RIGHT),
+      buttonsAppearance: storage.get(C.SETTING_BUTTONS_APPEARANCE, C.VALUE_BUTTONS_APPEARANCE_ALWAYS)
+    }).then(function(storageSettings) {
       self.getSourceElements()
         .filter(':not([data-source-id])')
         .each(function() {
           var sourceElement = $(this),
             id = uuid.v1();
-          self.insertIframe(sourceElement, id, buttonsLayout);
+          sourceElement.attr('data-source-id', id);
           self.initializeMouseEnterEvent(sourceElement, id);
+          if (storageSettings.buttonsAppearance != C.VALUE_BUTTONS_APPEARANCE_NOT_DISPLAY) {
+            var iframeContainer = self.insertIframe(sourceElement, id, storageSettings.buttonsLayout);
+            if (storageSettings.buttonsAppearance == C.VALUE_BUTTONS_APPEARANCE_HOVER) {
+              self.initializeHoverEvent(sourceElement, iframeContainer);
+            }
+          }
         });
     }).catch(function(error) {
       console.error(error);
@@ -80,8 +90,6 @@ module.exports = inherit({
   insertIframe: function(element, id, buttonsLayout) {
     var isRightLayout = buttonsLayout == C.VALUE_BUTTONS_LAYOUT_RIGHT,
       self = this;
-    element
-      .attr('data-source-id', id);
     var iframeUrl = chrome.extension.getURL('buttons.html') + '?id=' + id,
       iframeLayoutClass = isRightLayout ? 'clipboardy-buttons-layout-right' : 'clipboardy-buttons-layout-top',
       iframeContent = $(sprintf(buttonsIframeTemplate, iframeLayoutClass, iframeUrl, id));
@@ -90,6 +98,7 @@ module.exports = inherit({
       $(this).off('load', iframeLoadHandler);
     });
     iframeContent.insertBefore(element);
+    return iframeContent;
   },
 
   /**
@@ -215,6 +224,15 @@ module.exports = inherit({
       event.stopPropagation();
       message.send('context_menu.RemoveContextMenu').then(function(result) {
       });
+    });
+  },
+
+  initializeHoverEvent: function(source, iframeContainer) {
+    iframeContainer.addClass('clipboardy-hidden');
+    source.add(iframeContainer).hover(function() {
+      iframeContainer.removeClass('clipboardy-hidden');
+    }, function() {
+      iframeContainer.addClass('clipboardy-hidden');
     });
   }
 

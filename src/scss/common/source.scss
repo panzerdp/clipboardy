@@ -2,6 +2,9 @@
   width: 100%;
   height: 0;
   position: relative;
+  &.clipboardy-hidden {
+    display: none;
+  }
   .clipboardy-iframe {
     position: absolute;
     width: 200px;
