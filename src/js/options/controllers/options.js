@@ -2,7 +2,7 @@
  * Controller for buttons in the iframe
  */
 
-function OptionsCtrl(C, Storage, $q, $timeout, _) {
+function OptionsCtrl(C, Storage, $q, $timeout, loExtend) {
   "ngInject"
   var self = this;
   self.stopTransitions = true;
@@ -17,7 +17,7 @@ function OptionsCtrl(C, Storage, $q, $timeout, _) {
     buttonsList: Storage.get(C.SETTING_BUTTONS_LIST, [C.VALUE_BUTTONS_LIST_COPY]),
     buttonsLayout: Storage.get(C.SETTING_BUTTONS_LAYOUT, C.VALUE_BUTTONS_LAYOUT_RIGHT)
   }).then(function(storageData) {
-    _.extend(self, storageData);
+    loExtend(self, storageData);
     return $timeout(100);
   }).then(function() {
     self.stopTransitions = false;
