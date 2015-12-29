@@ -8,9 +8,9 @@ module.exports = inherit(Base, {
   initialize: function() {
     var self = this;
     self.getIframe().on('load', function iframeLoadHandler(event) {
-      var lazyLoadInit = self.__static.sourceLazyLoad();
+      var lazyLoadInit = self.__self.getLazyLoad();
       lazyLoadInit(this);
-      $(this).off('load', iframeLoadHandler);
+      self.getIframe().off('load', iframeLoadHandler);
     });
   }
 
@@ -19,7 +19,7 @@ module.exports = inherit(Base, {
   sourceLazyLoad: null,
 
   getLazyLoad: function() {
-    if (!this.lazyLoad) {
+    if (!this.sourceLazyLoad) {
       //Initialize the lazy load
       this.sourceLazyLoad = lazyLoad({
         container: doc.body,
