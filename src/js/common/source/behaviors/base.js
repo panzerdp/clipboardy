@@ -4,17 +4,12 @@ var inherit = require('inherit'),
 
 module.exports = inherit({
 
-  __constructor: function(id, reader) {
+  __constructor: function(id) {
 
     /**
      * The unique source id
      */
     this.id = id;
-
-    /**
-     * The function which reads raw source text from the element
-     */
-    this.reader = reader;
 
     /**
      * The DOM element of the source code
@@ -57,7 +52,20 @@ module.exports = inherit({
     throw new Error('Initialize method should be implemented');
   }
 }, {
-  getInstance: function(id, reader) {
-     console.log(this);
+
+  instances: {},
+
+  createInstance: function(id) {
+    var instance = new this(id);
+    instance.initialize();
+    this.instances[id] = instance;
+    return instance;
+  },
+
+  getInstance: function(id) {
+    if (!(id in this.instances)) {
+      throw Error(sprintf('Instance with id %s does not exist', id));
+    }
+    return this.instances[id];
   }
 });

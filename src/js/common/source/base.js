@@ -10,8 +10,10 @@ var inherit = require('inherit'),
   storage = require('common/storage'),
   message = require('common/message'),
   Q = require('q'),
-  reader = require('./reader'),
-  AppearanceBehavior = require('./behaviors/appearance');
+  reader = require('./readers/text'),
+  AppearanceBehavior = require('./behaviors/appearance'),
+  LazyloadBehavior = require('./behaviors/lazyload'),
+  ContextMenuBehavior = require('./behaviors/context_menu');
 
 module.exports = inherit({
 
@@ -49,14 +51,12 @@ module.exports = inherit({
           var sourceElement = $(this),
             id = uuid.v1();
           sourceElement.attr('data-source-id', id);
-          //self.initializeMouseEnterEvent(sourceElement, id);
+          ContextMenuBehavior.createInstance(id, self.reader);
           if (storageSettings.buttonsAppearance != C.VALUE_BUTTONS_APPEARANCE_NOT_DISPLAY) {
             self.insertIframe(sourceElement, id, storageSettings.buttonsLayout);
+            LazyloadBehavior.createInstance(id);
             if (storageSettings.buttonsAppearance == C.VALUE_BUTTONS_APPEARANCE_HOVER) {
-              var appearance = new AppearanceBehavior(id, self.reader);
-              appearance.initialize();
-              AppearanceBehavior.getInstance();
-              //self.initializeHoverEvent(sourceElement, iframeContainer);
+              AppearanceBehavior.createInstance(id);
             }
           }
         });
@@ -97,10 +97,6 @@ module.exports = inherit({
     var iframeUrl = chrome.extension.getURL('buttons.html') + '?id=' + id,
       iframeLayoutClass = isRightLayout ? 'clipboardy-buttons-layout-right' : 'clipboardy-buttons-layout-top',
       iframeContent = $(sprintf(buttonsIframeTemplate, iframeLayoutClass, iframeUrl, id));
-    //iframeContent.find('iframe').on('load', function iframeLoadHandler(event) {
-    //  self.sourceLazyLoad(this);
-    //  $(this).off('load', iframeLoadHandler);
-    //});
     iframeContent.insertBefore(element);
     return iframeContent;
   },
@@ -204,40 +200,6 @@ module.exports = inherit({
       childList: true,
       subtree: true
     });
-  },
-
-  ///**
-  // * Initialize the lazy load module for iframe
-  // *
-  // */
-  //initializeLazyLoad: function() {
-  //  this.sourceLazyLoad = lazyLoad({
-  //    container: doc.body,
-  //    offset: 5000,
-  //    src: 'data-src'
-  //  });
-  //},
-  //
-  //initializeMouseEnterEvent: function(source, id) {
-  //  var self = this;
-  //  source.on('mouseenter', function(event) {
-  //    message.send('context_menu.CreateContextMenu', self.getSourceTextById(id)).then(function(result) {
-  //    });
-  //  });
-  //  source.on('mouseleave', function(event) {
-  //    event.stopPropagation();
-  //    message.send('context_menu.RemoveContextMenu').then(function(result) {
-  //    });
-  //  });
-  //},
-  //
-  //initializeHoverEvent: function(source, iframeContainer) {
-  //  iframeContainer.addClass('clipboardy-hidden');
-  //  source.add(iframeContainer).hover(function() {
-  //    iframeContainer.removeClass('clipboardy-hidden');
-  //  }, function() {
-  //    iframeContainer.addClass('clipboardy-hidden');
-  //  });
-  //}
+  }
 
 });

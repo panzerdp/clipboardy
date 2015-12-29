@@ -1,8 +1,8 @@
 var inherit = require('inherit'),
-  Base = require('./base'),
+  BaseReader = require('./base_reader'),
   message = require('../../message');
 
-module.exports = inherit(Base, {
+module.exports = inherit(BaseReader, {
 
   initialize: function() {
     var self = this;

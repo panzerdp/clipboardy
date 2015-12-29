@@ -3,16 +3,22 @@ var inherit = require('inherit'),
 
 module.exports = inherit(Base, {
 
-  initialize: function() {
-    var self = this;
-    console.log(self.getIframeContainer());
-    console.log(self.getSource());
-    self.getIframeContainer().addClass('clipboardy-hidden');
-    self.getSource().add(self.getIframeContainer()).hover(function() {
-      self.getIframeContainer().removeClass('clipboardy-hidden');
-    }, function() {
-      self.getIframeContainer().addClass('clipboardy-hidden');
-    });
+  __constructor: function(id, reader) {
+    this.__base(id);
+
+    /**
+     * The functions which parses the source text
+     */
+    this.reader = reader;
+  }
+
+}, {
+
+  createInstance: function(id, reader) {
+    var instance = new this(id, reader);
+    instance.initialize();
+    this.instances[id] = instance;
+    return instance;
   }
 
 });
