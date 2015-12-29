@@ -6,11 +6,11 @@ module.exports = inherit(Base, {
 
   initialize: function() {
     var self = this;
-    this.source.on('mouseenter', function(event) {
-      message.send('context_menu.CreateContextMenu', self.getSourceTextById(id)).then(function(result) {
+    self.getSource().on('mouseenter', function(event) {
+      message.send('context_menu.CreateContextMenu', self.reader(self.getSource())).then(function(result) {
       });
     });
-    source.on('mouseleave', function(event) {
+    self.getSource().on('mouseleave', function(event) {
       event.stopPropagation();
       message.send('context_menu.RemoveContextMenu').then(function(result) {
       });
