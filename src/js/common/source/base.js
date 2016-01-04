@@ -53,8 +53,11 @@ module.exports = inherit({
           sourceElement.attr('data-source-id', id);
           ContextMenuBehavior.createInstance(id, self.reader);
           if (storageSettings.buttonsAppearance != C.VALUE_BUTTONS_APPEARANCE_NOT_DISPLAY) {
-            self.insertIframe(sourceElement, id, storageSettings.buttonsLayout);
-            LazyloadBehavior.createInstance(id);
+            self.insertIframe(sourceElement, id, storageSettings.buttonsLayout, function(iframeContent) {
+              //Lazy load requires initialization before the iframe is inserted into DOM
+              console.log(iframeContent);
+              LazyloadBehavior.createInstance(id, iframeContent);
+            });
             if (storageSettings.buttonsAppearance == C.VALUE_BUTTONS_APPEARANCE_HOVER) {
               AppearanceBehavior.createInstance(id);
             }
@@ -90,13 +93,17 @@ module.exports = inherit({
    * @param {string} id
    * @param {string} buttonsLayout The layout to display the buttons: C.VALUE_BUTTONS_LAYOUT_TOP
    *        or C.VALUE_BUTTONS_LAYOUT_RIGHT
+   * @param {function} onBeforeInsertIframe
    */
-  insertIframe: function(element, id, buttonsLayout) {
-    var isRightLayout = buttonsLayout == C.VALUE_BUTTONS_LAYOUT_RIGHT,
+  insertIframe: function(element, id, buttonsLayout, onBeforeInsertIframe) {
+    var isRightLayout = buttonsLayout === C.VALUE_BUTTONS_LAYOUT_RIGHT,
       self = this;
     var iframeUrl = chrome.extension.getURL('buttons.html') + '?id=' + id,
       iframeLayoutClass = isRightLayout ? 'clipboardy-buttons-layout-right' : 'clipboardy-buttons-layout-top',
       iframeContent = $(sprintf(buttonsIframeTemplate, iframeLayoutClass, iframeUrl, id));
+    if (typeof onBeforeInsertIframe === 'function') {
+      onBeforeInsertIframe(iframeContent);
+    }
     iframeContent.insertBefore(element);
     return iframeContent;
   },
@@ -105,7 +112,7 @@ module.exports = inherit({
    * Get the source code text from dom element
    *
    * @param {string} id
-   * @returns {string}
+   * @returns {?string}
    */
   getSourceTextById: function(id) {
     var element = this.getElementById(id);

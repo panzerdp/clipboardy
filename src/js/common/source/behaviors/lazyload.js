@@ -5,6 +5,11 @@ var inherit = require('inherit'),
 
 module.exports = inherit(Base, {
 
+  __constructor: function(id, iframeContainer) {
+    this.__base(id);
+    this.iframeContainer = iframeContainer;
+  },
+
   initialize: function() {
     var self = this;
     self.getIframe().on('load', function iframeLoadHandler(event) {
@@ -15,6 +20,13 @@ module.exports = inherit(Base, {
   }
 
 }, {
+
+  createInstance: function(id, iframeContainer) {
+    var instance = new this(id, iframeContainer);
+    instance.initialize();
+    this.instances[id] = instance;
+    return instance;
+  },
 
   sourceLazyLoad: null,
 
