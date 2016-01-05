@@ -13,15 +13,15 @@ var inherit = require('inherit'),
   reader = require('./readers/text'),
   AppearanceBehavior = require('./behaviors/appearance'),
   LazyloadBehavior = require('./behaviors/lazyload'),
-  ContextMenuBehavior = require('./behaviors/context_menu');
+  ContextMenuBehavior = require('./behaviors/context_menu'),
+  HeightSourceBehavior = require('./behaviors/source/height'),
+  SelectSourceBehavior = require('./behaviors/source/select'),
+  TextSourceBehavior = require('./behaviors/source/text');
 
 module.exports = inherit({
 
   __constructor: function() {
-
     this.reader = reader;
-
-   // this.initializeLazyLoad();
     this.insertButtons();
     this.listenForMessages();
     this.listenForDomMutations();
@@ -46,12 +46,14 @@ module.exports = inherit({
       storage.get(C.SETTING_BUTTONS_APPEARANCE, C.VALUE_BUTTONS_APPEARANCE_ALWAYS)
     ]).spread(function(buttonsLayout, buttonsAppearance) {
       self.getSourceElements()
-        .filter(':not([data-source-id])')
         .each(function() {
           var sourceElement = $(this),
             id = uuid.v1();
           sourceElement.attr('data-source-id', id);
           ContextMenuBehavior.createInstance(id, self.reader);
+          TextSourceBehavior.createInstance(id, self.reader);
+          HeightSourceBehavior.createInstance(id);
+          SelectSourceBehavior.createInstance(id);
           if (buttonsAppearance !== C.VALUE_BUTTONS_APPEARANCE_NOT_DISPLAY) {
             self.insertIframe(sourceElement, id, buttonsLayout, function(iframeContent) {
               //Lazy load requires initialization before the iframe is inserted into DOM
@@ -82,7 +84,8 @@ module.exports = inherit({
    * @returns {Array}
    */
   getSourceElements: function() {
-    return $(this.getSourceElementsSelector());
+    return $(this.getSourceElementsSelector())
+      .filter(':not([data-source-id])');
   },
 
   /**
@@ -107,54 +110,6 @@ module.exports = inherit({
   },
 
   /**
-   * Get the source code text from dom element
-   *
-   * @param {string} id
-   * @returns {?string}
-   */
-  getSourceTextById: function(id) {
-    var element = this.getElementById(id);
-    return element.length > 0 ? element.text() : null;
-  },
-
-  /**
-   * Select text in DOM element by id
-   * @param {string} id
-   * @returns {boolean} On successfull selection
-   */
-  selectTextById: function(id) {
-    var text = this.getElementById(id).get(0),
-      range,
-      selection;
-    if (!text) {
-      return false;
-    }
-    if (doc.body.createTextRange) {
-      range = doc.body.createTextRange();
-      range.moveToElementText(text);
-      range.select();
-    } else if (win.getSelection) {
-      selection = win.getSelection();
-      range = doc.createRange();
-      range.selectNodeContents(text);
-      selection.removeAllRanges();
-      selection.addRange(range);
-    }
-    return true;
-  },
-
-  /**
-   * Get the height of the source
-   *
-   * @param {string} id
-   * @return {int}
-   */
-  getSourceHeight: function(id) {
-    var element = this.getElementById(id);
-    return element.height();
-  },
-
-  /**
    * Collapse or expand the source text
    *
    * @param {string} id
@@ -173,24 +128,21 @@ module.exports = inherit({
     message.listen(function (request, sender, callback) {
       switch (request.message) {
         case C.MESSAGE_GET_SOURCE_TEXT:
-          var sourceText = self.getSourceTextById(request.id);
-          if (sourceText != null) {
-            callback(sourceText);
-          }
+          callback(TextSourceBehavior.getInstance(request.id).getText());
           break;
         case C.MESSAGE_SELECT_SOURCE_TEXT:
-          self.selectTextById(request.id);
+          SelectSourceBehavior.getInstance(request.id).select();
           callback(true);
           break;
         case C.MESSAGE_GET_SOURCE_HEIGHT:
-          callback(self.getSourceHeight(request.id));
+          callback(HeightSourceBehavior.getInstance(request.id).getHeight());
           break;
         case C.MESSAGE_TOGGLE_SOURCE_COLLAPSE:
           self.toggleCollapse(request.id, request.isCollapsed);
           callback(true);
           break;
       }
-      win.focus();
+      win.focus(); //Small fix when the iframe captures the focus from the main frame
       return true;
     });
   },
