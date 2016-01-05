@@ -1,5 +1,5 @@
 var inherit = require('inherit'),
-  BaseReader = require('./base_reader');
+  BaseReader = require('../base_reader');
 
 module.exports = inherit(BaseReader, {
 

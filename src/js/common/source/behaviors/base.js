@@ -49,7 +49,7 @@ module.exports = inherit({
   },
 
   initialize: function() {
-    throw new Error('Initialize method should be implemented');
+
   }
 }, {
 

@@ -16,7 +16,8 @@ var inherit = require('inherit'),
   ContextMenuBehavior = require('./behaviors/context_menu'),
   HeightSourceBehavior = require('./behaviors/source/height'),
   SelectSourceBehavior = require('./behaviors/source/select'),
-  TextSourceBehavior = require('./behaviors/source/text');
+  TextSourceBehavior = require('./behaviors/source/text'),
+  CollapseBehavior = require('./behaviors/collapse');
 
 module.exports = inherit({
 
@@ -25,15 +26,6 @@ module.exports = inherit({
     this.insertButtons();
     this.listenForMessages();
     this.listenForDomMutations();
-  },
-
-  /**
-   * Get source element by id
-   * @param {string} id
-   * @return {Object}
-   */
-  getElementById: function(id) {
-    return $('[data-source-id="' + id + '"]');
   },
 
   /**
@@ -54,6 +46,7 @@ module.exports = inherit({
           TextSourceBehavior.createInstance(id, self.reader);
           HeightSourceBehavior.createInstance(id);
           SelectSourceBehavior.createInstance(id);
+          CollapseBehavior.createInstance(id);
           if (buttonsAppearance !== C.VALUE_BUTTONS_APPEARANCE_NOT_DISPLAY) {
             self.insertIframe(sourceElement, id, buttonsLayout, function(iframeContent) {
               //Lazy load requires initialization before the iframe is inserted into DOM
@@ -110,17 +103,6 @@ module.exports = inherit({
   },
 
   /**
-   * Collapse or expand the source text
-   *
-   * @param {string} id
-   * @param {boolean} isCollapsed
-   */
-  toggleCollapse: function(id, isCollapsed) {
-    var element = this.getElementById(id);
-    element.toggleClass('clipboardy-collapsed', isCollapsed);
-  },
-
-  /**
    * Listen for extension messages
    */
   listenForMessages: function() {
@@ -135,10 +117,11 @@ module.exports = inherit({
           callback(true);
           break;
         case C.MESSAGE_GET_SOURCE_HEIGHT:
+          console.log(HeightSourceBehavior.getInstance(request.id));
           callback(HeightSourceBehavior.getInstance(request.id).getHeight());
           break;
         case C.MESSAGE_TOGGLE_SOURCE_COLLAPSE:
-          self.toggleCollapse(request.id, request.isCollapsed);
+          CollapseBehavior.getInstance(request.id).toggleCollapse(request.isCollapsed);
           callback(true);
           break;
       }

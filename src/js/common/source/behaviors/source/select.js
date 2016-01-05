@@ -1,5 +1,5 @@
 var inherit = require('inherit'),
-  Base = require('./base'),
+  Base = require('../base'),
   win = require('global/window'),
   doc = require('global/document');
 
