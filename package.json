@@ -6,7 +6,6 @@
     "bootswatch": "^3.3.5",
     "checklist-model": "^0.8.0",
     "global": "^4.3.0",
-    "inherit": "^2.2.2",
     "jquery": "^2.1.3",
     "lazyloadjs": "^3.2.1",
     "lodash": "^3.10.0",
@@ -36,7 +35,8 @@
     "transform": [
       "partialify",
       "strictify",
-      "browserify-ngannotate"
+      "browserify-ngannotate",
+      "babelify"
     ]
   },
   "browser": {},

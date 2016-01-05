@@ -19,19 +19,19 @@ var inherit = require('inherit'),
   TextSourceBehavior = require('./behaviors/source/text'),
   CollapseBehavior = require('./behaviors/collapse');
 
-module.exports = inherit({
+export default class {
 
-  __constructor: function() {
+  constructor() {
     this.reader = reader;
     this.insertButtons();
     this.listenForMessages();
     this.listenForDomMutations();
-  },
+  }
 
   /**
    * Insert all the button iframe into page
    */
-  insertButtons: function() {
+  insertButtons() {
     var self = this;
     return Q.all([
       storage.get(C.SETTING_BUTTONS_LAYOUT, C.VALUE_BUTTONS_LAYOUT_RIGHT),
@@ -60,26 +60,26 @@ module.exports = inherit({
     }).catch(function(error) {
       console.error(error);
     });
-  },
+  }
 
   /**
    * The jQuery selector for source elements
    *
    * @return {string}
    */
-  getSourceElementsSelector: function() {
+  getSourceElementsSelector() {
     throw new Error('Method "getSourceElementsSelector" is not implemented');
-  },
+  }
 
   /**
    * Get the list of jquery elements on the page where the buttons should be inserted
    *
    * @returns {Array}
    */
-  getSourceElements: function() {
+  getSourceElements() {
     return $(this.getSourceElementsSelector())
       .filter(':not([data-source-id])');
-  },
+  }
 
   /**
    * Insert the buttons iframe into source element
@@ -90,7 +90,7 @@ module.exports = inherit({
    *        or C.VALUE_BUTTONS_LAYOUT_RIGHT
    * @param {function} onBeforeInsertIframe
    */
-  insertIframe: function(element, id, buttonsLayout, onBeforeInsertIframe) {
+  insertIframe(element, id, buttonsLayout, onBeforeInsertIframe) {
     var isRightLayout = buttonsLayout === C.VALUE_BUTTONS_LAYOUT_RIGHT;
     var iframeUrl = chrome.extension.getURL('buttons.html') + '?id=' + id,
       iframeLayoutClass = isRightLayout ? 'clipboardy-buttons-layout-right' : 'clipboardy-buttons-layout-top',
@@ -100,12 +100,12 @@ module.exports = inherit({
     }
     iframeContent.insertBefore(element);
     return iframeContent;
-  },
+  }
 
   /**
    * Listen for extension messages
    */
-  listenForMessages: function() {
+  listenForMessages() {
     var self = this;
     message.listen(function (request, sender, callback) {
       switch (request.message) {
@@ -117,7 +117,6 @@ module.exports = inherit({
           callback(true);
           break;
         case C.MESSAGE_GET_SOURCE_HEIGHT:
-          console.log(HeightSourceBehavior.getInstance(request.id));
           callback(HeightSourceBehavior.getInstance(request.id).getHeight());
           break;
         case C.MESSAGE_TOGGLE_SOURCE_COLLAPSE:
@@ -128,12 +127,12 @@ module.exports = inherit({
       win.focus(); //Small fix when the iframe captures the focus from the main frame
       return true;
     });
-  },
+  }
 
   /**
    * Check for DOM modifications and initialize the buttons again if necessary
    */
-  listenForDomMutations: function() {
+  listenForDomMutations() {
     var self = this,
       observer = new MutationObserver(_.debounce(self.insertButtons.bind(self), 50));
     observer.observe(doc.body, {
@@ -142,4 +141,4 @@ module.exports = inherit({
     });
   }
 
-});
+}

@@ -56,7 +56,9 @@ module.exports = inherit({
   instances: {},
 
   createInstance: function(id) {
+
     var instance = new this(id);
+    console.log(this);
     instance.initialize();
     this.instances[id] = instance;
     return instance;
