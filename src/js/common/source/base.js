@@ -117,7 +117,6 @@ module.exports = inherit({
           callback(true);
           break;
         case C.MESSAGE_GET_SOURCE_HEIGHT:
-          console.log(HeightSourceBehavior.getInstance(request.id));
           callback(HeightSourceBehavior.getInstance(request.id).getHeight());
           break;
         case C.MESSAGE_TOGGLE_SOURCE_COLLAPSE:
