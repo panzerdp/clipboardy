@@ -17,4 +17,6 @@ module.exports = inherit(BaseReader, {
     });
   }
 
+}, {
+  instances: {}
 });

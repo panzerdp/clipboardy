@@ -5,4 +5,6 @@ module.exports = inherit(Base, {
   getHeight: function() {
     return this.getSource().height();
   }
+}, {
+  instances: {}
 });

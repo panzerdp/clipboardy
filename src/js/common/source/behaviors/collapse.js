@@ -12,4 +12,6 @@ module.exports = inherit(Base, {
     this.getSource().toggleClass('clipboardy-collapsed', isCollapsed);
   }
 
+}, {
+  instances: {}
 });

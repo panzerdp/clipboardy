@@ -14,6 +14,8 @@ module.exports = inherit(Base, {
 
 }, {
 
+  instances: {},
+
   createInstance: function(id, reader) {
     var instance = new this(id, reader);
     instance.initialize();

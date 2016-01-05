@@ -13,4 +13,6 @@ module.exports = inherit(Base, {
     });
   }
 
+}, {
+  instances: {}
 });

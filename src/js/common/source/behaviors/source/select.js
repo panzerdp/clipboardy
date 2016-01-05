@@ -26,4 +26,6 @@ module.exports = inherit(Base, {
     return true;
   }
 
+}, {
+  instances: {}
 });

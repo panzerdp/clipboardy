@@ -21,6 +21,8 @@ module.exports = inherit(Base, {
 
 }, {
 
+  instances: {},
+
   createInstance: function(id, iframeContainer) {
     var instance = new this(id, iframeContainer);
     instance.initialize();

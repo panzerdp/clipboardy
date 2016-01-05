@@ -7,4 +7,6 @@ module.exports = inherit(BaseReader, {
     return this.reader(this.getSource());
   }
 
+}, {
+  instances: {}
 });
