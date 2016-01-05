@@ -1,4 +1,4 @@
-var q = require('q'),
+var Q = require('q'),
   chromeStorage = chrome.storage.local;
 
 /**
@@ -9,16 +9,16 @@ var q = require('q'),
  * @returns {Promise}
  */
 exports.get = function (key, def) {
-  if (typeof def == 'undefined') {
+  if (typeof def === 'undefined') {
     def = null;
   }
-  var deferred = q.defer();
+  var deferred = Q.defer();
   chromeStorage.get(key, function (item) {
-    if (typeof key == 'string' && item[key] == null) {
+    if (typeof key === 'string' && item[key] == null) {
       deferred.resolve(def);
-    } else if (typeof key == 'object' && item == null) {
+    } else if (typeof key === 'object' && item == null) {
       deferred.resolve(def);
-    } else if (typeof key == 'string') {
+    } else if (typeof key === 'string') {
       deferred.resolve(item[key]);
     } else {
       deferred.resolve(item);
@@ -36,13 +36,11 @@ exports.get = function (key, def) {
  */
 exports.set = function (key, value) {
   var items = {},
-    deferred = q.defer();
-  if (typeof key == 'string') {
+    deferred = Q.defer();
+  if (typeof key === 'string') {
     items[key] = value;
-  } else if (typeof key == 'object') {
+  } else if (typeof key === 'object') {
     items = key;
-  } else {
-    return false;
   }
   chromeStorage.set(items, deferred.resolve);
   return deferred.promise;
