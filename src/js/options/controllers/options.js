@@ -2,7 +2,7 @@
  * Controller for buttons in the iframe
  */
 
-function OptionsCtrl(C, Storage, $q, $timeout, loExtend) {
+function OptionsController(C, Storage, $q, $timeout, loExtend) {
   "ngInject"
   var self = this;
   self.stopTransitions = true;
@@ -37,6 +37,6 @@ function OptionsCtrl(C, Storage, $q, $timeout, loExtend) {
 }
 
 module.exports = [
-  'OptionsCtrl',
-  OptionsCtrl
+  'OptionsController',
+  OptionsController
 ];

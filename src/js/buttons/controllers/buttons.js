@@ -3,7 +3,7 @@
  */
 
 // @ngInject
-function ButtonsCtrl(Message, C, SourceId, $q, Storage) {
+function ButtonsController(Message, C, SourceId, $q, Storage) {
   var self = this;
 
   self.showCollapseButton = true;
@@ -65,6 +65,6 @@ function ButtonsCtrl(Message, C, SourceId, $q, Storage) {
 }
 
 module.exports = [
-  'ButtonsCtrl',
-  ButtonsCtrl
+  'ButtonsController',
+  ButtonsController
 ];

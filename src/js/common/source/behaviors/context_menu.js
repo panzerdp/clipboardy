@@ -5,19 +5,21 @@ var inherit = require('inherit'),
 module.exports = inherit(BaseReader, {
 
   initialize: function() {
-    var self = this;
-    self.getSource().on('mouseenter', function(event) {
-      message.send('context_menu.EnableContextMenu', self.reader(self.getSource())).then(function(result) {
-      });
+    var self = this,
+      source = self.getSource();
+    source.on('mouseenter', function(event) {
+      message.send('context_menu.EnableContextMenu', self.reader(source));
     });
-    self.getSource().on('mouseleave', function(event) {
+    source.on('mouseleave', function(event) {
       event.stopPropagation();
-      message.send('context_menu.DisableContextMenu').then(function(result) {
-      });
+      message.send('context_menu.DisableContextMenu');
     });
+    if (source.is(':hover')) {
+      //When refreshing the page, the cursor could be positioned near source
+      message.send('context_menu.EnableContextMenu', self.reader(source));
+    }
   }
 
 }, {
   instances: {}
 });
-
