@@ -8,7 +8,7 @@ exports.addItem = function(text) {
       //Remove the existing item. It will appear at the top of the list
       clipboardHistoryItems.splice(existingIndex, 1);
     }
-    clipboardHistoryItems.push(text);
+    clipboardHistoryItems.unshift(text);
     if (clipboardHistoryItems.length > C.MAX_CLIPBOARD_HISTORY_ITEMS) {
       clipboardHistoryItems.length = C.MAX_CLIPBOARD_HISTORY_ITEMS;
     }

@@ -20,15 +20,20 @@ body {
 }
 
 .history-items {
-  padding: 5px;
   overflow-y: auto;
   overflow-x: hidden;
   max-height: 195px;
   cursor: default;
   .row {
     white-space: nowrap;
-    margin-right: 5px;
-    margin-left: 5px;
+    margin-right: 0;
+    margin-left: 0;
+    padding-left: 5px;
+    padding-right: 5px;
+    &.selected {
+      background-color: #3875d6;
+      color: white;
+    }
   }
 }
 
@@ -43,5 +48,6 @@ body {
     background-color: white;
     border: none;
     border-radius: 0;
+    overflow: visible;
   }
 }

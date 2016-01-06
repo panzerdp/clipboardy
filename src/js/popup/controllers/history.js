@@ -5,6 +5,9 @@
 // @ngInject
 function HistoryController(Storage, C) {
   var self = this;
+
+  self.onKeydown = onKeydown;
+
   self.historyItems = [];
   self.activeItemIndex = -1;
 
@@ -14,6 +17,10 @@ function HistoryController(Storage, C) {
       self.activeItemIndex = 0;
     }
   });
+
+  function onKeydown(event) {
+    console.log(event);
+  }
 }
 
 module.exports = [

@@ -8,9 +8,9 @@
   <script type="text/javascript" src="compile/js/vendors.js"></script>
   <script type="text/javascript" src="compile/js/popup.js"></script>
 </head>
-<body ng-app="HistoryApp" ng-controller="HistoryController as ctrl">
+<body ng-app="HistoryApp" ng-controller="HistoryController as ctrl" ng-keyup="ctrl.onKeydown($event)">
 <div class="history-items">
-  <div ng-repeat="historyItem in ctrl.historyItems" class="row">
+  <div ng-repeat="historyItem in ctrl.historyItems" class="row" ng-class="{'selected': ctrl.activeItemIndex == $index}">
     {{ historyItem | firstLine }}
   </div>
 </div>

@@ -25,5 +25,10 @@ module.exports = {
 
   CONTEXT_MENU_ID: 'clipboardy-context-menu',
 
-  KEY_CLIPBOARD_HISTORY: 'key_clipboard_history'
+  KEY_CLIPBOARD_HISTORY: 'key_clipboard_history',
+
+  CODE_KEY_ARROW_DOWN: 40,
+  CODE_KEY_ARROW_UP: 38,
+  CODE_KEY_DELETE: 46,
+  CODE_KEY_ENTER: 13
 };
