@@ -48,6 +48,7 @@
   }],
   "background": {
     "scripts": [
+      "compile/js/vendors_content_script.js",
       "compile/js/background.js"
     ]
   },

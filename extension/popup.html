@@ -11,7 +11,7 @@
 <body ng-app="HistoryApp" ng-controller="HistoryController as ctrl">
 <div class="history-items">
   <div ng-repeat="historyItem in ctrl.historyItems" class="row">
-    {{ historyItem }}
+    {{ historyItem | firstLine }}
   </div>
 </div>
 <div class="history-item-full-text">

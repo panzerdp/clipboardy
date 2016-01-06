@@ -9,22 +9,29 @@ body {
   color: #232323;
   font-family: "Lucida Console", Monaco, monospace;
   -webkit-font-smoothing: subpixel-antialiased;
+  background-color: #e3e3e3;
 }
 
 .history-items, .history-item-full-text {
-  width: 100%;
+  margin: 8px;
+  background-color: white;
+  border: 1px solid #dadada;
+  padding: 5px;
 }
 
 .history-items {
   overflow-y: auto;
   overflow-x: hidden;
-  max-height: 200px;
+  max-height: 195px;
   .row {
     white-space: nowrap;
+    margin-right: 5px;
+    margin-left: 5px;
+    font-size: 12px;
   }
 }
 
 .history-item-full-text {
   overflow: auto;
-  max-height: 400px;
+  height: 380px;
 }

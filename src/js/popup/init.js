@@ -11,6 +11,7 @@ app.factory.apply(app, require('common/app/services/storage'));
 app.controller.apply(app, require('./controllers/history'));
 
 //Filters
+app.filter.apply(app, require('./filters/first_line'));
 
 //Constants
 app
