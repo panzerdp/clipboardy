@@ -15,23 +15,33 @@ body {
 .history-items, .history-item-full-text {
   margin: 8px;
   background-color: white;
-  border: 1px solid #dadada;
-  padding: 5px;
+  border: 1px solid #cdcdcd;
+  font-size: 12px;
 }
 
 .history-items {
+  padding: 5px;
   overflow-y: auto;
   overflow-x: hidden;
   max-height: 195px;
+  cursor: default;
   .row {
     white-space: nowrap;
     margin-right: 5px;
     margin-left: 5px;
-    font-size: 12px;
   }
 }
 
 .history-item-full-text {
   overflow: auto;
   height: 380px;
+  pre {
+    padding: 0;
+    margin: 0;
+    word-break: normal;
+    word-wrap: normal;
+    background-color: white;
+    border: none;
+    border-radius: 0;
+  }
 }
