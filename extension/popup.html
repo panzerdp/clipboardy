@@ -6,9 +6,16 @@
   <link rel="stylesheet" href="compile/css/vendors.css"/>
   <link rel="stylesheet" href="compile/css/popup.css"/>
   <script type="text/javascript" src="compile/js/vendors.js"></script>
-  <script type="text/javascript" src="compile/js/buttons.js"></script>
+  <script type="text/javascript" src="compile/js/popup.js"></script>
 </head>
 <body ng-app="HistoryApp" ng-controller="HistoryController as ctrl">
+<div class="history-items">
+  <div ng-repeat="historyItem in ctrl.historyItems" class="row">
+    {{ historyItem }}
+  </div>
+</div>
+<div class="history-item-full-text">
 
+</div>
 </body>
 </html>

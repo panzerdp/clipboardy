@@ -1,4 +1,5 @@
-var storage = require('common/storage');
+var storage = require('common/storage'),
+  C = require('common/const');
 
 exports.addItem = function(text) {
   return storage.get(C.KEY_CLIPBOARD_HISTORY, []).then(function(clipboardHistoryItems) {
@@ -8,6 +9,9 @@ exports.addItem = function(text) {
       clipboardHistoryItems.splice(existingIndex, 1);
     }
     clipboardHistoryItems.push(text);
+    if (clipboardHistoryItems.length > C.MAX_CLIPBOARD_HISTORY_ITEMS) {
+      clipboardHistoryItems.length = C.MAX_CLIPBOARD_HISTORY_ITEMS;
+    }
     return storage.set(C.KEY_CLIPBOARD_HISTORY, clipboardHistoryItems);
   })
 };
