@@ -1,5 +1,6 @@
 var textarea,
-  documentInstance = require('global/document');
+  documentInstance = require('global/document'),
+  ClipboardHistory = require('../../clipboard_history');
 
 /**
  * Write the text into clipboard
@@ -18,4 +19,6 @@ exports.Write = function (text, callback, sender) {
   textarea.select();
   documentInstance.execCommand('Copy');
   callback(true);
+  //Save the current text to clipboard storage
+  ClipboardHistory.addItem(text);
 };

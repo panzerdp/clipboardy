@@ -18,7 +18,8 @@ var scripts = [
   'buttons',
   'options',
   'github',
-  'npmjs'
+  'npmjs',
+  'popup'
 ];
 
 var vendorsContentScript = [
@@ -39,6 +40,7 @@ var options = {
     pathmodify.mod.dir('common', path.join(__dirname, './src/js/common')),
     pathmodify.mod.dir('background', path.join(__dirname, './src/js/background')),
     pathmodify.mod.dir('buttons', path.join(__dirname, './src/js/buttons')),
+    pathmodify.mod.dir('popup', path.join(__dirname, './src/js/popup')),
     pathmodify.mod.dir('options', path.join(__dirname, './src/js/options'))
   ]
 };
