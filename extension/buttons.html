@@ -11,7 +11,7 @@
 <body ng-app="ButtonsApp" ng-controller="ButtonsCtrl as ctrl">
 <div ng-show="ctrl.isReady" ng-switch="ctrl.buttonsLayout">
   <div ng-switch-when="value_buttons_layout_top" class="buttons btn-group btn-group-horizontal">
-    <a class="btn btn-default btn-xs cl-action" ng-click="ctrl.onCopySourceClick()" title="Copy to clipboard"
+    <a class="btn btn-default btn-xs cl-action" ng-click="ctrl.onCopySourceClick()" title="Copy text to clipboard"
        ng-if="ctrl.buttonsList | inArray: ctrl.C.VALUE_BUTTONS_LIST_COPY">
       Copy
     </a>
@@ -20,12 +20,13 @@
       Select
     </a>
     <a class="btn btn-default btn-xs cl-action" ng-click="ctrl.onToggleCollapseClick()"
+       title="{{ ctrl.isCollapsed ? 'Expand text' : 'Collapse text'}}"
        ng-if="ctrl.showCollapseButton && (ctrl.buttonsList | inArray: ctrl.C.VALUE_BUTTONS_LIST_COLLAPSE)">
       {{ctrl.isCollapsed ? 'Expand' : 'Collapse'}}
     </a>
   </div>
   <div ng-switch-default="" class="buttons btn-group-vertical">
-    <a class="btn btn-default btn-xs cl-action" ng-click="ctrl.onCopySourceClick()" title="Copy to clipboard"
+    <a class="btn btn-default btn-xs cl-action" ng-click="ctrl.onCopySourceClick()" title="Copy text to clipboard"
        ng-if="ctrl.buttonsList | inArray: ctrl.C.VALUE_BUTTONS_LIST_COPY">
       <i class="icon-files-o"></i>
     </a>

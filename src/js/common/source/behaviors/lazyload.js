@@ -37,7 +37,7 @@ module.exports = inherit(Base, {
       //Initialize the lazy load
       this.sourceLazyLoad = lazyLoad({
         container: doc.body,
-        offset: 600,
+        offset: 1000,
         src: 'data-src'
       });
     }
