@@ -7,12 +7,12 @@ module.exports = inherit(BaseReader, {
   initialize: function() {
     var self = this;
     self.getSource().on('mouseenter', function(event) {
-      message.send('context_menu.CreateContextMenu', self.reader(self.getSource())).then(function(result) {
+      message.send('context_menu.EnableContextMenu', self.reader(self.getSource())).then(function(result) {
       });
     });
     self.getSource().on('mouseleave', function(event) {
       event.stopPropagation();
-      message.send('context_menu.RemoveContextMenu').then(function(result) {
+      message.send('context_menu.DisableContextMenu').then(function(result) {
       });
     });
   }
@@ -20,3 +20,4 @@ module.exports = inherit(BaseReader, {
 }, {
   instances: {}
 });
+
