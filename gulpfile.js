@@ -95,6 +95,12 @@ gulp.task('concat:css', function() {
     .pipe(gulp.dest('./extension/compile/css/'));
 });
 
+gulp.task('concat:css-highlight', function() {
+  return gulp.src(['./node_modules/highlight.js/styles/default.css'])
+    .pipe(concat('highlight.css'))
+    .pipe(gulp.dest('./extension/compile/css/'));
+});
+
 gulp.task('watch', function() {
   scripts.forEach(function(script) {
     var customOpts = {
@@ -122,6 +128,7 @@ gulp.task('watch', function() {
   gulp.start('browserify:vendors');
   gulp.start('browserify:vendors-content-script');
   gulp.start('concat:css');
+  gulp.start('concat:css-highlight');
 
   gulp.watch('src/scss/**/*.scss', ['scss']);
 });

@@ -4,18 +4,23 @@
   <meta charset="utf-8">
   <title>Clipboard history</title>
   <link rel="stylesheet" href="compile/css/vendors.css"/>
+  <link rel="stylesheet" href="compile/css/highlight.css"/>
   <link rel="stylesheet" href="compile/css/popup.css"/>
   <script type="text/javascript" src="compile/js/vendors.js"></script>
   <script type="text/javascript" src="compile/js/popup.js"></script>
 </head>
-<body ng-app="HistoryApp" ng-controller="HistoryController as ctrl" ng-keyup="ctrl.onKeydown($event)">
+<body ng-app="HistoryApp" ng-controller="HistoryController as ctrl" ng-keydown="ctrl.onKeydown($event)">
 <div class="history-items">
-  <div ng-repeat="historyItem in ctrl.historyItems" class="row" ng-class="{'selected': ctrl.activeItemIndex == $index}">
+  <div ng-repeat="historyItem in ctrl.historyItems" class="row" ng-class="{'selected': ctrl.activeItemIndex === $index}"
+       ng-click="ctrl.onRowClick($index)" ng-dblclick="ctrl.onRowDoubleClick($index)"
+       scroll-into scroll-into-active="{{ ctrl.activeItemIndex === $index ? 'active' : 'not-active' }}">
     {{ historyItem | firstLine }}
   </div>
 </div>
 <div class="history-item-full-text">
-  <pre ng-if="ctrl.activeItemIndex != -1" ng-bind="ctrl.historyItems[ctrl.activeItemIndex]"></pre>
+  <div hljs ng-if="ctrl.activeItemIndex !== -1" ng-bind="ctrl.historyItems[ctrl.activeItemIndex]">
+
+  </div>
 </div>
 </body>
 </html>
