@@ -38,9 +38,16 @@ body {
 }
 
 .history-item-full-text {
-  overflow: auto;
+  overflow: hidden;
   height: 380px;
+  .hljs {
+    background-color: white;
+    white-space: pre;
+    word-wrap: normal;
+    height: 100%;
+  }
   pre {
+    height: 100%;
     padding: 0;
     margin: 0;
     word-break: normal;

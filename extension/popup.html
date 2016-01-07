@@ -17,10 +17,7 @@
     {{ historyItem | firstLine }}
   </div>
 </div>
-<div class="history-item-full-text">
-  <div hljs ng-if="ctrl.activeItemIndex !== -1" ng-bind="ctrl.historyItems[ctrl.activeItemIndex]">
-
-  </div>
-</div>
+<div class="history-item-full-text" hljs hljs-source="ctrl.historyItems[ctrl.activeItemIndex]"
+     ng-if="ctrl.activeItemIndex !== -1"></div>
 </body>
 </html>

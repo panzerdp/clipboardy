@@ -67,7 +67,6 @@ function HistoryController(Storage, C, $window, Message) {
       return;
     }
     self.historyItems.splice(self.activeItemIndex, 1);
-
     Storage.set(C.KEY_CLIPBOARD_HISTORY, self.historyItems);
   }
 
