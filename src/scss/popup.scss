@@ -1,3 +1,5 @@
+@import "common/icons";
+
 html {
   overflow: hidden
 }
@@ -45,9 +47,16 @@ body {
     margin-left: 0;
     padding-left: 5px;
     padding-right: 5px;
+    .row-index {
+      color: #8c8c8c;
+      margin-right: 6px;
+    }
     &.selected {
       background-color: #3875d6;
       color: white;
+      .row-index {
+        color: white;
+      }
     }
   }
 }
