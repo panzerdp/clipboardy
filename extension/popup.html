@@ -16,8 +16,11 @@
        scroll-into scroll-into-active="{{ ctrl.activeItemIndex === $index ? 'active' : 'not-active' }}">
     {{ historyItem | firstLine }}
   </div>
+  <div ng-if="ctrl.historyItems.length === 0" class="empty-message">Clipboard history is empty</div>
 </div>
-<div class="history-item-full-text" ng-if="ctrl.activeItemIndex === -1"></div>
+<div class="history-item-full-text" ng-if="ctrl.activeItemIndex === -1">
+  <div class="empty-message">Nothing to preview</div>
+</div>
 <div class="history-item-full-text" hljs hljs-source="ctrl.historyItems[ctrl.activeItemIndex]"
      scroll-reset scroll-reset-selector="code" scroll-reset-value="{{ ctrl.activeItemIndex }}"
      ng-if="ctrl.activeItemIndex !== -1"></div>

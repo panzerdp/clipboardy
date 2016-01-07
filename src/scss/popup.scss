@@ -17,6 +17,21 @@ body {
   background-color: white;
   border: 1px solid #cdcdcd;
   font-size: 12px;
+  position: relative;
+  .empty-message {
+    font-size: 10px;
+    color: darkgray;
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 200px;
+    height: 30px;
+    text-align: center;
+    margin: auto;
+  }
 }
 
 .history-items {
