@@ -2,7 +2,7 @@
   "name": "Clipboardy",
   "homepage_url": "http://rainsoft.io",
   "version": "0.1.0",
-  "description": "",
+  "description": "Copy to clipboard source code from stackoverflow.com, github.com and more",
   "author": "Dmitri Pavlutin",
   "icons": {
     "16": "icons/default16.png",

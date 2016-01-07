@@ -8,14 +8,18 @@ var $ = require('jquery');
  * @returns {string}
  */
 module.exports = function(source) {
-  var sourceText = '',
-    lines = source.find('div.line'),
+  var lines = source.find('div.line'),
     linesCount = lines.length;
-  lines.each(function(index) {
-    sourceText += $(this).text();
-    if (index < linesCount - 1) {
-      sourceText += '\n';
-    }
-  });
-  return sourceText;
+  if (linesCount > 0) {
+    var text = '';
+    lines.each(function(index) {
+      text += $(this).text();
+      if (index < linesCount - 1) {
+        text += '\n';
+      }
+    });
+    return text;
+  } else {
+    return source.text();
+  }
 };
