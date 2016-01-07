@@ -12,11 +12,9 @@ function ScrollInto() {
       scrollIntoActive: '@'
     },
     link: function ($scope, $element, $attrs, $ctrl) {
-      var parent = $element.parent()[0],
-        element = $element[0];
       $scope.$watch('scrollIntoActive', function(newValue) {
         if (newValue === 'active') {
-          element.scrollIntoViewIfNeeded()(false);
+          $element[0].scrollIntoViewIfNeeded(false);
         }
       });
     }

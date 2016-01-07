@@ -3,7 +3,7 @@
  */
 
 // @ngInject
-function HistoryController(Storage, C, $window, Message) {
+function HistoryController(Storage, C, $window, Message, Keycode) {
   var self = this;
 
   self.onKeydown = onKeydown;
@@ -25,18 +25,29 @@ function HistoryController(Storage, C, $window, Message) {
       return false;
     }
     event.preventDefault();
-    switch (event.keyCode) {
-      case C.CODE_KEY_ARROW_DOWN:
+    switch (Keycode(event)) {
+      case 'down':
         selectNextItem();
         break;
-      case C.CODE_KEY_ARROW_UP:
+      case 'up':
         selectPreviousItem();
         break;
-      case C.CODE_KEY_DELETE:
+      case 'delete':
         deleteItem();
         break;
-      case C.CODE_KEY_ENTER:
+      case 'enter':
         copyItemToClipboard();
+        $window.close();
+        break;
+      case 'page up':
+      case 'home':
+        selectFirstItem();
+        break;
+      case 'page down':
+      case 'end':
+        selectLastItem();
+        break;
+      case 'esc':
         $window.close();
         break;
     }
@@ -85,6 +96,20 @@ function HistoryController(Storage, C, $window, Message) {
     self.activeItemIndex = index;
     copyItemToClipboard();
     $window.close();
+  }
+
+  function selectFirstItem() {
+    if (self.historyItems.length === 0) {
+      return;
+    }
+    self.activeItemIndex = 0;
+  }
+
+  function selectLastItem() {
+    if (self.historyItems.length === 0) {
+      return;
+    }
+    self.activeItemIndex = self.historyItems.length - 1;
   }
 }
 

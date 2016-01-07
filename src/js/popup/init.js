@@ -21,5 +21,7 @@ app.directive.apply(app, require('./directives/scroll_into'));
 
 //Constants
 app
-  .constant('C', require('common/const'));
+  .constant('C', require('common/const'))
+  .constant('Keycode', require('keycode'));
+
 module.exports = app;

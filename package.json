@@ -10,6 +10,7 @@
     "highlight.js": "^9.1.0",
     "inherit": "^2.2.2",
     "jquery": "^2.1.3",
+    "keycode": "^2.1.0",
     "lazyloadjs": "^3.2.1",
     "lodash": "^3.10.0",
     "q": "^1.4.1",
