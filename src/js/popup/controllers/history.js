@@ -15,7 +15,7 @@ function HistoryController(Storage, C, $window, Message, Keycode) {
 
   Storage.get(C.KEY_CLIPBOARD_HISTORY, []).then(function(storageHistoryItems) {
     self.historyItems = storageHistoryItems;
-    if (self.historyItems.length >= 0) {
+    if (self.historyItems.length > 0) {
       self.activeItemIndex = 0;
     }
   });
@@ -77,7 +77,12 @@ function HistoryController(Storage, C, $window, Message, Keycode) {
     if (self.activeItemIndex === -1) {
       return;
     }
+    var activeIndex = self.activeItemIndex;
+    if (self.activeItemIndex === self.historyItems.length - 1) {
+      activeIndex = self.historyItems.length - 2;
+    }
     self.historyItems.splice(self.activeItemIndex, 1);
+    self.activeItemIndex = activeIndex;
     Storage.set(C.KEY_CLIPBOARD_HISTORY, self.historyItems);
   }
 
