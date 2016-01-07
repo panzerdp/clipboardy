@@ -1,32 +1,19 @@
 var inherit = require('inherit'),
   SourceBase = require('common/source/base'),
-  $ = require('jquery');
+  npmjsReader = require('../readers/npmjs');
 
 module.exports = inherit(SourceBase, {
 
-  getSourceElementsSelector: function() {
-    return 'pre:has(code)';
+  __constructor: function() {
+    //Use a custom reader for npmjs.com
+    this.reader = npmjsReader;
+    this.insertButtons();
+    this.listenForMessages();
+    this.listenForDomMutations();
   },
 
-  /**
-   * Get source from npmjs
-   * Usually each line is wrapped into a block "div.line", which makes parsing newlines a separated
-   * case
-   *
-   * @param {string} id
-   * @return {string}
-   */
-  getSourceTextById: function(id) {
-    var element = this.getElementById(id),
-      sourceText = '',
-      lines = element.find('div.line'),
-      linesCount = lines.length;
-    lines.each(function(index) {
-      sourceText += $(this).text();
-      if (index < linesCount - 1) {
-        sourceText += '\n';
-      }
-    });
-    return sourceText;
+
+  getSourceElementsSelector: function() {
+    return 'pre:has(code)';
   }
 });
