@@ -7,7 +7,7 @@ module.exports = {
 
   MIN_HEIGHT_FOR_DISPLAYING_COLLAPSE: 150, //Minimum height of the source for displaying the collapse button
   MIN_HEIGHT_FOR_DISPLAYING_SELECT_TEXT: 20, //Minimum height of the source for displaying the select button in vertical layout mode
-  MAX_CLIPBOARD_HISTORY_ITEMS: 10, //The maximum number of copied items stored in the history
+  MAX_CLIPBOARD_HISTORY_ITEMS: 15, //The maximum number of copied items stored in the history
 
   SETTING_BUTTONS_LAYOUT: 'setting_buttons_layout',
   VALUE_BUTTONS_LAYOUT_TOP: 'value_buttons_layout_top',

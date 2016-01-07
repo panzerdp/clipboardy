@@ -14,7 +14,7 @@
   <div ng-repeat="historyItem in ctrl.historyItems" class="row" ng-class="{'selected': ctrl.activeItemIndex === $index}"
        ng-click="ctrl.onRowClick($index)" ng-dblclick="ctrl.onRowDoubleClick($index)"
        scroll-into scroll-into-active="{{ ctrl.activeItemIndex === $index ? 'active' : 'not-active' }}">
-    <span class="row-index"><i class="icon-file-text-o"></i> {{ $index + 1 }}</span> {{ historyItem | firstLine }}
+    <span class="row-index"><i class="icon-file-text-o"></i>{{ $index + 1 }}</span> {{ historyItem | firstLine }}
   </div>
   <div ng-if="ctrl.historyItems.length === 0" class="empty-message">Clipboard history is empty</div>
 </div>

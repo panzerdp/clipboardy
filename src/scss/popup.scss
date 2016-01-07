@@ -48,8 +48,12 @@ body {
     padding-left: 5px;
     padding-right: 5px;
     .row-index {
+      display: inline-block;
+      width: 26px;
       color: #8c8c8c;
-      margin-right: 6px;
+      .icon-file-text-o {
+        margin-right: 4px;
+      }
     }
     &.selected {
       background-color: #3875d6;
@@ -64,6 +68,7 @@ body {
 .history-item-full-text {
   overflow: hidden;
   height: 380px;
+  margin-top: 10px;
   .hljs {
     background-color: white;
     white-space: pre;
