@@ -18,6 +18,7 @@ app.filter.apply(app, require('./filters/first_line'));
 
 //Directives
 app.directive.apply(app, require('./directives/scroll_into'));
+app.directive.apply(app, require('./directives/scroll_reset'));
 
 //Constants
 app

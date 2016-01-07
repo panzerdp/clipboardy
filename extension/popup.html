@@ -19,6 +19,7 @@
 </div>
 <div class="history-item-full-text" ng-if="ctrl.activeItemIndex === -1"></div>
 <div class="history-item-full-text" hljs hljs-source="ctrl.historyItems[ctrl.activeItemIndex]"
+     scroll-reset scroll-reset-selector="code" scroll-reset-value="{{ ctrl.activeItemIndex }}"
      ng-if="ctrl.activeItemIndex !== -1"></div>
 </body>
 </html>

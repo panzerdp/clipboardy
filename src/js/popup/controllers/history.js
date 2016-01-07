@@ -33,6 +33,7 @@ function HistoryController(Storage, C, $window, Message, Keycode) {
         selectPreviousItem();
         break;
       case 'delete':
+      case 'backspace':
         deleteItem();
         break;
       case 'enter':
