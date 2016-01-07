@@ -1,3 +1,10 @@
+/**
+ * Directives which forces the parent to always display the selected row
+ * by updating the scroll
+ *
+ * @returns {Object}
+ */
+
 function ScrollInto() {
   return {
     restrict: 'A',
@@ -5,11 +12,13 @@ function ScrollInto() {
       scrollIntoActive: '@'
     },
     link: function ($scope, $element, $attrs, $ctrl) {
-      console.log($scope.scrollIntoActive);
-      if ($scope.scrollIntoActive !== 'active') {
-        return;
-      }
-      $element[0].scrollIntoView();
+      var parent = $element.parent()[0],
+        element = $element[0];
+      $scope.$watch('scrollIntoActive', function(newValue) {
+        if (newValue === 'active') {
+          element.scrollIntoViewIfNeeded()(false);
+        }
+      });
     }
   };
 }

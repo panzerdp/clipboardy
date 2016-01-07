@@ -4,7 +4,6 @@
   "dependencies": {
     "angular": "^1.4.7",
     "angular-highlightjs": "^0.5.1",
-    "angular-scroll": "^1.0.0",
     "bootswatch": "^3.3.5",
     "checklist-model": "^0.8.0",
     "global": "^4.3.0",
