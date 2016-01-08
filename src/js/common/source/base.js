@@ -23,10 +23,15 @@ module.exports = inherit({
 
   __constructor: function() {
     this.reader = reader;
+  },
+
+  /**
+   * Insert button, attach event handlers
+   */
+  initialize: function() {
     this.insertButtons();
     this.listenForMessages();
     this.listenForDomMutations();
-    this.skipMutationObserver = false;
   },
 
   /**

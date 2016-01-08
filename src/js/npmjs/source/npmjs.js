@@ -5,14 +5,10 @@ var inherit = require('inherit'),
 module.exports = inherit(SourceBase, {
 
   __constructor: function() {
+    this.__base();
     //Use a custom reader for npmjs.com
     this.reader = npmjsReader;
-    this.insertButtons();
-    this.listenForMessages();
-    this.listenForDomMutations();
-    this.skipMutationObserver = false;
   },
-
 
   getSourceElementsSelector: function() {
     return 'pre:has(code)';
