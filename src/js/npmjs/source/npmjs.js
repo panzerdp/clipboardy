@@ -10,6 +10,7 @@ module.exports = inherit(SourceBase, {
     this.insertButtons();
     this.listenForMessages();
     this.listenForDomMutations();
+    this.skipMutationObserver = false;
   },
 
 

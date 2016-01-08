@@ -26,6 +26,7 @@ module.exports = inherit({
     this.insertButtons();
     this.listenForMessages();
     this.listenForDomMutations();
+    this.skipMutationObserver = false;
   },
 
   /**
@@ -57,6 +58,7 @@ module.exports = inherit({
             }
           }
         });
+      self.skipMutationObserver = false;
     }).catch(function(error) {
       console.error(error);
     });
@@ -134,7 +136,12 @@ module.exports = inherit({
    */
   listenForDomMutations: function() {
     var self = this,
-      observer = new MutationObserver(_.debounce(self.insertButtons.bind(self), 50));
+      observer = new MutationObserver(_.debounce(function() {
+        if (!self.skipMutationObserver) {
+          self.skipMutationObserver = true;
+          self.insertButtons();
+        }
+      }, 50));
     observer.observe(doc.body, {
       childList: true,
       subtree: true
