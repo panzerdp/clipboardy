@@ -23,6 +23,10 @@ module.exports = {
   VALUE_BUTTONS_APPEARANCE_HOVER: 'value_buttons_appearance_hover',
   VALUE_BUTTONS_APPEARANCE_NOT_DISPLAY: 'value_buttons_appearance_not_display',
 
+  SETTING_SYNTAX_HIGHLIGHTING: 'setting_syntax_highlighting',
+  VALUE_SYNTAX_HIGHLIGHTING_HIGHLIGHTJS: 'value_syntax_highlighting_highlightjs',
+  VALUE_SYNTAX_HIGHLIGHTING_PLAIN: 'value_syntax_highlighting_plain',
+
   CONTEXT_MENU_ID: 'clipboardy-context-menu',
 
   KEY_CLIPBOARD_HISTORY: 'key_clipboard_history'

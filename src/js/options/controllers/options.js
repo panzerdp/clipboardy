@@ -11,11 +11,13 @@ function OptionsController(C, Storage, $q, $timeout, loExtend) {
   self.onButtonsAppearanceChange = onButtonsAppearanceChange;
   self.onButtonsListChange = onButtonsListChange;
   self.onButtonsLayoutChange = onButtonsLayoutChange;
+  self.onSyntaxHighlightingChange = onSyntaxHighlightingChange;
 
   $q.all({
     buttonsAppearance:  Storage.get(C.SETTING_BUTTONS_APPEARANCE, C.VALUE_BUTTONS_APPEARANCE_ALWAYS),
     buttonsList: Storage.get(C.SETTING_BUTTONS_LIST, [C.VALUE_BUTTONS_LIST_COPY]),
-    buttonsLayout: Storage.get(C.SETTING_BUTTONS_LAYOUT, C.VALUE_BUTTONS_LAYOUT_RIGHT)
+    buttonsLayout: Storage.get(C.SETTING_BUTTONS_LAYOUT, C.VALUE_BUTTONS_LAYOUT_RIGHT),
+    syntaxHighlighting: Storage.get(C.SETTING_SYNTAX_HIGHLIGHTING, C.VALUE_SYNTAX_HIGHLIGHTING_HIGHLIGHTJS)
   }).then(function(storageData) {
     loExtend(self, storageData);
     return $timeout(100);
@@ -33,6 +35,10 @@ function OptionsController(C, Storage, $q, $timeout, loExtend) {
 
   function onButtonsLayoutChange() {
     Storage.set(C.SETTING_BUTTONS_LAYOUT, self.buttonsLayout);
+  }
+
+  function onSyntaxHighlightingChange() {
+    Storage.set(C.SETTING_SYNTAX_HIGHLIGHTING, self.syntaxHighlighting);
   }
 }
 
