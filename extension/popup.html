@@ -27,9 +27,7 @@
 </body>
 <div class="history-item-full-text" ng-if="ctrl.activeItemIndex !== -1 && ctrl.syntaxHighlighting === 'value_syntax_highlighting_plain'"
      scroll-reset scroll-reset-selector="pre" scroll-reset-value="{{ ctrl.activeItemIndex }}">
-  <pre class="history-item-full-text-pre">
-    {{ ctrl.historyItems[ctrl.activeItemIndex] }}
-  </pre>
+  <pre class="history-item-full-text-pre">{{ ctrl.historyItems[ctrl.activeItemIndex] }}</pre>
 </div>
 </body>
 </html>

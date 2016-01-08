@@ -11,7 +11,10 @@
   "content_scripts": [{
     "matches": [
       "http://*.stackoverflow.com/*",
-      "http://*.askubuntu.com/*"
+      "http://*.askubuntu.com/*",
+      "http://*.stackexchange.com/*",
+      "http://superuser.com/*",
+      "http://serverfault.com/*"
     ],
     "js": [
       "compile/js/vendors_content_script.js",

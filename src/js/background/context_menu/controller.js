@@ -17,6 +17,9 @@ exports.createContextMenu = function() {
     documentUrlPatterns: [
       "http://*.stackoverflow.com/*",
       "http://*.askubuntu.com/*",
+      "http://*.stackexchange.com/*",
+      "http://superuser.com/*",
+      "http://serverfault.com/*",
       "https://*.github.com/*",
       "https://www.npmjs.com/*"
     ]
