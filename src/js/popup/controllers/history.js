@@ -3,7 +3,7 @@
  */
 
 // @ngInject
-function HistoryController(Storage, C, $window, Message, Keycode) {
+function HistoryController(Storage, C, $window, Message, Keycode, $q) {
   var self = this;
 
   self.onKeydown = onKeydown;
@@ -12,12 +12,20 @@ function HistoryController(Storage, C, $window, Message, Keycode) {
 
   self.historyItems = [];
   self.activeItemIndex = -1;
+  self.syntaxHighlighting = C.VALUE_SYNTAX_HIGHLIGHTING_HIGHLIGHTJS;
 
-  Storage.get(C.KEY_CLIPBOARD_HISTORY, []).then(function(storageHistoryItems) {
-    self.historyItems = storageHistoryItems;
+  $q.all({
+    historyItems: Storage.get(C.KEY_CLIPBOARD_HISTORY, []),
+    syntaxHighlighting: Storage.get(C.SETTING_SYNTAX_HIGHLIGHTING, C.VALUE_SYNTAX_HIGHLIGHTING_HIGHLIGHTJS)
+  })
+  .then(function(storageItems) {
+    self.historyItems = storageItems.historyItems;
     if (self.historyItems.length > 0) {
       self.activeItemIndex = 0;
     }
+    self.syntaxHighlighting = storageItems.syntaxHighlighting;
+
+    console.log(self.syntaxHighlighting);
   });
 
   function onKeydown(event) {

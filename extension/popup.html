@@ -23,6 +23,13 @@
 </div>
 <div class="history-item-full-text" hljs hljs-source="ctrl.historyItems[ctrl.activeItemIndex]"
      scroll-reset scroll-reset-selector="code" scroll-reset-value="{{ ctrl.activeItemIndex }}"
-     ng-if="ctrl.activeItemIndex !== -1"></div>
+     ng-if="ctrl.activeItemIndex !== -1 && ctrl.syntaxHighlighting === 'value_syntax_highlighting_highlightjs'"></div>
+</body>
+<div class="history-item-full-text" ng-if="ctrl.activeItemIndex !== -1 && ctrl.syntaxHighlighting === 'value_syntax_highlighting_plain'"
+     scroll-reset scroll-reset-selector="pre" scroll-reset-value="{{ ctrl.activeItemIndex }}">
+  <pre class="history-item-full-text-pre">
+    {{ ctrl.historyItems[ctrl.activeItemIndex] }}
+  </pre>
+</div>
 </body>
 </html>
