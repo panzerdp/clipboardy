@@ -60,6 +60,16 @@ function HistoryController(Storage, C, $window, Message, Keycode, $q) {
         $window.close();
         break;
     }
+    //Copy to clipboard items by index
+    var numbersMatch = Keycode(event).match(C.REGEXP_NUMBER_KEY_CODE);
+    if (numbersMatch !== null && numbersMatch.length === 2) {
+      var index = numbersMatch[1];
+      if (index <= self.historyItems.length) {
+        self.activeItemIndex = index - 1;
+        copyItemToClipboard();
+        $window.close();
+      }
+    }
   }
 
   function selectNextItem() {
