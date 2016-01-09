@@ -1,5 +1,7 @@
 var inherit = require('inherit'),
-  SourceBase = require('common/source/base');
+  SourceBase = require('common/source/base'),
+  win = require('global/window'),
+  $ = require('jquery');
 
 module.exports = inherit(SourceBase, {
 
@@ -9,7 +11,18 @@ module.exports = inherit(SourceBase, {
   },
 
   listenForWindowUnload: function() {
+    var self = this;
+    win.onpopstate = function onPopState() {
+      self.removeButtons();
+    };
+  },
 
+  removeButtons: function() {
+    $(this.getSourceElementsSelector())
+      .filter('[data-source-id]')
+      .removeAttr('data-source-id');
+    $('.clipboardy-iframe-container')
+      .remove();
   },
 
   getSourceElementsSelector: function() {
