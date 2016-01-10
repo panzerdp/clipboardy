@@ -8,7 +8,7 @@
   <script type="text/javascript" src="compile/js/vendors.js"></script>
   <script type="text/javascript" src="compile/js/buttons.js"></script>
 </head>
-<body ng-app="ButtonsApp" ng-controller="ButtonsController as ctrl">
+<body ng-app="ButtonsApp" ng-controller="ButtonsController as ctrl" ng-strict-di>
 <div ng-show="ctrl.isReady" ng-switch="ctrl.buttonsLayout">
   <div ng-switch-when="value_buttons_layout_top" class="buttons btn-group btn-group-horizontal">
     <a class="btn btn-default btn-xs cl-action" ng-click="ctrl.onCopySourceClick()" title="Copy text to clipboard"

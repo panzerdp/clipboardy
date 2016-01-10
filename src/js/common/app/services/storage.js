@@ -3,6 +3,7 @@
  */
 var storage = chrome.storage.local;
 
+// @ngInject
 function Storage($q) {
   return {
     get: function (key, def) {
