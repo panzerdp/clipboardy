@@ -11,6 +11,9 @@ var path = require('path');
 var assign = require('lodash.assign');
 var sass = require('gulp-sass');
 var concat = require('gulp-concat');
+var uglify = require('gulp-uglify');
+var minifyCss = require('gulp-minify-css');
+var zip = require('gulp-zip');
 
 var scripts = [
   'stackoverflow',
@@ -139,7 +142,25 @@ gulp.task('scss', function () {
     .pipe(gulp.dest('extension/compile/css'));
 });
 
-gulp.task('crx', ['browserify', 'scss'] , function() {
+gulp.task('uglify-js', function() {
+  return gulp.src('extension/**/*.js')
+    .pipe(uglify())
+    .pipe(gulp.dest('extension'));
+});
+
+gulp.task('minify-css', function() {
+  return gulp.src('extension/**/*.css')
+    .pipe(minifyCss())
+    .pipe(gulp.dest('extension'));
+});
+
+gulp.task('compress', function () {
+  return gulp.src('src/*')
+    .pipe(zip(manifest.name + '-v' + manifest.version + '.zip'))
+    .pipe(gulp.dest('dist'));
+});
+
+gulp.task('crx', function() {
   return gulp.src('extension/')
     .pipe(crx({
       privateKey: fs.readFileSync('certificates/extension.pem', 'utf8'),
