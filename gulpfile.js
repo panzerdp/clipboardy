@@ -155,18 +155,18 @@ gulp.task('minify-css', function() {
 });
 
 gulp.task('compress', function () {
-  return gulp.src('src/*')
+  return gulp.src('extension/**/*')
     .pipe(zip(manifest.name + '-v' + manifest.version + '.zip'))
     .pipe(gulp.dest('dist'));
 });
 
 gulp.task('crx', function() {
-  return gulp.src('extension/')
+  return gulp.src('extension/**/*')
     .pipe(crx({
       privateKey: fs.readFileSync('certificates/extension.pem', 'utf8'),
       filename: manifest.name + '-v' + manifest.version + '.crx'
     }))
-    .pipe(gulp.dest('./build'));
+    .pipe(gulp.dest('dist'));
 });
 
 gulp.task('default', function() {

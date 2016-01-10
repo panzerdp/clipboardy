@@ -24,8 +24,6 @@ function HistoryController(Storage, C, $window, Message, Keycode, $q) {
       self.activeItemIndex = 0;
     }
     self.syntaxHighlighting = storageItems.syntaxHighlighting;
-
-    console.log(self.syntaxHighlighting);
   });
 
   function onKeydown(event) {
