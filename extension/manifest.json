@@ -1,7 +1,7 @@
 {
   "name": "Clipboardy",
   "homepage_url": "http://rainsoft.io",
-  "version": "1.0.0",
+  "version": "0.9.0",
   "description": "Copy to clipboard posted code from stackoverflow.com, github.com & npmjs.com. Clipboard usage history.",
   "author": "Dmitri Pavlutin",
   "icons": {
