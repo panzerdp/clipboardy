@@ -15,7 +15,7 @@ function OptionsController(C, Storage, $q, $timeout, loExtend) {
 
   $q.all({
     buttonsAppearance:  Storage.get(C.SETTING_BUTTONS_APPEARANCE, C.VALUE_BUTTONS_APPEARANCE_ALWAYS),
-    buttonsList: Storage.get(C.SETTING_BUTTONS_LIST, [C.VALUE_BUTTONS_LIST_COPY]),
+    buttonsList: Storage.get(C.SETTING_BUTTONS_LIST,[C.VALUE_BUTTONS_LIST_COPY, C.VALUE_BUTTONS_LIST_COLLAPSE, C.VALUE_BUTTONS_LIST_SELECT]),
     buttonsLayout: Storage.get(C.SETTING_BUTTONS_LAYOUT, C.VALUE_BUTTONS_LAYOUT_RIGHT),
     syntaxHighlighting: Storage.get(C.SETTING_SYNTAX_HIGHLIGHTING, C.VALUE_SYNTAX_HIGHLIGHTING_HIGHLIGHTJS)
   }).then(function(storageData) {

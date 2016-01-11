@@ -143,9 +143,9 @@ gulp.task('scss', function () {
 });
 
 gulp.task('uglify-js', function() {
-  return gulp.src('extension/**/*.js')
+  return gulp.src('extension/compile/js/*.js')
     .pipe(uglify())
-    .pipe(gulp.dest('extension'));
+    .pipe(gulp.dest('extension/compile/js/'));
 });
 
 gulp.task('minify-css', function() {
