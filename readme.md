@@ -8,7 +8,7 @@
 *  Show the history of clipboard usage
 *  Configurable toolbar
 
-Install the app from [chrome storage][chrome-store-url] or see the full description on the [product page][product-page-url].
+Install the app from [chrome store][chrome-store-url] or see the full description on the [product page][product-page-url].
 
 
 [![Buttons toolbar](http://rainsoft.io/content/images/2016/01/ChromeWebStore_Badge_v2_340x96.png)][chrome-store-url]
