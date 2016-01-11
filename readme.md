@@ -8,7 +8,7 @@
 *  Show the history of clipboard usage
 *  Configurable toolbar
 
-See the full application description on the [product page][product-page-url] and install from [chrome storage][chrome-store-url].
+Install the app from [chrome storage][chrome-store-url] or see the full description on the [product page][product-page-url].
 
 
 [![Buttons toolbar](http://rainsoft.io/content/images/2016/01/ChromeWebStore_Badge_v2_340x96.png)][chrome-store-url]
@@ -17,6 +17,41 @@ See the full application description on the [product page][product-page-url] and
 ## Screenshots
 ![Buttons toolbar](http://rainsoft.io/content/images/2016/01/Screen-1.png)
 ![Clipboardy usage history](http://rainsoft.io/content/images/2016/01/Screen-Shot-2016-01-09-at-17-04-47-2.png)
+
+##Author
+
+Dmitri Pavlutin
+
+##Changelog
+
+* v0.9.0 - First product release version
+
+##Development
+
+You should have installed at least node version 0.12.  
+
+Clone the repository into your projects directory:
+```
+git clone git@github.panzerdp/clipboardy.git clipboardy-chrome-extension
+```
+
+Install gulp globally:
+```
+npm install --global gulp
+```
+
+Install the dependencies within the project directory:
+```
+npm install
+```
+
+Run the builder and watcher:
+```
+gulp
+```
+
+Install the extension in Chrome browser from local source folder. More details [here](https://developer.chrome.com/extensions/getstarted#unpacked).
+
 
 ## License
 The MIT License (MIT)
