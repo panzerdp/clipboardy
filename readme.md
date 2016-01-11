@@ -8,9 +8,10 @@
 *  Show the history of clipboard usage
 *  Configurable toolbar
 
-See the full application description on the [product page](http://rainsoft.io/clipboardy-chrome-extension) and install it from [chrome storage][chrome-store-url].
+See the full application description on the [product page][product-page-url] and install from [chrome storage][chrome-store-url].
 
-![Buttons toolbar](http://rainsoft.io/content/images/2016/01/ChromeWebStore_Badge_v2_340x96.png)
+
+[![Buttons toolbar](http://rainsoft.io/content/images/2016/01/ChromeWebStore_Badge_v2_340x96.png)][chrome-store-url]
 
 
 ## Screenshots
@@ -40,4 +41,5 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
-[chrome-store-url] https://chrome.google.com/webstore/detail/gkafpbdjggkmmngaamlghmigadfaalhc
+[chrome-store-url]: https://chrome.google.com/webstore/detail/gkafpbdjggkmmngaamlghmigadfaalhc
+[product-page-url]: http://rainsoft.io/clipboardy-chrome-extension
