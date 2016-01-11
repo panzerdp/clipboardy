@@ -12,7 +12,7 @@ var assign = require('lodash.assign');
 var sass = require('gulp-sass');
 var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
-var minifyCss = require('gulp-minify-css');
+var minifyCss = require('gulp-cssnano');
 var zip = require('gulp-zip');
 
 var scripts = [
