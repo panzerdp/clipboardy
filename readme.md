@@ -76,5 +76,5 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
-[chrome-store-url]: https://chrome.google.com/webstore/detail/gkafpbdjggkmmngaamlghmigadfaalhc
+[chrome-store-url]: https://chrome.google.com/webstore/detail/clipboardy/gkafpbdjggkmmngaamlghmigadfaalhc
 [product-page-url]: http://rainsoft.io/clipboardy-chrome-extension
