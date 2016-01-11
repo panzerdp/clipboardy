@@ -32,7 +32,7 @@ You should have installed at least node version 0.12.
 
 Clone the repository into your projects directory:
 ```
-git clone git@github.panzerdp/clipboardy.git clipboardy-chrome-extension
+git clone git@github.com:panzerdp/clipboardy.git clipboardy-chrome-extension
 ```
 
 Install gulp globally:
