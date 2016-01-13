@@ -24,6 +24,7 @@ Dmitri Pavlutin
 
 ##Changelog
 
+* v0.9.1 - By default all buttons are enabled
 * v0.9.0 - First product release version
 
 ##Development
