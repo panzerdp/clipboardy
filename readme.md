@@ -15,8 +15,10 @@ Install the app from [chrome store][chrome-store-url] or see the full descriptio
 
 
 ## Screenshots
-<img style="max-width: 600px;" src="http://rainsoft.io/content/images/2016/01/Screen-1.png"/>
-<img style="max-width: 600px;" src="http://rainsoft.io/content/images/2016/01/Screen-Shot-2016-01-09-at-17-04-47-2.png"/>
+<div style="max-width: 600px">
+  <img src="http://rainsoft.io/content/images/2016/01/Screen-1.png"/>
+  <img src="http://rainsoft.io/content/images/2016/01/Screen-Shot-2016-01-09-at-17-04-47-2.png"/>
+</div>
 ##Author
 
 Dmitri Pavlutin
