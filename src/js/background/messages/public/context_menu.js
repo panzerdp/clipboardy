@@ -1,16 +1,19 @@
 var C = require('common/const'),
-  latestText = '';
+  storage = require('common/storage');
 
 /**
  * Create the context menu for copying the source to clipboard
  * @param {string} text
+ * @param {Function} callback
  */
-exports.EnableContextMenu = function(text) {
+exports.EnableContextMenu = function(text, callback) {
   //remove the old menu if it exists
   chrome.contextMenus.update(C.CONTEXT_MENU_ID, {
     enabled: true
   });
-  latestText = text;
+  storage.set(C.KEY_LATEST_COPIED_TEXT, text).then(function() {
+    callback(true);
+  });
   return true;
 };
 
@@ -18,17 +21,10 @@ exports.EnableContextMenu = function(text) {
  * Disable the context menu when cursor is not over a source code
  * @returns {boolean}
  */
-exports.DisableContextMenu = function() {
+exports.DisableContextMenu = function(params, callback) {
   chrome.contextMenus.update(C.CONTEXT_MENU_ID, {
     enabled: false
   });
+  callback(true);
   return true;
-};
-
-/**
- * Get latest text from enabled stage
- * @returns {string}
- */
-exports.getLatestText = function() {
-  return latestText;
 };

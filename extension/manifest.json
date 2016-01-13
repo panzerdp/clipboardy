@@ -53,7 +53,8 @@
     "scripts": [
       "compile/js/vendors_content_script.js",
       "compile/js/background.js"
-    ]
+    ],
+    "persistent": false
   },
   "options_page": "options.html",
   "browser_action": {

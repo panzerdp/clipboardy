@@ -30,6 +30,7 @@ module.exports = {
   CONTEXT_MENU_ID: 'clipboardy-context-menu',
 
   KEY_CLIPBOARD_HISTORY: 'key_clipboard_history',
+  KEY_LATEST_COPIED_TEXT: 'key_latest_copied_text',
 
   REGEXP_NUMBER_KEY_CODE: /^(?:numpad\s)?([1-9])$/
 };

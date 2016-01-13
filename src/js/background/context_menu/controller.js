@@ -1,29 +1,32 @@
 var C = require('common/const'),
-  ContextMenu = require('../messages/public/context_menu'),
-  Clipboard = require('../messages/public/clipboard');
+  Clipboard = require('../messages/public/clipboard'),
+  storage = require('common/storage');
 
 exports.createContextMenu = function() {
   chrome.contextMenus.onClicked.addListener(function() {
-    Clipboard.Write(ContextMenu.getLatestText(), function() {});
+    storage.get(C.KEY_LATEST_COPIED_TEXT, '').then(function(text) {
+      Clipboard.Write(text, function() {});
+    });
   });
 
-  chrome.contextMenus.create({
-    id: C.CONTEXT_MENU_ID,
-    title: 'Copy to clipboard',
-    contexts: [
-      'page'
-    ],
-    enabled: false,
-    documentUrlPatterns: [
-      "http://*.stackoverflow.com/*",
-      "http://*.askubuntu.com/*",
-      "http://*.stackexchange.com/*",
-      "http://superuser.com/*",
-      "http://serverfault.com/*",
-      "https://*.github.com/*",
-      "https://www.npmjs.com/*"
-    ]
+  chrome.runtime.onInstalled.addListener(function() {
+    chrome.contextMenus.create({
+      id: C.CONTEXT_MENU_ID,
+      title: 'Copy to clipboard',
+      contexts: [
+        'page'
+      ],
+      enabled: false,
+      documentUrlPatterns: [
+        "http://*.stackoverflow.com/*",
+        "http://*.askubuntu.com/*",
+        "http://*.stackexchange.com/*",
+        "http://superuser.com/*",
+        "http://serverfault.com/*",
+        "https://*.github.com/*",
+        "https://www.npmjs.com/*"
+      ]
+    });
   });
-
 
 };
