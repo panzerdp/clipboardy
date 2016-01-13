@@ -15,9 +15,8 @@ Install the app from [chrome store][chrome-store-url] or see the full descriptio
 
 
 ## Screenshots
-![Buttons toolbar](http://rainsoft.io/content/images/2016/01/Screen-1.png){:width="600px"}
-![Clipboardy usage history](http://rainsoft.io/content/images/2016/01/Screen-Shot-2016-01-09-at-17-04-47-2.png){:width="600px"}
-
+<img src="http://rainsoft.io/content/images/2016/01/Screen-1.png"/ width="600px"/>
+<img src="http://rainsoft.io/content/images/2016/01/Screen-Shot-2016-01-09-at-17-04-47-2.png" width="600px"/>
 ##Author
 
 Dmitri Pavlutin
