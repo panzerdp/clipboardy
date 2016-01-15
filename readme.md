@@ -1,8 +1,10 @@
 ## Clipboardy
 
+Clipboardy][chrome-store-url] is a Chrome extension for copying posted code to clipboard from stackoverflow.com, github.com & npmjs.com.
+
 <img src="docs/images/clipboardy_screen_recording.gif" width="600px"/>
 
-[Clipboardy][chrome-store-url] is a Chrome extension for copying posted code to clipboard from stackoverflow.com, github.com & npmjs.com. It can:
+The extension allows to:
 
 *  Copy the source code to clipboard with just one click
 *  Select the source text
