@@ -1,5 +1,7 @@
 ## Clipboardy
 
+<img src="docs/images/clipboardy_screen_recording.gif" width="600px"/>
+
 [Clipboardy][chrome-store-url] is a Chrome extension for copying posted code to clipboard from stackoverflow.com, github.com & npmjs.com. It can:
 
 *  Copy the source code to clipboard with just one click
@@ -10,16 +12,7 @@
 
 Install the app from [chrome store][chrome-store-url] or see the full description on the [product page][product-page-url].
 
-
 [![Buttons toolbar](http://rainsoft.io/content/images/2016/01/ChromeWebStore_Badge_v2_340x96.png)][chrome-store-url]
-
-
-## Screenshots
-<img src="http://rainsoft.io/content/images/2016/01/Screen-1.png"/ width="600px"/>
-<img src="http://rainsoft.io/content/images/2016/01/Screen-Shot-2016-01-09-at-17-04-47-2.png" width="600px"/>
-##Author
-
-Dmitri Pavlutin
 
 ##Changelog
 
@@ -52,6 +45,9 @@ gulp
 
 Install the extension in Chrome browser from local source folder. More details [here](https://developer.chrome.com/extensions/getstarted#unpacked).
 
+##Author
+
+[Dmitri Pavlutin](http://rainsoft.io/about-me/)
 
 ## License
 The MIT License (MIT)
