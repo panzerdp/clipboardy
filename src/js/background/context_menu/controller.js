@@ -9,24 +9,22 @@ exports.createContextMenu = function() {
     });
   });
 
-  chrome.runtime.onInstalled.addListener(function() {
-    chrome.contextMenus.create({
-      id: C.CONTEXT_MENU_ID,
-      title: 'Copy to clipboard',
-      contexts: [
-        'page'
-      ],
-      enabled: false,
-      documentUrlPatterns: [
-        "http://*.stackoverflow.com/*",
-        "http://*.askubuntu.com/*",
-        "http://*.stackexchange.com/*",
-        "http://superuser.com/*",
-        "http://serverfault.com/*",
-        "https://*.github.com/*",
-        "https://www.npmjs.com/*"
-      ]
-    });
+  chrome.contextMenus.create({
+    id: C.CONTEXT_MENU_ID,
+    title: 'Copy to clipboard',
+    contexts: [
+      'page'
+    ],
+    enabled: false,
+    documentUrlPatterns: [
+      "http://*.stackoverflow.com/*",
+      "http://*.askubuntu.com/*",
+      "http://*.stackexchange.com/*",
+      "http://superuser.com/*",
+      "http://serverfault.com/*",
+      "https://*.github.com/*",
+      "https://www.npmjs.com/*"
+    ]
   });
 
 };
