@@ -20,7 +20,7 @@ function OptionsController(C, Storage, $q, $timeout, loExtend) {
     syntaxHighlighting: Storage.get(C.SETTING_SYNTAX_HIGHLIGHTING, C.VALUE_SYNTAX_HIGHLIGHTING_HIGHLIGHTJS)
   }).then(function(storageData) {
     loExtend(self, storageData);
-    return $timeout(100);
+    return $timeout(function() {}, 100);
   }).then(function() {
     self.stopTransitions = false;
   });
