@@ -1,5 +1,4 @@
-var Q = require('q'),
-  chromeStorage = chrome.storage.local;
+var chromeStorage = chrome.storage.local;
 
 /**
  * Get data from storage
@@ -12,19 +11,19 @@ exports.get = function (key, def) {
   if (typeof def === 'undefined') {
     def = null;
   }
-  var deferred = Q.defer();
-  chromeStorage.get(key, function (item) {
-    if (typeof key === 'string' && item[key] == null) {
-      deferred.resolve(def);
-    } else if (typeof key === 'object' && item == null) {
-      deferred.resolve(def);
-    } else if (typeof key === 'string') {
-      deferred.resolve(item[key]);
-    } else {
-      deferred.resolve(item);
-    }
+  return new Promise(function(resolve, reject) {
+    chromeStorage.get(key, function (item) {
+      if (typeof key === 'string' && item[key] == null) {
+        resolve(def);
+      } else if (typeof key === 'object' && item == null) {
+        resolve(def);
+      } else if (typeof key === 'string') {
+        resolve(item[key]);
+      } else {
+        resolve(item);
+      }
+    });
   });
-  return deferred.promise;
 };
 
 /**
@@ -35,13 +34,13 @@ exports.get = function (key, def) {
  * @returns {Promise}
  */
 exports.set = function (key, value) {
-  var items = {},
-    deferred = Q.defer();
+  var items = {};
   if (typeof key === 'string') {
     items[key] = value;
   } else if (typeof key === 'object') {
     items = key;
   }
-  chromeStorage.set(items, deferred.resolve);
-  return deferred.promise;
+  return new Promise(function(resolve) {
+    chromeStorage.set(items, resolve);
+  });
 };

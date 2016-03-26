@@ -1,5 +1,3 @@
-var Q = require('q');
-
 module.exports = {
   /**
    * Send a message to Background script
@@ -8,14 +6,14 @@ module.exports = {
    * @returns {Promise}
    */
   send: function(method, data) {
-    var deferred = Q.defer();
-    chrome.runtime.sendMessage({
-      method: method,
-      data: data
-    }, function(response) {
-      deferred.resolve(response);
+    return new Promise(function(resolve) {
+      chrome.runtime.sendMessage({
+        method: method,
+        data: data
+      }, function(response) {
+        resolve(response);
+      });
     });
-    return deferred.promise;
   },
 
   /**

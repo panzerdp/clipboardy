@@ -8,7 +8,6 @@ var inherit = require('inherit'),
   debounce = require('lodash/debounce'),
   storage = require('common/storage'),
   message = require('common/message'),
-  Q = require('q'),
   reader = require('./readers/text'),
   AppearanceBehavior = require('./behaviors/appearance'),
   LazyloadBehavior = require('./behaviors/lazyload'),
@@ -38,10 +37,12 @@ module.exports = inherit({
    */
   insertButtons: function() {
     var self = this;
-    return Q.all([
+    return Promise.all([
       storage.get(C.SETTING_BUTTONS_LAYOUT, C.VALUE_BUTTONS_LAYOUT_RIGHT),
       storage.get(C.SETTING_BUTTONS_APPEARANCE, C.VALUE_BUTTONS_APPEARANCE_ALWAYS)
-    ]).spread(function(buttonsLayout, buttonsAppearance) {
+    ]).then(function(result) {
+      var buttonsLayout = result[0],
+        buttonsAppearance = result[1];
       self.getSourceElements()
         .forEach(function(sourceElement) {
           var id = randomString();

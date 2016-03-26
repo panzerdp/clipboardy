@@ -28,8 +28,9 @@ var scripts = [
 var vendorsContentScript = [
   'inherit',
   'sprintf-js',
-  'q',
-  'lazyloadjs'
+  'lazyloadjs',
+  'lodash/debounce',
+  'to-array'
 ];
 
 var vendors = [
