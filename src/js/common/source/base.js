@@ -1,5 +1,5 @@
 var inherit = require('inherit'),
-  uuid = require('uuid'),
+  randomString = require('common/random_string'),
   sprintf = require('sprintf-js').sprintf,
   C = require('common/const'),
   buttonsIframeTemplate = require('./templates/buttons_iframe.html'),
@@ -44,7 +44,7 @@ module.exports = inherit({
     ]).spread(function(buttonsLayout, buttonsAppearance) {
       self.getSourceElements()
         .forEach(function(sourceElement) {
-          var id = uuid.v1();
+          var id = randomString();
           sourceElement.setAttribute('data-source-id', id);
           ContextMenuBehavior.createInstance(id, self.reader);
           TextSourceBehavior.createInstance(id, self.reader);

@@ -2,7 +2,7 @@
   "name": "Clipboardy",
   "version": "0.1.0",
   "dependencies": {
-    "angular": "^1.2.29",
+    "angular": "1.2.29",
     "angular-highlightjs": "^0.5.1",
     "bootswatch": "^3.3.5",
     "checklist-model": "^0.8.0",
@@ -13,8 +13,7 @@
     "lodash": "^4.6.1",
     "q": "^1.4.1",
     "sprintf-js": "^1.0.2",
-    "to-array": "^0.1.4",
-    "uuid": "^2.0.1"
+    "to-array": "^0.1.4"
   },
   "devDependencies": {
     "browserify": "^12.0.1",
