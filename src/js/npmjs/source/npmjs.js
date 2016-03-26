@@ -1,7 +1,8 @@
 var inherit = require('inherit'),
   SourceBase = require('common/source/base'),
   npmjsReader = require('../readers/npmjs'),
-  doc = window.document;
+  doc = window.document,
+  toArray = require('to-array');
 
 module.exports = inherit(SourceBase, {
 
@@ -12,6 +13,8 @@ module.exports = inherit(SourceBase, {
   },
 
   getSourceElements: function() {
-    return toArray(doc.querySelectorAll('pre:has(code):not([data-source-id])'));
+    return toArray(doc.querySelectorAll('pre:not([data-source-id])')).filter(function(element) {
+      return element.querySelector('code') != null;
+    });
   }
 });
