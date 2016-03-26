@@ -27,7 +27,6 @@ var scripts = [
 
 var vendorsContentScript = [
   'jquery',
-  'lodash',
   'inherit',
   'sprintf-js',
   'uuid',

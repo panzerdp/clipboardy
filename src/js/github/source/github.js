@@ -1,6 +1,6 @@
 var inherit = require('inherit'),
   SourceBase = require('common/source/base'),
-  win = require('global/window'),
+  win = window,
   $ = require('jquery');
 
 module.exports = inherit(SourceBase, {

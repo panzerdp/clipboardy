@@ -1,7 +1,7 @@
 var inherit = require('inherit'),
   Base = require('../base'),
-  win = require('global/window'),
-  doc = require('global/document');
+  win = window,
+  doc = window.document;
 
 module.exports = inherit(Base, {
 

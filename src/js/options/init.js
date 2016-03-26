@@ -16,6 +16,6 @@ app.controller.apply(app, require('./controllers/options'));
 //Constants
 app
   .constant('C', require('common/const'))
-  .constant('loExtend', require('lodash/object/extend'));
+  .constant('loExtend', require('lodash/extend'));
 
 module.exports = app;

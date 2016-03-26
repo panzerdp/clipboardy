@@ -1,7 +1,7 @@
 var inherit = require('inherit'),
   Base = require('./base'),
   lazyLoad = require('lazyloadjs'),
-  doc = require('global/document');
+  doc = window.document;
 
 module.exports = inherit(Base, {
 

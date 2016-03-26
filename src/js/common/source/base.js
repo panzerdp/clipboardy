@@ -4,9 +4,9 @@ var inherit = require('inherit'),
   sprintf = require('sprintf-js').sprintf,
   C = require('common/const'),
   buttonsIframeTemplate = require('./templates/buttons_iframe.html'),
-  doc = require('global/document'),
-  win = require('global/window'),
-  _ = require('lodash'),
+  doc = window.document,
+  win = window,
+  debounce = require('lodash/debounce'),
   storage = require('common/storage'),
   message = require('common/message'),
   Q = require('q'),
@@ -141,7 +141,7 @@ module.exports = inherit({
    */
   listenForDomMutations: function() {
     var self = this,
-      observer = new MutationObserver(_.debounce(function() {
+      observer = new MutationObserver(debounce(function() {
         if (!self.skipMutationObserver) {
           self.skipMutationObserver = true;
           self.insertButtons();
