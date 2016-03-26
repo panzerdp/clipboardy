@@ -26,7 +26,6 @@ var scripts = [
 ];
 
 var vendorsContentScript = [
-  'jquery',
   'inherit',
   'sprintf-js',
   'uuid',

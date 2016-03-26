@@ -89,7 +89,7 @@ module.exports = inherit({
     var isRightLayout = buttonsLayout === C.VALUE_BUTTONS_LAYOUT_RIGHT;
     var iframeUrl = chrome.extension.getURL('buttons.html') + '?id=' + id,
       iframeLayoutClass = isRightLayout ? 'clipboardy-buttons-layout-right' : 'clipboardy-buttons-layout-top',
-      iframeContent = document.createElement('div');
+      iframeContent = doc.createElement('div');
     iframeContent.innerHTML = sprintf(buttonsIframeTemplate, iframeLayoutClass, iframeUrl, id);
     if (typeof onBeforeInsertIframe === 'function') {
       onBeforeInsertIframe(iframeContent);

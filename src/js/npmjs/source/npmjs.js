@@ -1,6 +1,7 @@
 var inherit = require('inherit'),
   SourceBase = require('common/source/base'),
-  npmjsReader = require('../readers/npmjs');
+  npmjsReader = require('../readers/npmjs'),
+  doc = window.document;
 
 module.exports = inherit(SourceBase, {
 
@@ -10,7 +11,7 @@ module.exports = inherit(SourceBase, {
     this.reader = npmjsReader;
   },
 
-  getSourceElementsSelector: function() {
-    return 'pre:has(code)';
+  getSourceElements: function() {
+    return toArray(doc.querySelectorAll('pre:has(code):not([data-source-id])'));
   }
 });

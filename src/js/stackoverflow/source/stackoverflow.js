@@ -1,8 +1,10 @@
 var inherit = require('inherit'),
-  SourceBase = require('common/source/base');
+  SourceBase = require('common/source/base'),
+  toArray = require('to-array'),
+  doc = window.document;
 
 module.exports = inherit(SourceBase, {
-  getSourceElementsSelector: function() {
-    return '.post-text pre';
+  getSourceElements: function() {
+    return toArray(doc.querySelectorAll('.post-text pre:not([data-source-id])'));
   }
 });

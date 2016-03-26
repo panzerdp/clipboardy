@@ -9,7 +9,7 @@ module.exports = inherit(Base, {
    * @param {boolean} isCollapsed
    */
   toggleCollapse: function(isCollapsed) {
-    this.getSource().toggleClass('clipboardy-collapsed', isCollapsed);
+    this.getSource().classList.toggle('clipboardy-collapsed', isCollapsed);
   }
 
 }, {
