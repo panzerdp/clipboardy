@@ -1,5 +1,4 @@
 var inherit = require('inherit'),
-  $ = require('jquery'),
   sprintf = require('sprintf-js').sprintf;
 
 module.exports = inherit({
@@ -29,21 +28,21 @@ module.exports = inherit({
 
   getIframeContainer: function () {
     if (!this.iframeContainer) {
-      this.iframeContainer = $(sprintf('[iframe-source-id="%s"]', this.id));
+      this.iframeContainer = document.querySelector(sprintf('[iframe-source-id="%s"]', this.id));
     }
     return this.iframeContainer;
   },
 
   getIframe: function() {
     if (!this.iframe) {
-      this.iframe = this.getIframeContainer().find('iframe');
+      this.iframe = this.getIframeContainer().querySelector('iframe');
     }
     return this.iframe;
   },
 
   getSource: function() {
     if (!this.source) {
-      this.source = $(sprintf('[data-source-id="%s"]', this.id));
+      this.source = document.querySelector(sprintf('[data-source-id="%s"]', this.id));
     }
     return this.source;
   },

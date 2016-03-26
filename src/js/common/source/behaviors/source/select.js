@@ -6,7 +6,7 @@ var inherit = require('inherit'),
 module.exports = inherit(Base, {
 
   select: function() {
-    var sourceElement = this.getSource().get(0),
+    var sourceElement = this.getSource(),
       range,
       selection;
     if (!sourceElement) {

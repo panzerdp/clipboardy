@@ -1,7 +1,8 @@
 var inherit = require('inherit'),
   SourceBase = require('common/source/base'),
   win = window,
-  $ = require('jquery');
+  doc = window.document,
+  toArray = require('to-array');
 
 module.exports = inherit(SourceBase, {
 
@@ -18,14 +19,15 @@ module.exports = inherit(SourceBase, {
   },
 
   removeButtons: function() {
-    $(this.getSourceElementsSelector())
-      .filter('[data-source-id]')
-      .removeAttr('data-source-id');
-    $('.clipboardy-iframe-container')
-      .remove();
+    toArray(doc.querySelectorAll('pre[data-source-id]')).forEach(function(element) {
+      element.removeAttribute('data-source-id');
+    });
+    toArray(doc.querySelectorAll('.clipboardy-iframe-container')).forEach(function(element) {
+      element.parentNode.removeChild(element);
+    });
   },
 
-  getSourceElementsSelector: function() {
-    return 'pre';
+  getSourceElements: function() {
+    return toArray(doc.querySelectorAll('pre:not([data-source-id])'));
   }
 });

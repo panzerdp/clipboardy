@@ -3,7 +3,7 @@ var inherit = require('inherit'),
 
 module.exports = inherit(Base, {
   getHeight: function() {
-    return this.getSource().height();
+    return this.getSource().offsetHeight;
   }
 }, {
   instances: {}

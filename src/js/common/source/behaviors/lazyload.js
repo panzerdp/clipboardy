@@ -12,10 +12,10 @@ module.exports = inherit(Base, {
 
   initialize: function() {
     var self = this;
-    self.getIframe().on('load', function iframeLoadHandler(event) {
+    self.getIframe().addEventListener('load', function iframeLoadHandler(event) {
       var lazyLoadInit = self.__self.getLazyLoad();
       lazyLoadInit(this);
-      self.getIframe().off('load', iframeLoadHandler);
+      self.getIframe().removeEventListener('load', iframeLoadHandler);
     });
   }
 

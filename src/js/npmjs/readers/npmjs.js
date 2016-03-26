@@ -1,4 +1,4 @@
-var $ = require('jquery');
+var toArray = require('to-array');
 
 /**
  * Custom reader function for npmjs.
@@ -8,18 +8,18 @@ var $ = require('jquery');
  * @returns {string}
  */
 module.exports = function(source) {
-  var lines = source.find('div.line'),
+  var lines = toArray(source.querySelectorAll('div.line')),
     linesCount = lines.length;
   if (linesCount > 0) {
     var text = '';
-    lines.each(function(index) {
-      text += $(this).text();
+    lines.forEach(function(lineElement, index) {
+      text += lineElement.innerText;
       if (index < linesCount - 1) {
         text += '\n';
       }
     });
     return text;
   } else {
-    return source.text();
+    return source.innerText;
   }
 };

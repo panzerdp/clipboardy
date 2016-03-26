@@ -1,5 +1,4 @@
 var inherit = require('inherit'),
-  $ = require('jquery'),
   uuid = require('uuid'),
   sprintf = require('sprintf-js').sprintf,
   C = require('common/const'),
@@ -44,10 +43,9 @@ module.exports = inherit({
       storage.get(C.SETTING_BUTTONS_APPEARANCE, C.VALUE_BUTTONS_APPEARANCE_ALWAYS)
     ]).spread(function(buttonsLayout, buttonsAppearance) {
       self.getSourceElements()
-        .each(function() {
-          var sourceElement = $(this),
-            id = uuid.v1();
-          sourceElement.attr('data-source-id', id);
+        .forEach(function(sourceElement) {
+          var id = uuid.v1();
+          sourceElement.setAttribute('data-source-id', id);
           ContextMenuBehavior.createInstance(id, self.reader);
           TextSourceBehavior.createInstance(id, self.reader);
           HeightSourceBehavior.createInstance(id);
@@ -70,22 +68,12 @@ module.exports = inherit({
   },
 
   /**
-   * The jQuery selector for source elements
-   *
-   * @return {string}
-   */
-  getSourceElementsSelector: function() {
-    throw new Error('Method "getSourceElementsSelector" is not implemented');
-  },
-
-  /**
-   * Get the list of jquery elements on the page where the buttons should be inserted
+   * Get the list of elements on the page where the buttons should be inserted
    *
    * @returns {Array}
    */
   getSourceElements: function() {
-    return $(this.getSourceElementsSelector())
-      .filter(':not([data-source-id])');
+    throw new Error('Not implemented');
   },
 
   /**
@@ -101,11 +89,12 @@ module.exports = inherit({
     var isRightLayout = buttonsLayout === C.VALUE_BUTTONS_LAYOUT_RIGHT;
     var iframeUrl = chrome.extension.getURL('buttons.html') + '?id=' + id,
       iframeLayoutClass = isRightLayout ? 'clipboardy-buttons-layout-right' : 'clipboardy-buttons-layout-top',
-      iframeContent = $(sprintf(buttonsIframeTemplate, iframeLayoutClass, iframeUrl, id));
+      iframeContent = document.createElement('div');
+    iframeContent.innerHTML = sprintf(buttonsIframeTemplate, iframeLayoutClass, iframeUrl, id);
     if (typeof onBeforeInsertIframe === 'function') {
       onBeforeInsertIframe(iframeContent);
     }
-    iframeContent.insertBefore(element);
+    element.parentNode.insertBefore(iframeContent, element);
     return iframeContent;
   },
 
