@@ -18,6 +18,7 @@ Install the app from [chrome store][chrome-store-url] or see the full descriptio
 
 ##Changelog
 
+* v0.9.4 - Fix the content script patterns to match https for stackoverflow
 * v0.9.3 - Fix context menu creation when disabled extension is updated
 * v0.9.2 - Use event page
 * v0.9.1 - By default all buttons are enabled
