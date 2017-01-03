@@ -1,7 +1,7 @@
 {
   "name": "Clipboardy",
   "homepage_url": "https://rainsoft.io/clipboardy-chrome-extension/",
-  "version": "0.9.3",
+  "version": "0.9.4",
   "description": "Copy to clipboard posted code from stackoverflow.com, github.com & npmjs.com. Clipboard usage history.",
   "author": "Dmitri Pavlutin",
   "icons": {
@@ -10,11 +10,11 @@
   },
   "content_scripts": [{
     "matches": [
-      "http://*.stackoverflow.com/*",
-      "http://*.askubuntu.com/*",
-      "http://*.stackexchange.com/*",
-      "http://superuser.com/*",
-      "http://serverfault.com/*"
+      "*://*.stackoverflow.com/*",
+      "*://*.askubuntu.com/*",
+      "*://*.stackexchange.com/*",
+      "*://superuser.com/*",
+      "*://serverfault.com/*"
     ],
     "js": [
       "compile/js/vendors_content_script.js",
