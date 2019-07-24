@@ -129,7 +129,7 @@ module.exports = inherit({
     });
   },
 
-  tryToFocusWindow() {
+  tryToFocusWindow: function() {
     if (win.document.visibilityState === 'visible') {
       win.focus();
     }
