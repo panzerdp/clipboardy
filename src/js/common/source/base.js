@@ -108,20 +108,23 @@ module.exports = inherit({
       switch (request.message) {
         case C.MESSAGE_GET_SOURCE_TEXT:
           callback(TextSourceBehavior.getInstance(request.id).getText());
+          win.focus();
           break;
         case C.MESSAGE_SELECT_SOURCE_TEXT:
           SelectSourceBehavior.getInstance(request.id).select();
           callback(true);
+          win.focus();
           break;
         case C.MESSAGE_GET_SOURCE_HEIGHT:
           callback(HeightSourceBehavior.getInstance(request.id).getHeight());
+          win.focus();
           break;
         case C.MESSAGE_TOGGLE_SOURCE_COLLAPSE:
           CollapseBehavior.getInstance(request.id).toggleCollapse(request.isCollapsed);
           callback(true);
+          win.focus();
           break;
       }
-      win.focus(); //Small fix when the iframe captures the focus from the main frame
       return true;
     });
   },

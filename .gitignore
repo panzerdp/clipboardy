@@ -3,3 +3,4 @@ node_modules
 extension/compile
 .idea
 certificates/extension.pem
+/dist

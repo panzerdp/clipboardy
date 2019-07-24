@@ -14,9 +14,7 @@ The extension allows to:
 
 Install the app from [chrome store][chrome-store-url] or see the full description on the [product page][product-page-url].
 
-[![Buttons toolbar](http://rainsoft.io/content/images/2016/01/ChromeWebStore_Badge_v2_340x96.png)][chrome-store-url]
-
-##Changelog
+## Changelog
 
 * v0.9.4 - Fix the content script patterns to match https for stackoverflow
 * v0.9.3 - Fix context menu creation when disabled extension is updated
@@ -24,7 +22,7 @@ Install the app from [chrome store][chrome-store-url] or see the full descriptio
 * v0.9.1 - By default all buttons are enabled
 * v0.9.0 - First product release version
 
-##Development
+## Development
 
 You should have installed at least node version 0.12.  
 
@@ -50,9 +48,9 @@ gulp
 
 Install the extension in Chrome browser from local source folder. More details [here](https://developer.chrome.com/extensions/getstarted#unpacked).
 
-##Author
+## Author
 
-[Dmitri Pavlutin](http://rainsoft.io/about-me/)
+[Dmitri Pavlutin](http://dmitripavlutin.com/about-me/)
 
 ## License
 The MIT License (MIT)
