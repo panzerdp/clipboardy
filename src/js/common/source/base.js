@@ -108,25 +108,31 @@ module.exports = inherit({
       switch (request.message) {
         case C.MESSAGE_GET_SOURCE_TEXT:
           callback(TextSourceBehavior.getInstance(request.id).getText());
-          win.focus();
+          self.tryToFocusWindow();
           break;
         case C.MESSAGE_SELECT_SOURCE_TEXT:
           SelectSourceBehavior.getInstance(request.id).select();
           callback(true);
-          win.focus();
+          self.tryToFocusWindow();
           break;
         case C.MESSAGE_GET_SOURCE_HEIGHT:
           callback(HeightSourceBehavior.getInstance(request.id).getHeight());
-          win.focus();
+          self.tryToFocusWindow();
           break;
         case C.MESSAGE_TOGGLE_SOURCE_COLLAPSE:
           CollapseBehavior.getInstance(request.id).toggleCollapse(request.isCollapsed);
           callback(true);
-          win.focus();
+          self.tryToFocusWindow();
           break;
       }
       return true;
     });
+  },
+
+  tryToFocusWindow() {
+    if (win.document.visibilityState === 'visible') {
+      win.focus();
+    }
   },
 
   /**

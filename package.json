@@ -1,6 +1,6 @@
 {
   "name": "Clipboardy",
-  "version": "0.9.5",
+  "version": "0.9.6",
   "dependencies": {
     "angular": "1.2.29",
     "angular-highlightjs": "^0.5.1",
