@@ -1,8 +1,8 @@
 {
   "name": "Clipboardy",
-  "version": "0.1.0",
+  "version": "0.9.6",
   "dependencies": {
-    "angular": "1.2.29",
+    "angular": "1.6.0",
     "angular-highlightjs": "^0.5.1",
     "bootswatch": "^3.3.5",
     "checklist-model": "^0.8.0",

@@ -1,7 +1,7 @@
 {
   "name": "Clipboardy",
-  "homepage_url": "https://rainsoft.io/clipboardy-chrome-extension/",
-  "version": "0.9.4",
+  "homepage_url": "https://github.com/panzerdp/clipboardy",
+  "version": "0.9.6",
   "description": "Copy to clipboard posted code from stackoverflow.com, github.com & npmjs.com. Clipboard usage history.",
   "author": "Dmitri Pavlutin",
   "icons": {
