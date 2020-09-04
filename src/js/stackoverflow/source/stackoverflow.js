@@ -5,6 +5,6 @@ var inherit = require('inherit'),
 
 module.exports = inherit(SourceBase, {
   getSourceElements: function() {
-    return toArray(doc.querySelectorAll('.post-text pre:not([data-source-id])'));
+    return toArray(doc.querySelectorAll('.post-layout pre:not([data-source-id])'));
   }
 });
