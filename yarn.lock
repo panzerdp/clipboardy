@@ -94,10 +94,10 @@ angular-highlightjs@^0.5.1:
   resolved "https://registry.yarnpkg.com/angular-highlightjs/-/angular-highlightjs-0.5.1.tgz#be37fc270be1086103837bfc6644cc1539445b89"
   integrity sha1-vjf8JwvhCGEDg3v8ZkTMFTlEW4k=
 
-angular@1.2.29:
-  version "1.2.29"
-  resolved "https://registry.yarnpkg.com/angular/-/angular-1.2.29.tgz#4909377312037404612007f6efcf329b620b22af"
-  integrity sha1-SQk3cxIDdARhIAf2788ym2ILIq8=
+angular@1.6.0:
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/angular/-/angular-1.6.0.tgz#16c5edebd0a342046bd5281cca2decf04c40df76"
+  integrity sha1-FsXt69CjQgRr1Sgcyi3s8ExA33Y=
 
 angular@>=1.0.8:
   version "1.8.0"
@@ -2359,10 +2359,10 @@ hash.js@^1.0.0, hash.js@^1.0.3:
     inherits "^2.0.3"
     minimalistic-assert "^1.0.1"
 
-highlight.js@^9.1.0:
-  version "9.18.3"
-  resolved "https://registry.yarnpkg.com/highlight.js/-/highlight.js-9.18.3.tgz#a1a0a2028d5e3149e2380f8a865ee8516703d634"
-  integrity sha512-zBZAmhSupHIl5sITeMqIJnYCDfAEc3Gdkqj65wC1lpI468MMQeeQkhcIAvk+RylAkxrCcI9xy9piHiXeQ1BdzQ==
+highlight.js@^10.4.1:
+  version "10.4.1"
+  resolved "https://registry.yarnpkg.com/highlight.js/-/highlight.js-10.4.1.tgz#d48fbcf4a9971c4361b3f95f302747afe19dbad0"
+  integrity sha512-yR5lWvNz7c85OhVAEAeFhVCc/GV4C30Fjzc/rCP0aCWzc1UUOPUk55dK/qdwTZHBvMZo+eZ2jpk62ndX/xMFlg==
 
 hmac-drbg@^1.0.0:
   version "1.0.1"
