@@ -1,3 +1,5 @@
+**For some reason Chrome Web Store has decided to remove the extension because it might "Encourage, facilitate, or enable the unauthorized access, download, or streaming of copyrighted content or media". Is copying code to clipboard from stackoverflow a violation of copyright ?? No other details or the exact complaints were provided.**
+
 ## Clipboardy
 
 [Clipboardy][chrome-store-url] is a Chrome extension for copying posted code to clipboard from stackoverflow.com, github.com & npmjs.com.
